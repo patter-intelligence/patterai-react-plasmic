@@ -1801,6 +1801,217 @@ button .contained.disabled {
   text-align: start;
 }
 
+.ps-pricing-summary-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 24px;
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+  height: 100vh;
+  margin-top: -20px;
+  overflow-y: auto;
+  padding-right: 48px;
+}
+
+.ps-pricing-summary-title {
+  color: #023b95;
+  margin-bottom: 20px;
+}
+
+.ps-expand-collapse-btn {
+  background-color: #023b95;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.ps-expand-collapse-btn:hover {
+  background-color: #012c70;
+}
+
+.ps-pricing-summary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ps-accordion-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.ps-accordion-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ps-accordion-header,
+.ps-accordion-header-no-highlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ps-accordion-header:hover {
+  background-color: #f4f6f9;
+}
+
+.ps-accordion-header.ps-open {
+  background-color: #e6f0ff;
+}
+
+.ps-accordion-header-no-highlight {
+  cursor: default;
+}
+
+.ps-cost {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.ps-chevron {
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #023b95;
+  border-bottom: 2px solid #023b95;
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+.ps-chevron.ps-open {
+  transform: rotate(-135deg);
+}
+
+.ps-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  opacity: 0;
+  padding: 0 16px;
+}
+
+.ps-accordion-content.ps-open {
+  max-height: 1000px;
+  opacity: 1;
+  padding: 16px;
+}
+
+.ps-additional-info-container {
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.ps-additional-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.ps-additional-info-row:not(:last-child) {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ps-additional-info-name {
+  color: #666666;
+}
+
+.ps-additional-info-price {
+  color: #404040;
+  font-weight: 600;
+}
+
+.ps-total-cost {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 2px solid #023b95;
+}
+
+.ps-total-cost .ps-accordion-header-no-highlight {
+  background-color: #e6f0ff;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.ps-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+}
+
+.ps-loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #f4f6f9;
+  border-top: 3px solid #023b95;
+  border-radius: 50%;
+  animation: ps-spin 1s linear infinite;
+}
+
+@keyframes ps-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.ps-loading-text {
+  margin-top: 20px;
+  color: #9b9b9b;
+}
+
+.ps-error-message {
+  color: #e51a3c;
+  text-align: center;
+  padding: 20px;
+}
+
+.ps-h2-semi {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 600;
+}
+
+.ps-h3-semi {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 600;
+}
+
+.ps-h3-medium {
+  font-size: 22px;
+  line-height: 27px;
+  font-weight: 500;
+}
+
+.ps-d1-semi {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+.ps-d1-medium {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+}
+
+.ps-d2-medium {
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 500;
+}
+
 .lod-loan-options-container {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   max-width: 600px;

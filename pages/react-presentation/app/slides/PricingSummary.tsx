@@ -86,11 +86,11 @@ const PricingSummary: React.FC = observer(() => {
 
   if (productsLoading || systemSizeLoading || isCalculating) {
     return (
-      <div className="pricing-summary-card">
-        <h2 className="h2-semi pricing-summary-title">Pricing Summary</h2>
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p className="d2-medium loading-text">Loading pricing data...</p>
+      <div className="ps-pricing-summary-card">
+        <h2 className="ps-h2-semi ps-pricing-summary-title">Pricing Summary</h2>
+        <div className="ps-loading-container">
+          <div className="ps-loading-spinner"></div>
+          <p className="ps-d2-medium ps-loading-text">Loading pricing data...</p>
         </div>
       </div>
     );
@@ -98,9 +98,9 @@ const PricingSummary: React.FC = observer(() => {
 
   if (productsError || systemSizeError) {
     return (
-      <div className="pricing-summary-card">
-        <h2 className="h2-semi pricing-summary-title">Pricing Summary</h2>
-        <p className="error-message">
+      <div className="ps-pricing-summary-card">
+        <h2 className="ps-h2-semi ps-pricing-summary-title">Pricing Summary</h2>
+        <p className="ps-error-message">
           Error loading pricing data. Please try again.
         </p>
       </div>
@@ -109,34 +109,34 @@ const PricingSummary: React.FC = observer(() => {
 
   if (!productsWithPricing || productsWithPricing.length === 0) {
     return (
-      <div className="pricing-summary-card">
-        <h2 className="h2-semi pricing-summary-title">Pricing Summary</h2>
-        <p className="d2-medium">No pricing data available.</p>
+      <div className="ps-pricing-summary-card">
+        <h2 className="ps-h2-semi ps-pricing-summary-title">Pricing Summary</h2>
+        <p className="ps-d2-medium">No pricing data available.</p>
       </div>
     );
   }
 
   return (
-    <div className="pricing-summary-card">
-      <h2 className="h2-semi pricing-summary-title">Pricing Summary</h2>
-      <button className="expand-collapse-btn" onClick={handleToggleAll}>
+    <div className="ps-pricing-summary-card">
+      <h2 className="ps-h2-semi ps-pricing-summary-title">Pricing Summary</h2>
+      <button className="ps-expand-collapse-btn" onClick={handleToggleAll}>
         {expandAll ? 'Collapse All' : 'Expand All'}
       </button>
-      <div className="pricing-summary-content">
+      <div className="ps-pricing-summary-content">
         {costDetails.map((detail) => (
           <div key={detail.id} className="ps-accordion-section">
             <div
               className={`ps-accordion-header ${
-                openItems.includes(detail.id) ? 'open' : ''
+                openItems.includes(detail.id) ? 'ps-open' : ''
               }`}
               onClick={() => handleToggleSection(detail.id)}
             >
-              <span className="d1-semi">{detail.label}</span>
-              <span className="ps-cost d1-medium">{detail.formattedPrice}</span>
+              <span className="ps-d1-semi">{detail.label}</span>
+              <span className="ps-cost ps-d1-medium">{detail.formattedPrice}</span>
               {detail.additionalInfo && (
                 <span
-                  className={`chevron ${
-                    openItems.includes(detail.id) ? 'open' : ''
+                  className={`ps-chevron ${
+                    openItems.includes(detail.id) ? 'ps-open' : ''
                   }`}
                 ></span>
               )}
@@ -144,16 +144,16 @@ const PricingSummary: React.FC = observer(() => {
             {detail.additionalInfo && (
               <div
                 className={`ps-accordion-content ${
-                  openItems.includes(detail.id) ? 'open' : ''
+                  openItems.includes(detail.id) ? 'ps-open' : ''
                 }`}
               >
-                <div className="additional-info-container">
+                <div className="ps-additional-info-container">
                   {detail.additionalInfo.map((info) => (
-                    <div key={info.id} className="additional-info-row">
-                      <span className="d2-medium additional-info-name">
+                    <div key={info.id} className="ps-additional-info-row">
+                      <span className="ps-d2-medium ps-additional-info-name">
                         {info.name}
                       </span>
-                      <span className="d2-medium additional-info-price">
+                      <span className="ps-d2-medium ps-additional-info-price">
                         {info.price}
                       </span>
                     </div>
@@ -165,8 +165,8 @@ const PricingSummary: React.FC = observer(() => {
         ))}
         <div className="ps-total-cost">
           <div className="ps-accordion-header-no-highlight">
-            <span className="h3-semi">Net System Cost</span>
-            <span className="ps-cost h3-medium">{netSystemCost}</span>
+            <span className="ps-h3-semi">Net System Cost</span>
+            <span className="ps-cost ps-h3-medium">{netSystemCost}</span>
           </div>
         </div>
       </div>
