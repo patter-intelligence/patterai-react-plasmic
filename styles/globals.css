@@ -2049,9 +2049,9 @@ button .contained.disabled {
   font-family: "Montserrat", sans-serif;
   color: #404040;
   height: 100vh;
-  margin-top: -20px;
+  /* margin-top: -20px; */
   overflow-y: auto;
-  padding-right: 48px;
+  /* padding-right: 48px; */
 }
 
 .ps-pricing-summary-title {
