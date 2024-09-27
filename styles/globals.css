@@ -1801,6 +1801,247 @@ button .contained.disabled {
   text-align: start;
 }
 
+.ps-presentation-pricing-sidebar {
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 360px;
+  background-color: #f8f9fa;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  height: 100vh;
+  z-index: 1000;
+}
+
+.ps-toggle-icon {
+  all: unset;
+  position: fixed;
+  right: 20px;
+  top: 5px;
+  z-index: 1001;
+  background-color: #ffffff;
+  border: 2px solid #023b95;
+  color: #023b95;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ps-toggle-icon:hover {
+  background-color: #023b95;
+  color: #ffffff;
+}
+
+.ps-sidebar-content {
+  padding: 24px;
+}
+
+.ps-sidebar-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.ps-sidebar-info {
+  margin-bottom: 16px;
+}
+
+.ps-sidebar-info h4 {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.ps-search-container {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.ps-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+.ps-search-input {
+  width: 100%;
+  padding: 8px 8px 8px 40px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.ps-search-input:focus {
+  outline: none;
+  border-color: #023b95;
+  box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
+}
+
+.ps-product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ps-product-item {
+  background-color: #ffffff;
+  border-radius: 4px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.ps-product-item:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.ps-product-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ps-default-product-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #023b95;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+
+.ps-product-description {
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.ps-pricing-strategy {
+  margin-bottom: 12px;
+}
+
+.ps-input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ps-input-label {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.ps-quantity-input,
+.ps-custom-value-input {
+  width: 100px;
+  padding: 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: right;
+}
+
+.ps-quantity-input:focus,
+.ps-custom-value-input:focus {
+  border-color: #023b95;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
+}
+
+.ps-toggle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ps-toggle-input {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background-color: #d1d1d1;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ps-toggle-input:checked {
+  background-color: #023b95;
+}
+
+.ps-toggle-input::before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.ps-toggle-input:checked::before {
+  transform: translateX(20px);
+}
+
+.ps-product-price {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background-color: #f0f8ff;
+  border-radius: 4px;
+  display: inline-block;
+  color: #023b95;
+}
+
+.ps-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ps-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #023b95;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: ps-spin 1s linear infinite;
+}
+
+@keyframes ps-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ps-loading-text {
+  margin-top: 16px;
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 500;
+  color: #9b9b9b;
+}
+
 .ps-pricing-summary-card {
   background: #ffffff;
   border-radius: 8px;

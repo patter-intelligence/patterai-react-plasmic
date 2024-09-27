@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './PricingSidebar.module.css';
+// import './PricingSidebar.module.css';
 import {
   useDirectSalesforceAction,
   useSalesforceAction,
@@ -174,28 +174,28 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
 
     return (
       <>
-        <button className="toggle-icon" onClick={toggleOverlay}>
+        <button className="ps-toggle-icon" onClick={toggleOverlay}>
           {isOpen ? <CloseIcon /> : <GearIcon />}
         </button>
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="presentation-pricing-sidebar"
+              className="ps-presentation-pricing-sidebar"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              <div className="sidebar-content">
+              <div className="ps-sidebar-content">
                 {isLoading ? (
                   <motion.div
-                    className="loading-container"
+                    className="ps-loading-container"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <div className="spinner"></div>
-                    <p className="loading-text">{loadingMessage}</p>
+                    <div className="ps-spinner"></div>
+                    <p className="ps-loading-text">{loadingMessage}</p>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -203,8 +203,8 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <h2 className="sidebar-title">Product(s)</h2>
-                    <div className="sidebar-info">
+                    <h2 className="ps-sidebar-title">Product(s)</h2>
+                    <div className="ps-sidebar-info">
                       <h4>
                         System Size: {formatNumber(systemSizeWatts / 1000)} kW
                       </h4>
@@ -215,19 +215,19 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                           : formatPrice(totalCost)}
                       </h4>
                     </div>
-                    <div className="search-container">
-                      <SearchIcon className="search-icon" />
+                    <div className="ps-search-container">
+                      <SearchIcon className="ps-search-icon" />
 
                       <input
                         type="search"
                         placeholder="Search Products"
                         value={searchText}
                         onChange={handleSearchChange}
-                        className="search-input"
+                        className="ps-search-input"
                       />
                     </div>
                     <motion.div
-                      className="product-list"
+                      className="ps-product-list"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ staggerChildren: 0.1 }}
@@ -235,7 +235,7 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                       {filteredProducts.map((product) => (
                         <motion.div
                           key={product.product.Id}
-                          className="product-item"
+                          className="ps-product-item"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{
@@ -244,20 +244,20 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                             damping: 30,
                           }}
                         >
-                          <h3 className="product-name">
+                          <h3 className="ps-product-name">
                             {product.product.Name}
                             {product.product.Id === defaultProductId && (
-                              <span className="default-product-label">Default</span>
+                              <span className="ps-default-product-label">Default</span>
                             )}
                           </h3>
-                          <p className="product-description">
+                          <p className="ps-product-description">
                             {product.product.Description__c}
                           </p>
                           {product.pricingStrategies.map((strategy, index) => (
-                            <div key={index} className="pricing-strategy">
+                            <div key={index} className="ps-pricing-strategy">
                               {strategy.isCostPerUnit && (
-                                <div className="input-container">
-                                  <span className="input-label">Quantity:</span>
+                                <div className="ps-input-container">
+                                  <span className="ps-input-label">Quantity:</span>
                                   <input
                                     type="number"
                                     value={product.quantity}
@@ -268,13 +268,13 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                                       )
                                     }
                                     placeholder="Quantity"
-                                    className="quantity-input"
+                                    className="ps-quantity-input"
                                   />
                                 </div>
                               )}
                               {(strategy.isCostPerWatt ||
                                 strategy.isFixedPrice) && (
-                                <div className="toggle-container">
+                                <div className="ps-toggle-container">
                                   <span>Enabled</span>
                                   <input
                                     type="checkbox"
@@ -285,15 +285,15 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                                         e.target.checked
                                       )
                                     }
-                                    className="toggle-input"
+                                    className="ps-toggle-input"
                                     disabled={product.product.Id === defaultProductId}
                                   />
                                 </div>
                               )}
                               {strategy.IsModifier__c &&
                                 strategy.AppliesTo__c !== 'Gross' && (
-                                  <div className="input-container">
-                                    <span className="input-label">
+                                  <div className="ps-input-container">
+                                    <span className="ps-input-label">
                                       Custom Value:
                                     </span>
                                     <input
@@ -305,14 +305,14 @@ const PresentationPricingSidebar: React.FC<PresentationPricingSidebarProps> =
                                           parseFloat(e.target.value)
                                         )
                                       }
-                                      className="custom-value-input"
+                                      className="ps-custom-value-input"
                                     />
                                   </div>
                                 )}
                             </div>
                           ))}
                           {product.isSelected && (
-                            <p className="product-price">
+                            <p className="ps-product-price">
                               Price: <span>{formatPrice(product.cost)}</span>
                             </p>
                           )}
