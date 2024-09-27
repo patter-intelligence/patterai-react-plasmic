@@ -2406,8 +2406,7 @@ button .contained.disabled {
 
 .pup-energy-chart-container {
   width: 100%;
-  height: auto;
-  min-height: 300px;
+  height: 100%;
   margin: 0 auto;
   padding: 10px;
   background-color: #ffffff;
@@ -2419,8 +2418,7 @@ button .contained.disabled {
 
 .pup-energy-chart {
   width: 100%;
-  height: 100%;
-  min-height: 280px;
+  height: calc(100% - 60px); /* Subtract 60px for the yearly cost div */
   margin-top: 32px;
 }
 

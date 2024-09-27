@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -61,6 +61,9 @@ const months = [
 
 const PresentationUtilityProfile: React.FC<Props> = observer(() => {
   const chartRef = useRef<any>(null);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const [chartWidth, setChartWidth] = useState<number>(0);
+  const [chartHeight, setChartHeight] = useState<number>(0);
 
   const recordId = appState.recordId.get();
 
@@ -601,6 +604,22 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      if (chartContainerRef.current) {
+        setChartWidth(chartContainerRef.current.offsetWidth);
+        setChartHeight(chartContainerRef.current.offsetHeight);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     if ($state.analysis.get().length > 0) {
       const newChartData = {
         labels: Array.from({ length: 25 }, (_, i) => (i + 1).toString()),
@@ -656,7 +675,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
       };
       $state.chartData.set(newChartData);
     }
-  }, [$state.analysis.get(), $state.currentYear.get()]);
+  }, [$state.analysis.get(), $state.currentYear.get(), chartWidth, chartHeight]);
 
   useEffect(() => {
     if ($state.analysis.get().length > 0) {
@@ -840,7 +859,11 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
 
             {$state.step.get() === 3 && <Step3 />}
 
-            {$state.step.get() === 4 && <Step4 />}
+            {$state.step.get() === 4 && (
+              <div ref={chartContainerRef} style={{ width: '100%', height: '400px' }}>
+                <Step4 width={chartWidth} height={chartHeight} />
+              </div>
+            )}
 
             {$state.step.get() < 4 && (
               <div className="pup-bottom-container">
