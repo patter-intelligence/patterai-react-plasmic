@@ -100,33 +100,33 @@ const FTC: React.FC = observer(() => {
   };
 
   return (
-    <div className="ftc-container">
-      <div className="ftc-image-container">
-        <div className={`ftc-percentage-circle ${ftcEnabled ? 'active' : ''}`}>
-          <div className="ftc-percentage-text">
+    <div className="ftc-ftc-container">
+      <div className="ftc-ftc-image-container">
+        <div className={`ftc-ftc-percentage-circle ${ftcEnabled ? 'ftc-active' : ''}`}>
+          <div className="ftc-ftc-percentage-text">
             <span>{ftcEnabled ? `${displayedPercentage}%` : '-'}</span>
           </div>
-          <span className="ftc-percentage-year">2024</span>
+          <span className="ftc-ftc-percentage-year">2024</span>
         </div>
       </div>
-      <div className="ftc-content">
-        <h1 className="ftc-h1">
-          Financial <span className="ftc-underline">Incentives</span>
+      <div className="ftc-ftc-content">
+        <h1 className="ftc-ftc-h1">
+          Financial <span className="ftc-ftc-underline">Incentives</span>
         </h1>
-        <div className="ftc-toggle-container">
-          <span className="ftc-d1-semi">Investment Tax Credit (ITC)</span>
-          <div className="ftc-toggle-switch">
+        <div className="ftc-ftc-toggle-container">
+          <span className="ftc-ftc-d1-semi">Investment Tax Credit (ITC)</span>
+          <div className="ftc-ftc-toggle-switch">
             <input
               type="checkbox"
               id="ftcToggle"
-              className="ftc-toggle-input"
+              className="ftc-ftc-toggle-input"
               checked={ftcEnabled}
               onChange={handleToggleFTC}
             />
-            <label htmlFor="ftcToggle" className="ftc-toggle-label"></label>
+            <label htmlFor="ftcToggle" className="ftc-ftc-toggle-label"></label>
           </div>
         </div>
-        <p className="ftc-d1-medium">
+        <p className="ftc-ftc-d1-medium">
           The federal government is providing a dollar-for-dollar tax credit
           that can be claimed on federal income taxes for a percentage of the
           total solar project cost.

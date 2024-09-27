@@ -1803,6 +1803,187 @@ button .contained.disabled {
   text-align: start;
 }
 
+.ftc-ftc-container {
+  display: flex;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+}
+
+.ftc-ftc-image-container {
+  flex: 1;
+  position: relative;
+  min-height: 400px;
+  background-image: url('https://patter-demos-mu.vercel.app/ftc-min.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.ftc-ftc-percentage-circle {
+  position: absolute;
+  right: -90px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 180px;
+  height: 180px;
+  background-color: #C8CED4;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.ftc-ftc-percentage-circle.ftc-active {
+  background-color: #023b95;
+}
+
+.ftc-ftc-percentage-text {
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ftc-ftc-percentage-year {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.ftc-ftc-content {
+  flex: 0.8;
+  padding: 40px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 120px;
+}
+
+.ftc-ftc-h1 {
+  font-size: 36px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #023b95;
+}
+
+.ftc-ftc-underline {
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
+  text-decoration-color: #023b95;
+}
+
+.ftc-ftc-toggle-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.ftc-ftc-d1-semi {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 600;
+  color: #023b95;
+  margin-right: 20px;
+}
+
+.ftc-ftc-d1-medium {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #404040;
+}
+
+.ftc-ftc-toggle-switch {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ftc-ftc-toggle-input {
+  display: none;
+}
+
+.ftc-ftc-toggle-label {
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  background-color: #ced4da;
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ftc-ftc-toggle-label::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.ftc-ftc-toggle-input:checked + .ftc-ftc-toggle-label {
+  background-color: #023b95;
+}
+
+.ftc-ftc-toggle-input:checked + .ftc-ftc-toggle-label::after {
+  transform: translateX(24px);
+}
+
+@media (max-width: 768px) {
+  .ftc-ftc-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .ftc-ftc-image-container {
+    min-height: 300px;
+  }
+
+  .ftc-ftc-percentage-circle {
+    right: 20px;
+    bottom: -40px;
+    top: auto;
+    transform: none;
+    width: 140px;
+    height: 140px;
+  }
+
+  .ftc-ftc-percentage-text {
+    font-size: 48px;
+  }
+
+  .ftc-ftc-percentage-year {
+    font-size: 18px;
+  }
+
+  .ftc-ftc-content {
+    padding: 60px 20px 30px;
+  }
+
+  .ftc-ftc-h1 {
+    font-size: 28px;
+  }
+
+  .ftc-ftc-d1-semi,
+  .ftc-ftc-d1-medium {
+    font-size: 16px;
+  }
+}
+
 .pc-production-chart {
   width: 100vw /*calc(100vw - 60px)*/;
   height: 100vh;
