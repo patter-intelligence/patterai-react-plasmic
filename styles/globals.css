@@ -1104,7 +1104,7 @@ background-color: #e0e8ff;
   font-family: "Montserrat", sans-serif;
   color: #404040;
   overflow: hidden;
-  width: calc(100vw - 60px);
+  width: 100vw /*calc(100vw - 60px)*/;
   position: absolute;
   left: 0px;
   top: 0px;
@@ -1804,7 +1804,7 @@ button .contained.disabled {
 }
 
 .pc-production-chart {
-  width: calc(100vw - 60px);
+  width: 100vw /*calc(100vw - 60px)*/;
   height: 100vh;
   position: absolute;
   top: 0px;
@@ -2698,7 +2698,7 @@ input:checked + .sd-slider:before {
 
 /* PresentationUtilityProfile Styles */
 .pup-presentation-utility-profile {
-  width: calc(100vw - 60px);
+  width: 100vw /*calc(100vw - 60px)*/;
   height: 100vh;
   position: absolute;
   top: 0px;
@@ -2852,7 +2852,7 @@ input:checked + .sd-slider:before {
 
 
 .presentation-utility-profile {
-  width: calc(100vw - 60px);
+  width: 100vw /*calc(100vw - 60px)*/;
   height: 100vh;
   position: absolute;
   top: 0px;
@@ -3510,7 +3510,7 @@ input:checked + .sd-slider:before {
   padding: 0px !important;
   margin: 0px !important;
   background-color: #F0F3F7;
-  width: 100vw; /*calc(100vw - 60px);*/
+  width: 100vw; /*100vw /*calc(100vw - 60px)*/;
 }
 
 .sc-map-section {
@@ -4010,7 +4010,7 @@ input:checked + .slider:before {
 
 .solargraf-container {
   position: absolute;
-  width: calc(100vw - 60px);
+  width: 100vw /*calc(100vw - 60px)*/;
   height: 100vh;
   font-family: "Montserrat", sans-serif;
 }
