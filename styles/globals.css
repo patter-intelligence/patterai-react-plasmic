@@ -142,7 +142,7 @@ textarea:focus {
   display: flex;
   flex-direction: row;
   transition: all 0.5s ease;
-  background-color: white;
+  background-color: transparent;
   margin-right: auto;
   margin-left: auto;
   flex: 1;
@@ -179,7 +179,7 @@ textarea:focus {
 .menu-container {
   width: 60px;
   transition: width 0.5s ease;
-  background-color: white;
+  background-color: transparent;
   padding: 1px;
   display: flex;
   flex-direction: column;
@@ -189,13 +189,13 @@ textarea:focus {
   position: fixed;
   z-index: 1000;
   height: 100vh;
-  border-right: 1px solid #f0f0f0;
+  /* border-right: 1px solid #f0f0f0; */
   left: 0;
   top: 0;
   padding-top: 10px;
   /* add a shadow to the right of the menu container */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-right: 1px solid #e0e0e0;
+  /* box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); */
+  /* border-right: 1px solid #e0e0e0; */
   
 }
 
@@ -211,11 +211,11 @@ textarea:focus {
 }
 
 .content {
-  width: calc(100% - 60px);
+  width: 100vw; /*calc(100% - 60px);*/
   height: 100vh;
-  background-color: white;
+  background-color: transparent;
   position: fixed;
-  left: 60px;
+  /* left: 60px; */
   top: 0;
   bottom: 0;
   right: 0;
@@ -258,7 +258,7 @@ textarea:focus {
 .lightning-button-icon.next {
   all: unset;
   color: #333 !important;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -272,6 +272,9 @@ textarea:focus {
   border: none !important;
   /* margin: 5px 0; */
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
 
 }
 
@@ -2406,7 +2409,7 @@ button .contained.disabled {
 
 .pup-energy-chart-container {
   width: 100%;
-  height: 100%;
+  height: 400px; /* Set a fixed height */
   margin: 0 auto;
   padding: 10px;
   background-color: #ffffff;
@@ -2418,7 +2421,7 @@ button .contained.disabled {
 
 .pup-energy-chart {
   width: 100%;
-  height: calc(100% - 60px); /* Subtract 60px for the yearly cost div */
+  height: calc(100% - 92px); /* Subtract 92px for the yearly cost div and margin */
   margin-top: 32px;
 }
 
@@ -2614,7 +2617,7 @@ button .contained.disabled {
   padding: 0px !important;
   margin: 0px !important;
   background-color: #F0F3F7;
-  width: calc(100vw - 60px);
+  width: 100vw; /*calc(100vw - 60px);*/
 }
 
 .sc-map-section {
@@ -2716,6 +2719,21 @@ button .contained.disabled {
 
 .sc-address-field input.valid {
   /* border-color: #28a745; */
+}
+
+/* House image */
+.sc-house-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.sc-house-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .sc-address-field input.invalid {
