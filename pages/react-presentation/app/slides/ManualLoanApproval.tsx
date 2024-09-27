@@ -524,17 +524,17 @@ const ManualLoanApproval: React.FC = observer(() => {
       : data?.previousApplications || [];
 
     return (
-      <div className="previous-loan-grid" ref={previousLoansRef}>
+      <div className="mla-previous-loan-grid" ref={previousLoansRef}>
         {allApplications.map((application, index) => (
           <div
             key={application.Id}
-            className={`previous-loan-box ${
-              index === 0 && newlySubmittedLoan ? "new-loan" : ""
-            } ${application.Id === newlySubmittedLoan?.Id ? "submitting" : ""}`}
+            className={`mla-previous-loan-box ${
+              index === 0 && newlySubmittedLoan ? "mla-new-loan" : ""
+            } ${application.Id === newlySubmittedLoan?.Id ? "mla-submitting" : ""}`}
           >
             <h3>{application.LoanProvider__r.Name}</h3>
             <div
-              className="result-badge"
+              className="mla-result-badge"
               style={{
                 backgroundColor:
                   applicationResultOptions.find(
@@ -601,25 +601,25 @@ const ManualLoanApproval: React.FC = observer(() => {
   }
 
   return (
-    <div className="manual-loan-approval-container">
-      <div className="manual-loan-approval-left-column">
-        <h1 className="manual-loan-approval-title">
+    <div className="mla-manual-loan-approval-container">
+      <div className="mla-manual-loan-approval-left-column">
+        <h1 className="mla-manual-loan-approval-title">
           Previous Loan Applications
         </h1>
         {renderPreviousLoanApplications()}
       </div>
-      <div className="manual-loan-approval-right-column">
-        <h1 className="manual-loan-approval-title">
+      <div className="mla-manual-loan-approval-right-column">
+        <h1 className="mla-manual-loan-approval-title">
           Add a New Loan Application
         </h1>
-        <div className="manual-loan-approval-section">
-          <div className="manual-loan-approval-grid">
-            <div className="manual-loan-details">
-              <h2 className="manual-loan-approval-subtitle">
+        <div className="mla-manual-loan-approval-section">
+          <div className="mla-manual-loan-approval-grid">
+            <div className="mla-manual-loan-details">
+              <h2 className="mla-manual-loan-approval-subtitle">
                 Loan Application Details
               </h2>
               <select
-                className={`manual-loan-approval-select ${
+                className={`mla-manual-loan-approval-select ${
                   formErrors.loanDetails.lender ? "error" : ""
                 }`}
                 name="lender"
@@ -634,7 +634,7 @@ const ManualLoanApproval: React.FC = observer(() => {
                 ))}
               </select>
               {formErrors.loanDetails.lender && (
-                <div className="error-message">
+                <div className="mla-error-message">
                   {formErrors.loanDetails.lender}
                 </div>
               )}

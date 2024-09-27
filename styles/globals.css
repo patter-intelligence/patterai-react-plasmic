@@ -1817,6 +1817,311 @@ button .contained.disabled {
   text-align: start;
 }
 
+.mla-manual-loan-approval-container {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+@keyframes mla-fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mla-new-loan {
+  animation: mla-fadeInSlideUp 0.5s ease-out;
+}
+
+@keyframes mla-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+
+.mla-submitting {
+  animation: mla-pulse 2s infinite;
+}
+
+.mla-loan-submitting-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.mla-loan-submitting-overlay .mla-loading-spinner {
+  width: 30px;
+  height: 30px;
+  border-width: 3px;
+}
+
+.mla-loan-submitting-overlay p {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #0070d2;
+}
+
+.mla-manual-loan-approval-section {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mla-manual-loan-approval-left-column {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.mla-manual-loan-approval-right-column {
+  flex: 3;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mla-manual-loan-approval-title {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-family: Montserrat, sans-serif;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: normal;
+  font-weight: 600;
+  color: #404040;
+  margin-bottom: 40px;
+  margin-top: 1vh;
+}
+
+.mla-manual-loan-approval-subtitle {
+  font-size: 20px;
+  color: #023b95;
+  margin-bottom: 15px;
+}
+
+.mla-manual-loan-approval-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.mla-manual-loan-details,
+.mla-manual-applicant-details {
+  background-color: #f8f9faa0;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.mla-manual-loan-approval-input,
+.mla-manual-loan-approval-select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.mla-manual-loan-approval-input.error,
+.mla-manual-loan-approval-select.error {
+  border-color: #dc3545;
+}
+
+.mla-error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.mla-manual-loan-approval-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23023b95' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 30px;
+}
+
+.mla-manual-loan-approval-button {
+  background-color: #023b95;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  align-self: flex-end;
+}
+
+.mla-manual-loan-approval-button:hover {
+  background-color: #032d75;
+}
+
+.mla-manual-loan-previous-applications {
+  margin-top: 20px;
+}
+
+.mla-previous-loan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.mla-previous-loan-box {
+  background-color: white;
+  border: 1px solid #d8dde6;
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.mla-previous-loan-box:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+}
+
+.mla-previous-loan-box h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #023b95;
+  font-weight: 600;
+}
+
+.mla-previous-loan-box p {
+  margin: 10px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.mla-previous-loan-box hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #e0e5ec;
+}
+
+.mla-result-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom-left-radius: 12px;
+  text-transform: uppercase;
+}
+
+.mla-previous-loan-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: #023b95;
+  transition: height 0.3s ease;
+}
+
+.mla-previous-loan-box:hover::before {
+  height: 8px;
+}
+
+.mla-manual-loan-approval-change-indicator {
+  background-color: #ffc107;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.mla-manual-loan-approval-loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #023b95;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: mla-manual-loan-approval-spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes mla-manual-loan-approval-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.mla-manual-loan-approval-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mla-manual-loan-approval-modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.mla-manual-loan-approval-modal-buttons {
+  margin-top: 20px;
+}
+
+.mla-manual-loan-approval-modal-buttons button {
+  margin: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .mla-manual-loan-approval-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .qs-quote-summary-container {
   font-family: 'Montserrat', sans-serif;
   padding: 20px;
