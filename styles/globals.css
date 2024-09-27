@@ -367,8 +367,8 @@ border-radius: 4px;
 }
 
 @keyframes pulse {
-0%, 100% { transform: scale(1); }
-50% { transform: scale(1.1); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
 @keyframes fadeIn {
@@ -1457,15 +1457,16 @@ background-color: #e0e8ff;
 }
 
 @keyframes cc-subtle-shake {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: translateX(0);
   }
-
   25% {
     transform: translateX(-2px);
   }
+  75% {
+    transform: translateX(2px);
+  }
+}
 
   75% {
     transform: translateX(2px);
@@ -3685,15 +3686,13 @@ input:checked + .sd-slider:before {
 }
 
 @keyframes pulse {
-
-  0%,
-  100% {
+  0%, 100% {
     transform: scale(1);
   }
-
   50% {
     transform: scale(1.05);
   }
+}
 }
 
 @keyframes fadeIn {
@@ -3777,7 +3776,7 @@ input:checked + .sd-slider:before {
   padding: 0px !important;
   margin: 0px !important;
   background-color: #F0F3F7;
-  width: 100vw; /*100vw /*calc(100vw - 60px)*/;
+  width: 100vw; /* calc(100vw - 60px) */
 }
 
 .sc-map-section {
