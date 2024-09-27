@@ -892,10 +892,12 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                         .validate(address, { abortEarly: false })
                         .then(() => {
                           // All fields are valid, proceed to next tab
-                          const tabs = ['ADDRESS', 'PIN', 'DETAILS'];
-                          const currentIndex = tabs.indexOf(activeTab);
-                          const nextIndex = (currentIndex + 1) % tabs.length;
-                          setActiveTab(tabs[nextIndex]);
+                          setActiveTab('PIN');
+                          if (mapRef.current) {
+                            const newZoom = 22;
+                            mapRef.current.setZoom(newZoom);
+                            mapRef.current.panTo(markerPosition);
+                          }
                           // Clear all errors
                           setErrors({});
                         })
@@ -910,11 +912,10 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                           setErrors(newErrors);
                         });
                     } else if (activeTab === 'PIN') {
-                      // Transition to the next tab
-                      const tabs = ['ADDRESS', 'PIN', 'DETAILS'];
-                      const currentIndex = tabs.indexOf(activeTab);
-                      const nextIndex = (currentIndex + 1) % tabs.length;
-                      setActiveTab(tabs[nextIndex]);
+                      setActiveTab('DETAILS');
+                      if (mapRef.current) {
+                        mapRef.current.setZoom(defaultZoom);
+                      }
                     } else if (activeTab === 'DETAILS') {
                       updateAddress({
                         salesOpportunityId: recordId,
@@ -932,12 +933,6 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                         },
                       });
                       setShowModal(true);
-                    } else {
-                      // Transition to the next tab
-                      const tabs = ['ADDRESS', 'PIN', 'DETAILS'];
-                      const currentIndex = tabs.indexOf(activeTab);
-                      const nextIndex = (currentIndex + 1) % tabs.length;
-                      setActiveTab(tabs[nextIndex]);
                     }
                   }}
                 >
