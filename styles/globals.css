@@ -1819,6 +1819,109 @@ button .contained.disabled {
   margin-bottom: 2%;
 }
 
+.pw-presentation-question {
+  margin: 10px 2%;
+}
+
+.pw-presentation-question p {
+  margin-bottom: 10px;
+}
+
+.pw-presentation-question input[type="checkbox"] {
+  margin-top: 10px;
+}
+
+.pw-presentation-question select,
+.pw-presentation-question textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #d8dde6;
+  border-radius: 4px;
+}
+
+.pw-presentation-question textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.pw-efficiency-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.pw-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.pw-efficiency-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.pw-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.pw-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.pw-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.pw-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .pw-slider {
+  background-color: #173A90;
+}
+
+input:focus + .pw-slider {
+  box-shadow: 0 0 1px #173A90;
+}
+
+input:checked + .pw-slider:before {
+  transform: translateX(26px);
+}
+
+.pw-slider.pw-round {
+  border-radius: 34px;
+}
+
+.pw-slider.pw-round:before {
+  border-radius: 50%;
+}
+
+.pw-efficiency-toggle-label {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
 .ps-presentation-pricing-sidebar {
   font-family: "Montserrat", sans-serif;
   color: #404040;
@@ -2073,8 +2176,8 @@ button .contained.disabled {
 }
 
 .ps-pricing-summary-title {
-  color: #023b95;
-  margin-bottom: 20px;
+  /* color: #023b95; */
+  margin-bottom: 40px;
 }
 
 .ps-expand-collapse-btn {
@@ -2126,7 +2229,7 @@ button .contained.disabled {
 }
 
 .ps-accordion-header.ps-open {
-  background-color: #e6f0ff;
+  /* background-color: #e6f0ff; */
 }
 
 .ps-accordion-header-no-highlight {
@@ -2197,7 +2300,7 @@ button .contained.disabled {
 }
 
 .ps-total-cost .ps-accordion-header-no-highlight {
-  background-color: #e6f0ff;
+  /* background-color: #e6f0ff; */
   border-radius: 4px;
   padding: 16px;
 }

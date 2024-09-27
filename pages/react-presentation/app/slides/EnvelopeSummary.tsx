@@ -249,8 +249,8 @@ const EnvelopeSummary: React.FC = observer(() => {
             <div key={r.Id} className="envelope-summary__signer">
               <div className="envelope-summary__signer-info">
                 <div className="envelope-summary__signer-avatar">
-                  {r.First_Name__c[0]}
-                  {r.Last_Name__c[0]}
+                  {r.First_Name__c?.[0]}
+                  {r.Last_Name__c?.[0]}
                 </div>
                 <div className="envelope-summary__signer-details">
                   <span className="envelope-summary__signer-name">
