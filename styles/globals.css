@@ -1800,6 +1800,41 @@ button .contained.disabled {
   text-align: start;
 }
 
+/* PresentationUtilityProfile Styles */
+.pup-presentation-utility-profile {
+  width: calc(100vw - 60px);
+  height: 100vh;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #F2F5F8;
+}
+
+.pup-container {
+  padding: 20px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  width: 80%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.pup-card-utility {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
 /* Site Confirmation Styles */
 .sc-container {
   display: flex;

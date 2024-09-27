@@ -817,10 +817,10 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
   generateChart($state);
 
   return (
-    <div className="presentation-utility-profile">
-      <div className="container">
-        <h1 className="h1-semi fade-in heading">Utility Profile</h1>
-        <div className="card-utility fade-in">
+    <div className="pup-presentation-utility-profile">
+      <div className="pup-container">
+        <h1 className="pup-h1-semi pup-fade-in pup-heading">Utility Profile</h1>
+        <div className="pup-card-utility pup-fade-in">
           {$state.step.get() < 4 && $state.step.get() !== 1 && (
             <button className="back-button d1-semi" onClick={handleBackClick}>
               BACK
