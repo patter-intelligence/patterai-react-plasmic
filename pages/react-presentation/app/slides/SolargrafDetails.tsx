@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import CircularChart from './CircularChart';
 import EnergyEfficiencySlide from './EnergyEfficiencySlide';
-import './SolargrafDetails.module.css';
+// import './SolargrafDetails.module.css'; // This import is no longer needed
 import {
   useDirectSalesforceAction,
 } from '../hooks/useSalesforceOperations';
@@ -296,8 +296,8 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
 
     if (appState.isLoading.get()) {
       return (
-        <div className="solargraf-details loading">
-          <div className="loading-spinner"></div>
+        <div className="sd-solargraf-details sd-loading">
+          <div className="sd-loading-spinner"></div>
           <p>Loading solar system details...</p>
         </div>
       );
@@ -308,7 +308,7 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
         ?.label || '';
 
     return (
-      <div className="solargraf-details">
+      <div className="sd-solargraf-details">
         <div className="tabs">
           <div
             className={`tab ${activeTab === 'PLACEMENT' ? 'active' : ''}`}
@@ -348,20 +348,20 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
                   <option value="metal">Metal</option>
                 </select>
               </div>
-              <div className="design-card">
-                <div className="card-title">Sunshine View</div>
-                <label className="switch">
+              <div className="sd-design-card">
+                <div className="sd-card-title">Sunshine View</div>
+                <label className="sd-switch">
                   <input
                     type="checkbox"
                     checked={sunshineView}
                     onChange={() => setSunshineView(!sunshineView)}
                   />
-                  <span className="slider round"></span>
+                  <span className="sd-slider sd-round"></span>
                 </label>
               </div>
             </div>
             <button
-              className="navigation-button"
+              className="sd-navigation-button"
               onClick={() => setActiveTab('DESIGN')}
             >
               DESIGN
@@ -424,30 +424,30 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
                     </div>
                   </div> */}
                 </div>
-                <div className="design-cards">
-                  <div className="design-card">
-                    <div className="card-title">Daily Production</div>
-                    <div className="card-value">{dailyProduction} kWh</div>
+                <div className="sd-design-cards">
+                  <div className="sd-design-card">
+                    <div className="sd-card-title">Daily Production</div>
+                    <div className="sd-card-value">{dailyProduction} kWh</div>
                   </div>
-                  <div className="design-card">
-                    <div className="card-title">My Average Daily Usage</div>
-                    <div className="card-value">{averageDailyConsumption} kWh</div>
+                  <div className="sd-design-card">
+                    <div className="sd-card-title">My Average Daily Usage</div>
+                    <div className="sd-card-value">{averageDailyConsumption} kWh</div>
                   </div>
-                  <div className="design-card">
-                    <div className="card-title">System Size</div>
-                    <div className="card-value">
+                  <div className="sd-design-card">
+                    <div className="sd-card-title">System Size</div>
+                    <div className="sd-card-value">
                       {appState.systemSize.get().toFixed(2)} kW
                     </div>
                   </div>
-                  <div className="design-card">
-                    <div className="card-title">Modules</div>
-                    <div className="card-value">{numberOfModules}</div>
+                  <div className="sd-design-card">
+                    <div className="sd-card-title">Modules</div>
+                    <div className="sd-card-value">{numberOfModules}</div>
                   </div>
                 </div>
-                <div className="design-card">
-                  <div className="card-title">Panel Type</div>
+                <div className="sd-design-card">
+                  <div className="sd-card-title">Panel Type</div>
                   <select
-                    className="card-value"
+                    className="sd-card-value"
                     value={design?.Product__c}
                     onChange={(e) => console.log(e.target.value)}
                   >
@@ -462,7 +462,7 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
               </>
             )}
             <button
-              className="navigation-button"
+              className="sd-navigation-button"
               onClick={() => setActiveTab('EFFICIENCY')}
             >
               EFFICIENCY
@@ -529,7 +529,7 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
               }}
             />
             <button
-              className="navigation-button"
+              className="sd-navigation-button"
               onClick={() => setActiveTab('PLACEMENT')}
             >
               PLACEMENT
