@@ -822,7 +822,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
         <h1 className="pup-h1-semi pup-fade-in pup-heading">Utility Profile</h1>
         <div className="pup-card-utility pup-fade-in">
           {$state.step.get() < 4 && $state.step.get() !== 1 && (
-            <button className="back-button d1-semi" onClick={handleBackClick}>
+            <button className="pup-back-button d1-semi" onClick={handleBackClick}>
               BACK
             </button>
           )}
@@ -843,18 +843,18 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
             {$state.step.get() === 4 && <Step4 />}
 
             {$state.step.get() < 4 && (
-              <div className="bottom-container">
-                <div className="stepper">
+              <div className="pup-bottom-container">
+                <div className="pup-stepper">
                   {[1, 2, 3].map((s) => (
                     <div
                       key={s}
-                      className={`stepper-dot ${
+                      className={`pup-stepper-dot ${
                         s === $state.step.get() ? 'active' : ''
                       }`}
                     ></div>
                   ))}
                 </div>
-                <button className="verify-button" onClick={handleNextClick}>
+                <button className="pup-verify-button" onClick={handleNextClick}>
                   {$state.step.get() === 3 ? 'Analyze' : 'Next'}
                 </button>
               </div>
@@ -864,20 +864,20 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
 
         {$state.step.get() === 4 && (
           <div
-            className={`chart-navigation ${
+            className={`pup-chart-navigation ${
               $state.step.get() === 4 ? 'visible' : 'hidden'
             }`}
           >
             <button
-              className="nav-button prev"
+              className="pup-nav-button prev"
               disabled={$state.currentYear.get() <= 1}
               onClick={() => handleYearChange(-1)}
             >
               &lt;
             </button>
-            <span className="year-display">{yearDisplay}</span>
+            <span className="pup-year-display">{yearDisplay}</span>
             <button
-              className="nav-button next"
+              className="pup-nav-button next"
               disabled={$state.currentYear.get() >= 25}
               onClick={() => handleYearChange(1)}
             >
