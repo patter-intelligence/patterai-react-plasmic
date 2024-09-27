@@ -110,7 +110,7 @@ const defaultCenter = {
   lng: -122.4194,
 };
 
-const defaultZoom = 19;
+const defaultZoom = 21;
 
 const addressSchema = Yup.object().shape({
   street: Yup.string().required('Street is required'),
@@ -419,7 +419,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
 
       updateMarker();
 
-      const initialZoom = activeTab === 'PIN' ? (map.getMapTypeId() === 'satellite' ? 21 : 22) : defaultZoom;
+      const initialZoom = activeTab === 'PIN' ? (map.getMapTypeId() === 'satellite' ? 21 : 22) : 21;
       map.setZoom(initialZoom);
       map.panTo(markerPosition);
 
