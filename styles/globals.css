@@ -1983,6 +1983,73 @@ button .contained.disabled {
   margin: 0;
 }
 
+.quantity-input-ee {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.quantity-input-ee label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #404040;
+  margin-bottom: 5px;
+}
+
+.quantity-control-ee  {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #D1D1D1;
+  border-radius: 28px;
+  overflow: hidden;
+  padding: 2px;
+  
+}
+
+.quantity-button-ee {
+  all: unset;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.quantity-button-ee.minus {
+  background-color: #D1D1D1;
+  color: #404040;
+}
+
+.quantity-button-ee.plus {
+  background-color: #023b95;
+  color: white;
+}
+
+.quantity-input-ee input {
+  width: 40px;
+  height: 36px;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  color: #404040;
+  -moz-appearance: textfield;
+  background-color: transparent;
+}
+
+.quantity-input-ee input::-webkit-inner-spin-button,
+.quantity-input-ee input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 /* ProductDetail Styles */
 .pd-product-detail {
   flex: 1;
