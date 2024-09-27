@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
+
 type RouteEvent = CustomEvent<string>;
 
 const useSyncAppRouter = ({ basepath }: { basepath: string }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     const appNavigated = ({ detail }: RouteEvent) => {
-      if (detail === location.pathname) {
+      if (detail === router.asPath) {
         return;
       }
-      navigate(detail);
+      router.push(detail);
     };
 
     window.addEventListener('app', appNavigated as EventListener);
@@ -19,17 +19,17 @@ const useSyncAppRouter = ({ basepath }: { basepath: string }) => {
     return () => {
       window.removeEventListener('app', appNavigated as EventListener);
     };
-  }, [location, basepath, navigate]);
+  }, [router, basepath]);
 
   useEffect(() => {
-    if (location.pathname.startsWith(basepath)) {
+    if (router.asPath.startsWith(basepath)) {
       window.dispatchEvent(
         new CustomEvent('shell', {
-          detail: location.pathname.replace(basepath, ''),
+          detail: router.asPath.replace(basepath, ''),
         })
       );
     }
-  }, [location, basepath]);
+  }, [router.asPath, basepath]);
 };
 
 export default useSyncAppRouter;
