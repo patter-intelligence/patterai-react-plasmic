@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
 import { appState } from '../state/appState';
 import { observer } from '@legendapp/state/react';
-import './EnvelopeSummary.module.css';
+// import './EnvelopeSummary.module.css'; // Remove this line as we're not using the module CSS anymore
 
 interface Recipient {
   Id: string;
@@ -143,7 +143,7 @@ const EnvelopeSummary: React.FC = observer(() => {
   };
 
   return (
-    <div className="envelope-summary">
+    <div className="es-envelope-summary">
       {/* <div className="envelope-summary__section">
          <h1>Envelope Summary</h1>
         <div className="envelope-summary__grid">
@@ -224,17 +224,17 @@ const EnvelopeSummary: React.FC = observer(() => {
         </div> 
       </div> */}
 
-      <div className="envelope-summary__section">
+      <div className="es-envelope-summary__section">
         <h1>Documents</h1>
-        <div className="envelope-summary__documents">
+        <div className="es-envelope-summary__documents">
           {quote?.Documents__r &&
             quote?.Documents__r?.map((d) => (
-              <div key={d.Id} className="envelope-summary__document">
-                <span className="envelope-summary__document-icon">📄</span>
-                <span className="envelope-summary__document-name">
+              <div key={d.Id} className="es-envelope-summary__document">
+                <span className="es-envelope-summary__document-icon">📄</span>
+                <span className="es-envelope-summary__document-name">
                   {d.Name}
                 </span>
-                <span className="envelope-summary__document-preview">
+                <span className="es-envelope-summary__document-preview">
                   <ViewIcon />
                 </span>
               </div>
@@ -242,27 +242,27 @@ const EnvelopeSummary: React.FC = observer(() => {
         </div>
       </div>
 
-      <div className="envelope-summary__section">
+      <div className="es-envelope-summary__section">
         <h1>Signers</h1>
-        <div className="envelope-summary__signers">
+        <div className="es-envelope-summary__signers">
           {quote?.Recipients__r?.map((r) => (
-            <div key={r.Id} className="envelope-summary__signer">
-              <div className="envelope-summary__signer-info">
-                <div className="envelope-summary__signer-avatar">
+            <div key={r.Id} className="es-envelope-summary__signer">
+              <div className="es-envelope-summary__signer-info">
+                <div className="es-envelope-summary__signer-avatar">
                   {r.First_Name__c?.[0]}
                   {r.Last_Name__c?.[0]}
                 </div>
-                <div className="envelope-summary__signer-details">
-                  <span className="envelope-summary__signer-name">
+                <div className="es-envelope-summary__signer-details">
+                  <span className="es-envelope-summary__signer-name">
                     {r.First_Name__c} {r.Last_Name__c}
                   </span>
-                  <span className="envelope-summary__signer-email">
+                  <span className="es-envelope-summary__signer-email">
                     {r.Email__c}
                   </span>
                 </div>
               </div>
-              <div className="envelope-summary__signer-controls">
-                <div className="envelope-summary__select-wrapper">
+              <div className="es-envelope-summary__signer-controls">
+                <div className="es-envelope-summary__select-wrapper">
                   <label htmlFor={`order-${r.Id}`}>Order</label>
                   <select
                     id={`order-${r.Id}`}
@@ -280,7 +280,7 @@ const EnvelopeSummary: React.FC = observer(() => {
                     ))}
                   </select>
                 </div>
-                <div className="envelope-summary__select-wrapper">
+                <div className="es-envelope-summary__select-wrapper">
                   <label htmlFor={`role-${r.Id}`}>Role</label>
                   <select
                     id={`role-${r.Id}`}
@@ -298,7 +298,7 @@ const EnvelopeSummary: React.FC = observer(() => {
                 </div>
               </div>
               <div
-                className={`envelope-summary__signer-status ${r?.Status__c?.toLowerCase()}`}
+                className={`es-envelope-summary__signer-status ${r?.Status__c?.toLowerCase()}`}
               >
                 {r.Status__c}
               </div>
@@ -306,7 +306,7 @@ const EnvelopeSummary: React.FC = observer(() => {
           ))}
         </div>
         <button
-          className="envelope-summary__send-button"
+          className="es-envelope-summary__send-button"
           onClick={handleSendEnvelope}
         >
           Send Envelope
@@ -314,8 +314,8 @@ const EnvelopeSummary: React.FC = observer(() => {
       </div>
 
       {initializing && (
-        <div className="envelope-summary__popup">
-          <div className="envelope-summary__progress">
+        <div className="es-envelope-summary__popup">
+          <div className="es-envelope-summary__progress">
             <p>{message}</p>
             <progress value={progress} max="1" />
           </div>
