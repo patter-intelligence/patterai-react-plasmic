@@ -15,7 +15,7 @@ import Loader from './Loader';
 import SlideMenu from './SlideMenu';
 import { appState } from '../state/appState';
 import { observer } from '@legendapp/state/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import {
   SalesforceProvider,
   useSalesforce,
@@ -44,8 +44,7 @@ const contextVariables = {
 };
 
 export const Home: React.FC = observer(() => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const router = useRouter();
   const salesforce = useSalesforce();
   const [allSlides, setAllSlides] = useState<IPresentationSlides>({
     slides: [],
@@ -55,18 +54,16 @@ export const Home: React.FC = observer(() => {
   useEffect(() => {
     // Set initial loading state
     appState.setIsLoading(true);
-    // actions.setNavigator(navigate);
 
     // Get current slide from query parameter
-    const params = new URLSearchParams(location.search);
-    const currentSlide = Number(params.get('currentSlide') || 0);
+    const currentSlide = Number(router.query.currentSlide || 0);
     if(!currentSlide) {
       appState.setCurrentSlideIndex(0);
     }
     appState.setCurrentSlideIndex(currentSlide);
 
     // check if there is presentationId in the query params
-    const presentationId = params.get('presentationId');
+    const presentationId = router.query.presentationId as string;
     if (presentationId) {
       appState.presentationId.set(presentationId);
     }
@@ -531,10 +528,13 @@ export const Home: React.FC = observer(() => {
     (index: number) => {
       appState.setIsLoading(true);
       appState.setCurrentSlideIndex(index);
-      updateCurrentSlideUrl(navigate, index);
+      router.push({
+        pathname: router.pathname,
+        query: { ...router.query, currentSlide: index },
+      }, undefined, { shallow: true });
       setTimeout(() => appState.setIsLoading(false), 100);
     },
-    [navigate]
+    [router]
   );
 
   const handleNext = useCallback(() => {
