@@ -29,6 +29,7 @@ import {
   Step4,
 } from './components';
 import { pid } from 'process';
+import { Settings as SettingsIcon } from '@material-ui/icons';
 
 ChartJS.register(
   CategoryScale,
