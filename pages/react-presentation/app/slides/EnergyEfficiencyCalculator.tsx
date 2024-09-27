@@ -195,24 +195,25 @@ const EnergyEfficiencyCalculator: React.FC = observer(() => {
   }
 
   const renderContent = () => (
-    <div className="info-screen">
-      <div className="info-content">
-        <div className="info-content-left">
-          <div className="savings-card">
+    <div className="eec-container">
+      <div className="eec-info-screen">
+        <div className="eec-info-content">
+        <div className="eec-info-content-left">
+          <div className="eec-savings-card">
             <h2>Potential Savings / Year</h2>
-            <p className="savings-amount">
+            <p className="eec-savings-amount">
               {isNaN(calculateTotalSavings())
                 ? '0.00'
                 : formatCurrency(calculateTotalSavings())}
             </p>
-            <p className="kwh-savings">
+            <p className="eec-kwh-savings">
               {isNaN(calculateTotalKWhSavings())
                 ? '0'
                 : formatNumber(calculateTotalKWhSavings())}{' '}
               kWh
             </p>
           </div>
-          <div className="donut-chart-container">
+          <div className="eec-donut-chart-container">
             <DonutChart
               percentage={
                 isNaN(calculatePercentageSavings())
@@ -223,17 +224,17 @@ const EnergyEfficiencyCalculator: React.FC = observer(() => {
           </div>
         </div>
 
-        <div className="product-quantities">
-          <h1 className="h1-patter">Energy Efficiency</h1>
+        <div className="eec-product-quantities">
+          <h1 className="eec-h1-patter">Energy Efficiency</h1>
 
           <h2>Qualified Products</h2>
-          <div className="product-quantities-container">
+          <div className="eec-product-quantities-container">
             {qualifiedProducts.map((product) => (
-              <div key={product.Id} className="quantity-input-ee">
+              <div key={product.Id} className="eec-quantity-input">
                 <label htmlFor={`quantity-${product.Id}`}>{product.Name}</label>
-                <div className="quantity-control-ee">
+                <div className="eec-quantity-control">
                   <button
-                    className="quantity-button-ee minus"
+                    className="eec-quantity-button minus"
                     onClick={() => {
                       const currentQuantity =
                         currentProducts[product.Id || ''].get()?.quantity ?? 0;
