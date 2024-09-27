@@ -22,6 +22,7 @@ import {
 } from '../providers/SalesforceProvider';
 // import { ENERGY_EFFICIENCY_PRODUCTS } from '../slides/EnergyEfficiency';
 import { updateCurrentSlideUrl } from '../utilities/navigationUtils';
+import { useRouter } from 'next/router';
 import { parse } from 'path';
 
 const dataHooks = {
@@ -524,14 +525,13 @@ export const Home: React.FC = observer(() => {
     appState.setIsLoading(isLoading || appState.isLoading.get());
   }, []);
 
+  const router = useRouter();
+
   const handleSlideChange = useCallback(
     (index: number) => {
       appState.setIsLoading(true);
       appState.setCurrentSlideIndex(index);
-      router.push({
-        pathname: router.pathname,
-        query: { ...router.query, currentSlide: index },
-      }, undefined, { shallow: true });
+      updateCurrentSlideUrl(router, index);
       setTimeout(() => appState.setIsLoading(false), 100);
     },
     [router]

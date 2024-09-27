@@ -1,7 +1,12 @@
-import { NavigateFunction } from 'react-router-dom';
+import { NextRouter } from 'next/router';
 
-export const updateCurrentSlideUrl = (navigate: NavigateFunction, index: number) => {
-  const params = new URLSearchParams(window.location.search);
-  params.set('currentSlide', index.toString());
-  navigate(`?${params.toString()}`, { replace: true });
+export const updateCurrentSlideUrl = (router: NextRouter, index: number) => {
+  router.push(
+    {
+      pathname: router.pathname,
+      query: { ...router.query, currentSlide: index.toString() },
+    },
+    undefined,
+    { shallow: true }
+  );
 };
