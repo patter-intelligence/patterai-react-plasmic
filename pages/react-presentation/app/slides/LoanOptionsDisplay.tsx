@@ -3,7 +3,7 @@ import { observer } from '@legendapp/state/react';
 import { appState } from '../state/appState';
 import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
 import Loader from '../components/Loader';
-import './LoanOptionsDisplay.module.css';
+// No need to import CSS module as we're using global styles now
 
 interface LoanOption {
   loanProviderName: string;
@@ -121,30 +121,30 @@ const LoanOptionsContent: React.FC = observer(() => {
   }
 
   return (
-    <div className="loan-options-container">
-      <div className="card-container">
-        <div className="main-card">
+    <div className="lod-loan-options-container">
+      <div className="lod-card-container">
+        <div className="lod-main-card">
           {selectedMonthlyPayment ? (
-            <div className="monthly-payment">
-              <div className="amount">${selectedMonthlyPayment}/Month</div>
-              <div className="program">Solar Savings Program</div>
+            <div className="lod-monthly-payment">
+              <div className="lod-amount">${selectedMonthlyPayment}/Month</div>
+              <div className="lod-program">Solar Savings Program</div>
             </div>
           ) : (
-            <div className="monthly-payment">
-              <div className="amount">No Option</div>
-              <div className="program">Select a Loan Option Below</div>
+            <div className="lod-monthly-payment">
+              <div className="lod-amount">No Option</div>
+              <div className="lod-program">Select a Loan Option Below</div>
             </div>
           )}
         </div>
 
         {groupedLoanOptions.map((group) => (
-          <div key={group.providerName} className="provider-card">
-            <div className="provider-header">
+          <div key={group.providerName} className="lod-provider-card">
+            <div className="lod-provider-header">
               {/* TODO: Fix logos */}
-              {/* <img src={group.logoUrl} alt={group.providerName} className="provider-logo" /> */}
+              {/* <img src={group.logoUrl} alt={group.providerName} className="lod-provider-logo" /> */}
               <h2>{group.providerName}</h2>
             </div>
-            <table className="custom-table">
+            <table className="lod-custom-table">
               <thead>
                 <tr>
                   <th></th>
