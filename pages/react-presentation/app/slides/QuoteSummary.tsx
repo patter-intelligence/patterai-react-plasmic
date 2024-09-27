@@ -107,12 +107,12 @@ const QuoteSummary: React.FC = observer(() => {
   }
 
   return (
-    <div className="quote-summary-container">
+    <div className="qs-quote-summary-container">
       <h1>Quote Summary</h1>
       <hr />
-      <div className="quote-grid">
-        <div className="quote-column">
-          <div className="field">
+      <div className="qs-quote-grid">
+        <div className="qs-quote-column">
+          <div className="qs-field">
             <label>Consumption</label>
             <span>{quote.Consumption__c}</span>
           </div>
@@ -128,8 +128,8 @@ const QuoteSummary: React.FC = observer(() => {
             <label>Utility Tariff</label>
             <span>{quote.Utility_Tariff__c}</span>
           </div>
-          <div className="monthly-kwh">
-            <div className="field">
+          <div className="qs-monthly-kwh">
+            <div className="qs-field">
               <label>January kWh</label>
               <span>{formatNumber(quote.January_kWh__c)}</span>
             </div>
@@ -147,8 +147,8 @@ const QuoteSummary: React.FC = observer(() => {
             </div>
           </div>
         </div>
-        <div className="quote-column">
-          <div className="field">
+        <div className="qs-quote-column">
+          <div className="qs-field">
             <label>Design</label>
             <span>{quote.Design__c}</span>
           </div>
@@ -160,8 +160,8 @@ const QuoteSummary: React.FC = observer(() => {
             <label>System Size kW</label>
             <span>{formatNumber(quote.System_Size_kW__c)}</span>
           </div>
-          <div className="monthly-kwh">
-            <div className="field">
+          <div className="qs-monthly-kwh">
+            <div className="qs-field">
               <label>May kWh</label>
               <span>{formatNumber(quote.May_kWh__c)}</span>
             </div>
@@ -179,8 +179,8 @@ const QuoteSummary: React.FC = observer(() => {
             </div>
           </div>
         </div>
-        <div className="quote-column">
-          <div className="field">
+        <div className="qs-quote-column">
+          <div className="qs-field">
             <label>Module Type</label>
             <span>{quote.Module_Type__c}</span>
           </div>
@@ -188,8 +188,8 @@ const QuoteSummary: React.FC = observer(() => {
             <label>Panel Count</label>
             <span>{quote.Panel_Count__c}</span>
           </div>
-          <div className="monthly-kwh">
-            <div className="field">
+          <div className="qs-monthly-kwh">
+            <div className="qs-field">
               <label>September kWh</label>
               <span>{formatNumber(quote.September_kWh__c)}</span>
             </div>
@@ -208,12 +208,12 @@ const QuoteSummary: React.FC = observer(() => {
           </div>
         </div>
       </div>
-      <div className="signers-site-grid">
-        <div className="signer-box">
+      <div className="qs-signers-site-grid">
+        <div className="qs-signer-box">
           <h2>Primary</h2>
           {primary && (
             <>
-              <div className="field">
+              <div className="qs-field">
                 <label>First Name</label>
                 <span>{primary.First_Name__c}</span>
               </div>
@@ -232,11 +232,11 @@ const QuoteSummary: React.FC = observer(() => {
             </>
           )}
         </div>
-        <div className="signer-box">
+        <div className="qs-signer-box">
           <h2>CoSigner</h2>
           {cosigner && (
             <>
-              <div className="field">
+              <div className="qs-field">
                 <label>First Name</label>
                 <span>{cosigner.First_Name__c}</span>
               </div>
@@ -255,11 +255,11 @@ const QuoteSummary: React.FC = observer(() => {
             </>
           )}
         </div>
-        <div className="site-box">
+        <div className="qs-site-box">
           <h2>Site</h2>
           {site && (
             <>
-              <div className="field">
+              <div className="qs-field">
                 <label>Street</label>
                 <span>{site.Address__Street__s}</span>
               </div>
