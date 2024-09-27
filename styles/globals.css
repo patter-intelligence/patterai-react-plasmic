@@ -1739,6 +1739,55 @@ button .contained.disabled {
   border: 1px solid #d1d1d1;
 }
 
+.custom-toggle {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-label {
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  background-color: #ced4da;
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 10px;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.toggle-input:checked + .toggle-label {
+  background-color: #023b95;
+}
+
+.toggle-input:checked + .toggle-label .toggle-button {
+  transform: translateX(24px);
+}
+
+.toggle-text {
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #404040;
+}
+
+
 .two-rows {
   display: flex;
   flex-direction: row;
@@ -1772,7 +1821,7 @@ button .contained.disabled {
 .sc-info-section {
   flex: 1;
   height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   min-width: 400px;
 }
 
@@ -1788,7 +1837,7 @@ button .contained.disabled {
   height: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -1800,7 +1849,7 @@ button .contained.disabled {
   font-weight: 600;
   color: #404040;
   margin-bottom: 40px;
-  margin-top: 5vh;
+  /* margin-top: 5vh; */
 }
 
 .sc-address-tabs {
