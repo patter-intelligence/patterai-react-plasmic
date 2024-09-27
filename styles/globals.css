@@ -1468,10 +1468,7 @@ background-color: #e0e8ff;
   }
 }
 
-  75% {
-    transform: translateX(2px);
-  }
-}
+  
 
 .cc-contact-form input:invalid:not(:placeholder-shown) {
   animation: cc-subtle-shake 0.3s ease-in-out;
@@ -3692,7 +3689,6 @@ input:checked + .sd-slider:before {
   50% {
     transform: scale(1.05);
   }
-}
 }
 
 @keyframes fadeIn {
