@@ -690,12 +690,12 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
           .get()
           .reduce((sum, data) => sum + data.Cost__c, 0);
         $state.costValue.set(
-          `<span class="cost-label">Cost to do nothing</span>$${totalCost.toLocaleString()}`
+          `<span class="pup-cost-label">Cost to do nothing</span>$${totalCost.toLocaleString()}`
         );
         $state.costChange.set('');
       } else {
         $state.costValue.set(
-          `<span class="cost-label">Yearly Cost</span>$${currentYearCost.toLocaleString()}`
+          `<span class="pup-cost-label">Yearly Cost</span>$${currentYearCost.toLocaleString()}`
         );
         $state.costChange.set(
           (costChange >= 0 ? '↑ ' : '↓ ') +
