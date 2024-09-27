@@ -110,7 +110,7 @@ const defaultCenter = {
   lng: -122.4194,
 };
 
-const defaultZoom = 19;
+const defaultZoom = 20;
 
 const addressSchema = Yup.object().shape({
   street: Yup.string().required('Street is required'),
@@ -421,14 +421,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
 
       updateMarker();
 
-      const initialZoom = activeTab === 'PIN' ? (map.getMapTypeId() === 'satellite' ? 21 : 22) : defaultZoom;
+      const initialZoom = activeTab === 'PIN' ? 22 : defaultZoom;
       map.setZoom(initialZoom);
       map.panTo(markerPosition);
-
-      // Adjust zoom level based on the active tab
-      if (activeTab === 'ADDRESS' || activeTab === 'DETAILS') {
-        map.setZoom(defaultZoom);
-      }
 
       // Force a re-render to ensure the zoom change takes effect
       setTimeout(() => {
@@ -661,9 +656,6 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                     activeTab === 'ADDRESS' ? 'active' : ''
                   }`}
                   onClick={() => {
-                    if (activeTab === 'PIN' && mapRef.current) {
-                      setPreviousZoom(mapRef.current.getZoom());
-                    }
                     setActiveTab('ADDRESS');
                     if (mapRef.current) {
                       mapRef.current.setZoom(defaultZoom);
@@ -678,26 +670,10 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   }`}
                   onClick={() => {
                     if (mapRef.current) {
-                      setPreviousZoom(mapRef.current.getZoom());
-                      const maxZoom =
-                        mapRef.current.getMapTypeId() === 'satellite' ? 21 : 22;
-                      mapRef.current.setZoom(maxZoom);
+                      mapRef.current.setZoom(22);
                       mapRef.current.panTo(markerPosition);
                     }
                     setActiveTab('PIN');
-                    // Force a re-render to ensure the zoom change takes effect
-                    setTimeout(() => {
-                      if (mapRef.current) {
-                        const currentCenter = mapRef.current.getCenter();
-                        if (currentCenter) {
-                          mapRef.current.panTo(currentCenter);
-                        }
-                        const maxZoom =
-                          mapRef.current.getMapTypeId() === 'satellite' ? 21 : 22;
-                        mapRef.current.setZoom(maxZoom);
-                      }
-                    }, 100);
-                    
                     if (isPinTabFirstLoad) {
                       setIsPinTabFirstLoad(false);
                     }
@@ -710,12 +686,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                     activeTab === 'DETAILS' ? 'active' : ''
                   }`}
                   onClick={() => {
-                    if (activeTab === 'PIN' && mapRef.current) {
-                      setPreviousZoom(mapRef.current.getZoom());
-                    }
                     setActiveTab('DETAILS');
-                    if (mapRef.current && previousZoom !== null) {
-                      mapRef.current.setZoom(previousZoom || defaultZoom);
+                    if (mapRef.current) {
+                      mapRef.current.setZoom(defaultZoom);
                     }
                   }}
                 >
