@@ -3,7 +3,7 @@ import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
 import { appState } from '../state/appState';
 import { observer } from '@legendapp/state/react';
 import PresentationQuestion from './PresentationQuestion';
-import './PresentationWrapup.module.css';
+// import './PresentationWrapup.module.css'; // Remove this line as we're not using the module CSS anymore
 import Loader from '../components/Loader';
 import { set } from 'lodash';
 
@@ -60,10 +60,10 @@ const PresentationWrapup: React.FC = observer(() => {
         />
       }
     >
-      <div className="presentation-wrapup">
+      <div className="pw-presentation-wrapup">
         <h1>Wrap Up</h1>
         {questions.map((q) => (
-          <div key={q.Id} className="question-container">
+          <div key={q.Id} className="pw-question-container">
             <PresentationQuestion recordId={recordId} question={q} />
           </div>
         ))}

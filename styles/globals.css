@@ -1801,6 +1801,24 @@ button .contained.disabled {
   text-align: start;
 }
 
+.pw-presentation-wrapup {
+  width: 95%;
+  padding: 20px;
+  border: 1px solid #d8dde6;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.pw-presentation-wrapup h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.pw-question-container {
+  margin-bottom: 2%;
+}
+
 .ps-presentation-pricing-sidebar {
   font-family: "Montserrat", sans-serif;
   color: #404040;
