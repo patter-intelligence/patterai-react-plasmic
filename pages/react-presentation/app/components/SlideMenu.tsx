@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './SlideMenu.module.css';
 import { observer } from '@legendapp/state/react';
 import { appState } from '../state/appState';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import { updateCurrentSlideUrl } from '../utilities/navigationUtils';
 import SlideIcon from './SlideIcon';
 
 const SlideMenu: React.FC = observer(() => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSlides, setFilteredSlides] = useState(appState.slides.get());
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     const filtered = appState.slides
@@ -57,7 +57,7 @@ const SlideMenu: React.FC = observer(() => {
                 if (index !== null && index !== undefined && Number(index) <= appState.highestVisitedSlideIndex.get()) {
                   console.log('Setting current slide index to:', index);
                   appState.setCurrentSlideIndex(Number(index));
-                  updateCurrentSlideUrl(navigate, Number(index));
+                  updateCurrentSlideUrl(router, Number(index));
           
                   appState.toggleMenu();
                 } else {
