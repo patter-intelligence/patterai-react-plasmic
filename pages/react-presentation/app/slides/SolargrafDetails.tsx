@@ -309,36 +309,36 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
 
     return (
       <div className="sd-solargraf-details">
-        <div className="tabs">
+        <div className="sd-tabs">
           <div
-            className={`tab ${activeTab === 'PLACEMENT' ? 'active' : ''}`}
+            className={`sd-tab ${activeTab === 'PLACEMENT' ? 'sd-active' : ''}`}
             onClick={() => setActiveTab('PLACEMENT')}
           >
             PLACEMENT
           </div>
           <div
-            className={`tab ${activeTab === 'DESIGN' ? 'active' : ''}`}
+            className={`sd-tab ${activeTab === 'DESIGN' ? 'sd-active' : ''}`}
             onClick={() => setActiveTab('DESIGN')}
           >
             DESIGN
           </div>
           <div
-            className={`tab ${activeTab === 'EFFICIENCY' ? 'active' : ''}`}
+            className={`sd-tab ${activeTab === 'EFFICIENCY' ? 'sd-active' : ''}`}
             onClick={() => setActiveTab('EFFICIENCY')}
           >
             EFFICIENCY
           </div>
         </div>
         {activeTab === 'PLACEMENT' && (
-          <div className="design-content">
+          <div className="sd-design-content">
             {/* <div className="design-header">
               <h2 className="design-title">Roof Placement</h2>
             </div> */}
-            <div className="design-cards">
-              <div className="design-card">
-                <div className="card-title">Roof Type</div>
+            <div className="sd-design-cards">
+              <div className="sd-design-card">
+                <div className="sd-card-title">Roof Type</div>
                 <select
-                  className="card-value"
+                  className="sd-card-value"
                   value={roofType}
                   onChange={(e) => setRoofType(e.target.value)}
                 >
@@ -369,7 +369,7 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
           </div>
         )}
         {activeTab === 'DESIGN' && (
-          <div className="design-content">
+          <div className="sd-design-content">
             {/* <div className="design-header">
               <h2 className="design-title">Design Your System</h2>
               {/* <button className="collapse-button" onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -378,8 +378,8 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
             </div> */}
             {!isCollapsed && (
               <>
-                <div className="efficiency-container">
-                  <div className="design-chart-old">
+                <div className="sd-efficiency-container">
+                  <div className="sd-design-chart-old">
                     <CircularChart
                      className="sd-circular-chart-card"
                       size={150}
@@ -470,12 +470,12 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
           </div>
         )}
         {activeTab === 'EFFICIENCY' && (
-          <div className="design-content">
+          <div className="sd-design-content">
             {/* <div className="design-header">
               <h2 className="design-title">Energy Efficiency</h2>
             </div> */}
-            <div className="efficiency-container">
-              <div className="design-chart-old">
+            <div className="sd-efficiency-container">
+              <div className="sd-design-chart-old">
                 <CircularChart
                      className="sd-circular-chart-card"
 
