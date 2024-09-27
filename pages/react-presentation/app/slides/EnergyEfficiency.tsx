@@ -1,14 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import './EnergyEfficiency.module.css';
-import AirSeal from '../../assets/overview/Air Seal.png';
-import HVACSeal from '../../assets/overview/HVAC Seal.png';
-import WaterHeaterBlanket from '../../assets/overview/Water Heater Blanket.png';
-import AtticTent from '../../assets/overview/Attic Tent.png';
-import NestThermostat from '../../assets/overview/Smart Thermostat.png';
-import LEDLightbulbs from '../../assets/overview/LED Lightbulbs.png';
-import BlownInInsulation from '../../assets/overview/Air Blown Insulation.png';
-import NestThermostatLarge from '../../assets/Nest Thermostat-Large.png';
-import InsulationLarge from '../../assets/Insulation.png';
+
 import ProductDetail from './ProductDetail';
 import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
 import { observer } from '@legendapp/state/react';
@@ -26,6 +18,16 @@ export interface Product {
   kWhSavings: number;
   id?: string;
 }
+
+const AirSeal = '/assets/overview/Air Seal.png';
+const HVACSeal =  '/assets/overview/HVAC Seal.png';
+const WaterHeaterBlanket =  '/assets/overview/Water Heater Blanket.png';
+const AtticTent =  '/assets/overview/Attic Tent.png';
+const NestThermostat =  '/assets/overview/Smart Thermostat.png';
+const LEDLightbulbs =  '/assets/overview/LED Lightbulbs.png';
+const BlownInInsulation =  '/assets/overview/Air Blown Insulation.png';
+const NestThermostatLarge =  '/assets/Nest Thermostat-Large.png';
+const InsulationLarge =  '/assets/Insulation.png';
 
 export const ENERGY_EFFICIENCY_PRODUCTS: Product[] = [
   {
