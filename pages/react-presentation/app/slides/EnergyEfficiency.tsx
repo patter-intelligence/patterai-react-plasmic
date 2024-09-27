@@ -199,30 +199,30 @@ const EnergyEfficiency: React.FC = observer(() => {
             COMPANY_NAME: 'Patter AI',
           }}
         ></Loader>}>
-      <div className="container-energy-efficiency">
-        <div className="products">
-          <div className="products-grid">
+      <div className="ee-container-energy-efficiency">
+        <div className="ee-products">
+          <div className="ee-products-grid">
             {products.map((product, index) => (
               <div
                 key={index}
-                className="product-card"
+                className="ee-product-card"
                 onClick={() => handleProductClick(index)}
               >
-                <div className="product-image-container">
+                <div className="ee-product-image-container">
                   <img
                     src={product.Image__c}
                     alt={product.Name}
-                    className="product-image"
+                    className="ee-product-image"
                   />
-                  <div className="product-title">{product.Name}</div>
+                  <div className="ee-product-title">{product.Name}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-        <div className="info">
-          <h1 className="h1-patter">Energy Efficiency</h1>
-          <p className="subtitle">
+        <div className="ee-info">
+          <h1 className="ee-h1-patter">Energy Efficiency</h1>
+          <p className="ee-subtitle">
             Reduce before you produce with our suite of complimentary energy
             efficiency products
           </p>
