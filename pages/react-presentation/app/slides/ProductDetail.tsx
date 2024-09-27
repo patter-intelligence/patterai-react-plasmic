@@ -3,7 +3,7 @@ import { Product } from './EnergyEfficiency';
 import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
 import { appState } from '../state/appState';
 import { observer } from '@legendapp/state/react';
-import './ProductDetail.module.css';
+// import './ProductDetail.module.css'; // This import is no longer needed
 import { IEnergyEfficientProduct } from '../types';
 import Loader from '../components/Loader';
 
@@ -155,8 +155,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
           }}
         />
       ) : (
-        <div className="product-detail">
-          <div className="product-detail-content">
+        <div className="pd-product-detail">
+          <div className="pd-product-detail-content">
             <Suspense fallback={<div className="image-placeholder" />}>
               <ProgressiveImage
                 src={product?.ImageLarge__c || product?.Image__c || ''}
@@ -164,7 +164,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
               >
                 {(src: string, loading?: boolean) => (
                   <img
-                    className={`product-detail-image ${loading ? 'loading' : 'loaded'}`}
+                    className={`pd-product-detail-image ${loading ? 'pd-loading' : 'pd-loaded'}`}
                     src={src}
                     alt={product?.Name}
                   />
@@ -172,33 +172,33 @@ const ProductDetail: React.FC<ProductDetailProps> = ({
               </ProgressiveImage>
             </Suspense>
             {onBackClick && (
-              <div className="back-button-container">
-                <button className="back-button" onClick={onBackClick}>
+              <div className="pd-back-button-container">
+                <button className="pd-back-button" onClick={onBackClick}>
                   Back to products
                 </button>
               </div>
             )}
           </div>
-          <div className="product-detail-info">
-            <h1 className="h1-patter">{product?.Name}</h1>
-            <p className="subtitle">{product?.Description__c}</p>
-            <div className="product-benefits">
+          <div className="pd-product-detail-info">
+            <h1 className="pd-h1-patter">{product?.Name}</h1>
+            <p className="pd-subtitle">{product?.Description__c}</p>
+            <div className="pd-product-benefits">
               {product?.Custom__c?.benefits?.map((benefit, index) => (
                 <BulletPoint key={index} text={benefit} />
               ))}
             </div>
-            <div className="product-toggle-container">
-              <div className="product-toggle-switch">
+            <div className="pd-product-toggle-container">
+              <div className="pd-product-toggle-switch">
                 <input
                   type="checkbox"
                   id={`${product?.Name}Toggle`}
-                  className="product-toggle-input"
+                  className="pd-product-toggle-input"
                   checked={productState.qualified}
                   onChange={handleToggleProduct}
                 />
                 <label
                   htmlFor={`${product?.Name}Toggle`}
-                  className="product-toggle-label"
+                  className="pd-product-toggle-label"
                 ></label>
               </div>
             </div>
