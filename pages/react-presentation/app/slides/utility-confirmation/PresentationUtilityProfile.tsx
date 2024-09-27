@@ -839,8 +839,8 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
   return (
     <div className="pup-presentation-utility-profile">
       <div className="pup-container">
-        <h1 className="pup-h1-semi pup-fade-in pup-heading">Utility Profile</h1>
-        <div className="pup-card-utility pup-fade-in">
+        <h1 className="h1-semi fade-in heading">Your Utility Profile</h1>
+        <div className="pup-card-utility fade-in">
           {$state.step.get() < 4 && $state.step.get() !== 1 && (
             <button className="pup-back-button d1-semi" onClick={handleBackClick}>
               BACK
