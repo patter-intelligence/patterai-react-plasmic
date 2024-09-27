@@ -13,6 +13,7 @@ import {
   ChartOptions,
   ChartData,
 } from 'chart.js';
+import { Settings as SettingsIcon } from '@material-ui/icons';
 
 import './PresentationUtilityProfile.module.css';
 import { appState } from '../../state/appState';
