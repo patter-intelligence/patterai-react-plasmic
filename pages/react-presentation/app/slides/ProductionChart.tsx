@@ -418,7 +418,7 @@ const SolarPowerChart: React.FC = observer(() => {
   }, [handleResize]);
 
   return (
-    <div className="production-chart">
+    <div className="pc-production-chart">
       <Suspense
         fallback={
           <LoadingSpinner
@@ -427,9 +427,9 @@ const SolarPowerChart: React.FC = observer(() => {
           />
         }
       >
-        <div className="chart-container-pc" ref={containerRef}>
-          <div className="chart-header">
-            <h1 className="h1-semi fade-in heading">Your Solar Power</h1>
+        <div className="pc-chart-container" ref={containerRef}>
+          <div className="pc-chart-header">
+            <h1 className="pc-h1-semi pc-fade-in pc-heading">Your Solar Power</h1>
             <CircularChart
               size={90}
               solarPercentage={solarOffset}
@@ -444,19 +444,19 @@ const SolarPowerChart: React.FC = observer(() => {
               }
             />
           </div>
-          <div className="chart-card  fade-in">
-            <div className="chart-controls">
-              <h2 className="chart-title">Production v. Consumption</h2>
-              <div className="efficiency-toggle">
-                <label className="switch">
+          <div className="pc-chart-card pc-fade-in">
+            <div className="pc-chart-controls">
+              <h2 className="pc-chart-title">Production v. Consumption</h2>
+              <div className="pc-efficiency-toggle">
+                <label className="pc-switch">
                   <input
                     type="checkbox"
                     checked={showEfficiency}
                     onChange={handleEfficiencyToggle}
                   />
-                  <span className="slider round"></span>
+                  <span className="pc-slider pc-round"></span>
                 </label>
-                <span className="efficiency-toggle-label">
+                <span className="pc-efficiency-toggle-label">
                   Energy Efficiency
                 </span>
               </div>
@@ -471,21 +471,21 @@ const SolarPowerChart: React.FC = observer(() => {
               />
             ) : (
               <div
-                className={`chart-wrapper ${showMessage ? 'hidden' : ''} ${
-                  isChartReady ? 'fade-in' : ''
+                className={`pc-chart-wrapper ${showMessage ? 'pc-hidden' : ''} ${
+                  isChartReady ? 'pc-fade-in' : ''
                 }`}
               >
                 {showMessage ? (
-                  <div className="message-container">
-                    <div className="message-box">
-                      <h2 className="h3-semi">Analysis Incomplete</h2>
-                      <p className="d1-medium">{message}</p>
+                  <div className="pc-message-container">
+                    <div className="pc-message-box">
+                      <h2 className="pc-h3-semi">Analysis Incomplete</h2>
+                      <p className="pc-d1-medium">{message}</p>
                     </div>
                   </div>
                 ) : (
                   <canvas
                     ref={canvasRef}
-                    className="chart-canvas"
+                    className="pc-chart-canvas"
                     aria-label="Solar Power Production vs Consumption Chart"
                   />
                 )}
