@@ -447,7 +447,7 @@ button .contained.disabled {
   transform: scale(0.95);
 }
 
-.input-label {
+.pup-input-label {
   /* d2-semi */
   font-size: 14px;
   margin-top: 0px;
@@ -473,7 +473,7 @@ button .contained.disabled {
   background-color: #F2F5F8;
 }
 
-.container {
+.pup-container {
   padding: 20px;
   margin-top: 10vh;
   margin-bottom: 10vh;
@@ -487,7 +487,7 @@ button .contained.disabled {
   /* Set a fixed height for the container */
 }
 
-.card-utility {
+.pup-card-utility {
   background: #ffffff;
   border-radius: 8px;
   padding: 30px;
@@ -500,7 +500,7 @@ button .contained.disabled {
   /* Hide overflow content */
 }
 
-.heading {
+.pup-heading {
   margin-bottom: 20px;
   height: 60px;
   display: flex;
@@ -509,7 +509,7 @@ button .contained.disabled {
   /* Prevent the heading from shrinking */
 }
 
-.content-wrapper {
+.pup-content-wrapper {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -540,7 +540,7 @@ button .contained.disabled {
   background-color: #023b95;
 }
 
-.back-button {
+.pup-back-button {
   all: unset;
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
@@ -554,17 +554,17 @@ button .contained.disabled {
   margin-bottom: 30px;
 }
 
-.back-button::before {
+.pup-back-button::before {
   content: '‹';
   margin-right: 10px;
   font-size: 24px;
 }
 
-.back-button:hover {
+.pup-back-button:hover {
   color: #023b95;
 }
 
-.selection-content {
+.pup-selection-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -576,7 +576,7 @@ button .contained.disabled {
   min-width: 300px;
 }
 
-.selection-header {
+.pup-selection-header {
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
@@ -588,7 +588,7 @@ button .contained.disabled {
   /* Adjust this value based on your font size */
 }
 
-.selection-title {
+.pup-selection-title {
   font-size: 22px;
   line-height: 27px;
   font-weight: 600;
@@ -598,13 +598,13 @@ button .contained.disabled {
   /* Adjust this value based on your font size */
 }
 
-.dropdown {
+.pup-dropdown {
   position: relative;
   margin-bottom: 20px;
   width: 100%;
 }
 
-.dropdown select {
+.pup-dropdown select {
   appearance: none;
   background-color: #ffffff;
   border: 1px solid #d1d1d1;
@@ -617,13 +617,13 @@ button .contained.disabled {
   font-family: 'Montserrat', sans-serif;
 }
 
-.dropdown select:focus {
+.pup-dropdown select:focus {
   outline: none;
   border-color: #023b95;
   box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
 }
 
-.dropdown::after {
+.pup-dropdown::after {
   content: '›';
   position: absolute;
   top: 50%;
@@ -634,19 +634,19 @@ button .contained.disabled {
   font-size: 20px;
 }
 
-.bottom-container {
+.pup-bottom-container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
 }
 
-.stepper {
+.pup-stepper {
   display: flex;
   margin-right: 20px;
 }
 
-.stepper-dot {
+.pup-stepper-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -655,12 +655,12 @@ button .contained.disabled {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.stepper-dot.active {
+.pup-stepper-dot.active {
   background-color: #023b95;
   transform: scale(1.2);
 }
 
-.verify-button {
+.pup-verify-button {
   all: unset;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
@@ -674,11 +674,11 @@ button .contained.disabled {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.verify-button:hover {
+.pup-verify-button:hover {
   background-color: #034db5;
 }
 
-.verify-button:active {
+.pup-verify-button:active {
   transform: scale(0.98);
 }
 
@@ -694,25 +694,25 @@ button .contained.disabled {
   }
 }
 
-.fade-in {
+.pup-fade-in {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
 @media (max-width: 600px) {
-  .container {
+  .pup-container {
     padding: 10px;
   }
 
-  .card-utility {
+  .pup-card-utility {
     padding: 20px;
   }
 
-  .h1-semi {
+  .pup-h1-semi {
     font-size: 32px;
     line-height: 38px;
   }
 
-  .selection-title {
+  .pup-selection-title {
     font-size: 20px;
     line-height: 24px;
   }
@@ -722,19 +722,19 @@ button .contained.disabled {
   } --> */
 }
 
-.input-grid {
+.pup-input-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
 }
 
-.input-group {
+.pup-input-group {
   display: flex;
   flex-direction: column;
 }
 
-.input-label {
+.pup-input-label {
   font-size: 14px;
   font-weight: 500;
   color: #9b9b9b;
@@ -742,7 +742,7 @@ button .contained.disabled {
   transition: color 0.3s ease;
 }
 
-.input-field {
+.pup-input-field {
   width: 100%;
   padding: 10px;
   border: 1px solid #d1d1d1;
@@ -751,45 +751,45 @@ button .contained.disabled {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.input-field:focus {
+.pup-input-field:focus {
   outline: none;
   /* border-color: #023b95; */
   /* box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2); */
 }
 
-.input-group.active .input-label {
+.pup-input-group.active .input-label {
   color: #023b95;
 }
 
-.input-group.active .input-field {
+.pup-input-group.active .input-field {
   border-color: #023b95;
 }
 
-.review-content {
+.pup-review-content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 30px;
 }
 
-.information-section {
+.pup-information-section {
   flex: 1;
   padding-right: 40px;
 }
 
-.summary-section {
+.pup-summary-section {
   flex: 1;
   text-align: right;
 }
 
 
 
-.timeline {
+.pup-timeline {
   position: relative;
   padding-left: 30px;
 }
 
-.timeline::before {
+.pup-timeline::before {
   content: '';
   position: absolute;
   left: 13px;
@@ -799,12 +799,12 @@ button .contained.disabled {
   background-color: #023b95;
 }
 
-.info-item {
+.pup-info-item {
   position: relative;
   margin-bottom: 30px;
 }
 
-.info-item::before {
+.pup-info-item::before {
   content: '';
   position: absolute;
   left: -22px;
@@ -815,12 +815,12 @@ button .contained.disabled {
   background-color: #023b95;
 }
 
-.info-item-no-dot {
+.pup-info-item-no-dot {
   position: relative;
   margin-bottom: 30px;
 }
 
-.info-label {
+.pup-info-label {
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
@@ -829,14 +829,14 @@ button .contained.disabled {
   margin-bottom: 5px;
 }
 
-.info-value {
+.pup-info-value {
   font-size: 18px;
   line-height: 22px;
   font-weight: 600;
   color: #404040;
 }
 
-.dollar-amount {
+.pup-dollar-amount {
   font-size: 56px;
   line-height: 68px;
   font-weight: 600;
