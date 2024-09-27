@@ -79,11 +79,9 @@ export type PlasmicPageLayout__VariantsArgs = {};
 type VariantPropType = keyof PlasmicPageLayout__VariantsArgs;
 export const PlasmicPageLayout__VariantProps = new Array<VariantPropType>();
 
-export type PlasmicPageLayout__ArgsType = {
-  children?: React.ReactNode;
-};
+export type PlasmicPageLayout__ArgsType = {};
 type ArgPropType = keyof PlasmicPageLayout__ArgsType;
-export const PlasmicPageLayout__ArgProps = new Array<ArgPropType>("children");
+export const PlasmicPageLayout__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicPageLayout__OverridesType = {
   root?: Flex__<typeof RichLayout>;
@@ -91,7 +89,6 @@ export type PlasmicPageLayout__OverridesType = {
 };
 
 export interface DefaultPageLayoutProps {
-  children?: React.ReactNode;
   className?: string;
 }
 
@@ -189,38 +186,7 @@ function PlasmicPageLayout__RenderFunc(props: {
       >
         <DataCtxReader__>
           {$ctx => (
-            <div className={classNames(projectcss.all, sty.freeBox__sSfs8)}>
-              {renderPlasmicSlot({
-                defaultContents: (
-                  <section
-                    className={classNames(projectcss.all, sty.section___9BgnZ)}
-                  >
-                    <h1
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.h1,
-                        projectcss.__wab_text,
-                        sty.h1__pu2HG
-                      )}
-                    >
-                      {"Untitled page"}
-                    </h1>
-                    <div
-                      className={classNames(
-                        projectcss.all,
-                        projectcss.__wab_text,
-                        sty.text__p3C6Q
-                      )}
-                    >
-                      {
-                        "Press the big blue + button to insert components like Tables, Text, Buttons, and Forms.\n\nJoin our Slack Community (icon in bottom left) for help!"
-                      }
-                    </div>
-                  </section>
-                ),
-                value: args.children
-              })}
-            </div>
+            <div className={classNames(projectcss.all, sty.freeBox__sSfs8)} />
           )}
         </DataCtxReader__>
       </LoadingBoundary>

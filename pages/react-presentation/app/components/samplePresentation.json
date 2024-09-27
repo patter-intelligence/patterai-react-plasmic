@@ -1,0 +1,494 @@
+[
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "styleOverride": "flex: 1; display:flex; height: 100vh;margin-left: -10px",
+            "content": [
+                {
+                    "title": "Full Screen Logo",
+                    "type": "image",
+                    "imageUrl": "https://patter-demos-mu.vercel.app/Patter_Logo.png",
+                    "styleOverride": "width: 100%;height: 100%;background:url({{PATTER_SLIDE_STATIC_IMAGE}}); background-position: center; background-repeat:no-repeat;background-size: cover;",
+                    "imageStyle": "object-fit: contain;height: 120px; position:absolute; left: 55px; top: 10%;padding: 22px;background-color:white;border-radius: 5px;",
+                    "size": 0
+                }
+            ]
+        },
+        "order": "0",
+        "name": "Presentation Start"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "styleOverride": "background-color:#F4F6F9;",
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/photoUploader",
+                    "styleOverride": "width: 100%; height: 100%;padding: 20px;",
+                    "childProps": {
+                        "solarGrafDesignId": "{{salesOpportunity.solarGrafDesignId}}",
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 2
+                }
+            ]
+        },
+        "order": "1",
+        "name": "Photo Capture"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "hasGutters": false,
+            "styleOverride": "background-color:#F4F6F9;",
+            "content": [
+                {
+                    "title": "Right side",
+                    "content": "",
+                    "type": "lwccomponent",
+                    "styleOverride": "",
+                    "componentName": "c/presentation_homeowners_v2",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}",
+                        "disableUpdates": true
+                    },
+                    "size": 1
+                }
+            ]
+        },
+        "order": "2",
+        "name": "Contact Confirmation"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "hasGutters": false,
+            "styleOverride": "background:#F4F6F9;",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/presentation_site_confirmation",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 1
+                }
+            ]
+        },
+        "order": "3",
+        "name": "Site Confirmation"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/presentation_utility_profile",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "styleOverride": "height: 100vh;display: flex;flex-direction: column;justify-content: center;background-color:#F2F5F8",
+                    "size": 1
+                }
+            ]
+        },
+        "order": "4",
+        "name": "Energy Use"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "styleOverride": "flex: 1; display:flex; height: 100vh;margin-left: -10px",
+            "content": [
+                {
+                    "title": "Full Screen Logo",
+                    "type": "image",
+                    "imageUrl": "/resource/1715119601000/SunSolarReferralSlide",
+                    "styleOverride": "width: 100%;height: 100%;background:url(/resource/1715119601000/SunSolarReferralSlide); background-position: center; background-repeat:no-repeat;background-size: contain",
+                    "imageStyle": "object-fit: contain;height: 0px; position:absolute; left: 55px; top: 10%;padding: 22px;background-color:white;border-radius: 5px;",
+                    "size": 0
+                }
+            ]
+        },
+        "order": "5",
+        "name": "Referral"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/tChart",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 2
+                }
+            ]
+        },
+        "order": "6",
+        "name": "T-Chart"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/solargraf3DModel",
+                    "childProps": {
+                        "solarGrafDesignId": "{{salesOpportunity.solargrafDesignId}}",
+                        "solarGrafProjectId": "{{salesOpportunity.solarGrafProjectId}}",
+                        "recordId": "{{salesOpportunity.Id}}",
+                        "style": "width: 100vw; height: 100vh; overflow-y: hidden;position:absolute;top: 0;left: 0;background-color:#F4F6F9; margin-bottom: 32px; bottom: 0px;"
+                    },
+                    "size": 3
+                },
+                {
+                    "title": "Right side",
+                    "content": "",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 1,
+                    "styleOverride": "width: 300px; height: 100%;padding: 20px;margin-bottom: 20px; overflow-y: auto;top: 0;background-color:#F4F6F9;left: 0px;position:absolute",
+                    "childLayout": {
+                        "content": [
+                            {
+                                "type": "lwccomponent",
+                                "componentName": "c/lwcPresentationDesignChanger",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            },
+                            {
+                                "type": "lwccomponent",
+                                "componentName": "c/solargrafCharts",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            },
+                            {
+                                "type": "lwccomponent",
+                                "componentName": "c/solargrafDetails",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                },
+                                "styleOverride": "margin-bottom: 20px;"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Pricing Sidebar",
+                    "content": "",
+                    "type": "lwccomponent",
+                    "componentName": "c/lwcPresentationPricingSidebar",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 0
+                }
+            ]
+        },
+        "order": "7",
+        "name": "System Design"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "styleOverride": "margin: 100px;",
+                    "componentName": "c/presentation_productionChart",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 2
+                }
+            ]
+        },
+        "order": "8",
+        "name": "Consumption vs Production"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "styleOverride": "flex: 1; display:flex; height: 100vh;margin-left: -10px",
+            "content": [
+                {
+                    "title": "Full Screen Logo",
+                    "type": "image",
+                    "imageUrl": "/resource/1715123181000/SunSolarCostToDoNothing",
+                    "styleOverride": "width: 100%;height: 100%;background:url(/resource/1715123181000/SunSolarCostToDoNothing); background-position: center; background-repeat:no-repeat;background-size: contain;",
+                    "imageStyle": "object-fit: contain;height: 0px; position:absolute; left: 55px; top: 10%;padding: 22px;background-color:white;border-radius: 5px;",
+                    "size": 0
+                }
+            ]
+        },
+        "order": "10",
+        "name": "Cost To Do Nothing"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "styleOverride": "",
+                    "componentName": "c/presentation_ftc",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 2
+                }
+            ]
+        },
+        "order": "13",
+        "name": "FTC Slide"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": false,
+            "type": "grid",
+            "styleOverride": "background-color:#F4F6F9;",
+            "content": [
+                {
+                    "title": "Left Side",
+                    "content": "Quote Selector",
+                    "styleOverride": "background:#ffffff;height: 100vh;padding: 10px;margin-left: -5px;",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 1,
+                    "childLayout": {
+                        "content": [
+                            {
+                                "type": "lwccomponent",
+                                "styleOverride": "margin-left: 10px;margin-right: 10px;",
+                                "componentName": "c/presentation_quoteVersions",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Right side",
+                    "content": "",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 3,
+                    "childLayout": {
+                        "content": [
+                            {
+                                "type": "lwccomponent",
+                                "styleOverride": "background-color:#FFFFFF;margin-top: 55px;margin-left: 10px;margin-right: 10px;",
+                                "componentName": "c/presentation_quoteSummary",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "order": "13",
+        "name": "Quotes"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "hasGutters": false,
+            "styleOverride": "background-color:#F4F6F9;margin-left: -5px",
+            "content": [
+                {
+                    "type": "image",
+                    "imageUrl": "/resource/1717526927000/SunSolarLogo",
+                    "styleOverride": "width: 100%;height: 100%;background:url(/resource/1716496456000/Solar_customers); background-position: -165px; background-repeat:no-repeat;background-size: cover;",
+                    "imageStyle": "object-fit: contain;height: 120px; position:absolute; left: 50px; top: 10%;border-radius: 10px;border-color:#F4F6F9;",
+                    "size": 1
+                },
+                {
+                    "content": "",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "styleOverride": "width: 100%; height: 100%;padding: 20px;margin-bottom: 20px; overflow-y: auto;top: 0;right: 0px;background-color: #F4F6F9;",
+                    "childLayout": {
+                        "content": [
+                            {
+                                "type": "lwccomponent",
+                                "styleOverride": "background-color:#FFFFFF;margin-bottom: 20px",
+                                "componentName": "c/presentation_pricingSummary",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            }
+                        ]
+                    },
+                    "size": 2
+                }
+            ]
+        },
+        "order": "13",
+        "name": "Pricing Summary"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "hasGutters": false,
+            "styleOverride": "background-color:#F4F6F9;",
+            "content": [
+                {
+                    "title": "Left Side",
+                    "type": "image",
+                    "imageUrl": "/resource/1715122593000/SunSolarLogo",
+                    "styleOverride": "width: 100%;height: 100%;background:url(/resource/1716496456000/Solar_customers); background-position: center; background-repeat:no-repeat;background-size: cover;",
+                    "imageStyle": "object-fit: contain;height: 120px;position:absolute;left: 55px;top: 10%;border-radius: 5px;margin: -5px;",
+                    "size": 2
+                },
+                {
+                    "title": "Right side",
+                    "content": "",
+                    "type": "lwccomponent",
+                    "componentName": "c/presentation_wrapup",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "styleOverride": "background-color:#FFFFFF;margin: 20px;width: 100%;",
+                    "size": 1
+                }
+            ]
+        },
+        "order": "14",
+        "name": "Wrapup"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "hasGutters": true,
+            "type": "grid",
+            "styleOverride": "background-color:#F4F6F9;",
+            "content": [
+                {
+                    "title": "Left Side",
+                    "type": "image",
+                    "imageUrl": "/resource/1715122593000/SunSolarLogo",
+                    "styleOverride": "width: 100%;height: 100%;background:url(/resource/1716496456000/Solar_customers); background-position: center; background-repeat:no-repeat;background-size: cover;",
+                    "imageStyle": "object-fit: contain;height: 0px; position:absolute; left: 55px; top: 10%;background-color:white;border-radius: 5px;",
+                    "size": 2
+                },
+                {
+                    "title": "Right side",
+                    "content": "",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 1,
+                    "styleOverride": "width: 60%; height: 100%;padding: 20px;margin-bottom: 20px; overflow-y: auto;position:absolute;top: 0;right: 0px;background-color: #F4F6F9;",
+                    "childLayout": {
+                        "content": [
+                            {
+                                "type": "lwccomponent",
+                                "styleOverride": "background-color:#FFFFFF;margin-bottom: 20px",
+                                "componentName": "c/presentation_envelopeDocuments",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            },
+                            {
+                                "type": "lwccomponent",
+                                "styleOverride": "background-color:#FFFFFF;",
+                                "componentName": "c/presentation_envelopeSigners",
+                                "childProps": {
+                                    "recordId": "{{salesOpportunity.Id}}"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "order": "15",
+        "name": "Docusign Envelope"
+    },
+    {
+        "tags": "Solar",
+        "template": "Default Presentation",
+        "layout": {
+            "type": "grid",
+            "hasGutters": true,
+            "content": [
+                {
+                    "title": "Full width",
+                    "content": "This is the full width content",
+                    "type": "lwccomponent",
+                    "componentName": "c/lwcLoanProviderQClient",
+                    "childProps": {
+                        "recordId": "{{salesOpportunity.Id}}"
+                    },
+                    "size": 1
+                }
+            ]
+        },
+        "order": "15",
+        "name": "Q-Engine"
+    }
+]

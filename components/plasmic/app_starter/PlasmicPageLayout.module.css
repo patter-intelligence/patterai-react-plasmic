@@ -54,40 +54,6 @@
 .freeBox__sSfs8 > * {
   grid-column: 4;
 }
-.section___9BgnZ {
-  display: grid;
-  align-content: flex-start;
-  justify-items: center;
-  width: 100%;
-  grid-row-gap: 16px;
-  grid-column-start: 1 !important;
-  grid-column-end: -1 !important;
-  grid-template-columns:
-    var(--plsmc-viewport-gap) 1fr minmax(0, var(--plsmc-wide-chunk))
-    min(
-      var(--plsmc-standard-width),
-      calc(100% - var(--plsmc-viewport-gap) - var(--plsmc-viewport-gap))
-    )
-    minmax(0, var(--plsmc-wide-chunk)) 1fr var(--plsmc-viewport-gap);
-  padding: 8px 0;
-}
-.section___9BgnZ > * {
-  grid-column: 4;
-}
-.h1__pu2HG {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 800px;
-  min-width: 0;
-}
-.text__p3C6Q {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: 100%;
-  min-width: 0;
-}
 .svg__xjnMg {
   position: relative;
   object-fit: cover;

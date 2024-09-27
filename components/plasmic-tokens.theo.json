@@ -1,6 +1,26 @@
 {
   "props": [
     {
+      "name": "Patter Blue",
+      "type": "color",
+      "value": "#023B95",
+      "category": "color",
+      "meta": {
+        "projectId": "ExVE5BTo7uCtu4JaRbAcL",
+        "id": "7fHPdC0_MdfO"
+      }
+    },
+    {
+      "name": "Patter Font",
+      "type": "fontfamily",
+      "value": "Montserrat",
+      "category": "fontfamily",
+      "meta": {
+        "projectId": "ExVE5BTo7uCtu4JaRbAcL",
+        "id": "XxSrkzl-mlDb"
+      }
+    },
+    {
       "name": "System: Bg Container",
       "type": "color",
       "value": "var(--antd-colorBgContainer)",
@@ -2038,6 +2058,16 @@
       "meta": {
         "projectId": "ohDidvG9XsCeFumugENU3J",
         "id": "BwOcdtoxJOlu"
+      }
+    },
+    {
+      "name": "Title",
+      "type": "fontsize",
+      "value": "16px",
+      "category": "fontsize",
+      "meta": {
+        "projectId": "ExVE5BTo7uCtu4JaRbAcL",
+        "id": "_emvcwZQ9Qgk"
       }
     }
   ],

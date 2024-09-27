@@ -1,0 +1,17 @@
+.presentation-wrapup {
+  width: 95%;
+  padding: 20px;
+  border: 1px solid #d8dde6;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.presentation-wrapup h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.question-container {
+  margin-bottom: 2%;
+}

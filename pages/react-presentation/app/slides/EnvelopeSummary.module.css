@@ -1,0 +1,239 @@
+.envelope-summary {
+  background-color: #F2F5F8;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.envelope-summary__section {
+  margin-bottom: 30px;
+  padding: 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.envelope-summary h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.envelope-summary h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.envelope-summary__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.envelope-summary__column {
+  background-color: #f4f6f9;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.envelope-summary__form input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #d1d3d4;
+  border-radius: 3px;
+}
+
+.envelope-summary__form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.envelope-summary__form-row input {
+  flex: 1;
+}
+
+.envelope-summary__documents {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.envelope-summary__document {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #d1d3d4;
+}
+
+.envelope-summary__document:last-child {
+  border-bottom: none;
+}
+
+.envelope-summary__document-icon,
+.envelope-summary__document-preview {
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+.envelope-summary__document-name {
+  flex-grow: 1;
+}
+
+.envelope-summary__signers {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.envelope-summary__signer {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+.envelope-summary__signer:last-child {
+  border-bottom: none;
+}
+
+.envelope-summary__signer:hover {
+  background-color: #f8f9fa;
+}
+
+.envelope-summary__signer-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.envelope-summary__signer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #04348A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.envelope-summary__signer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.envelope-summary__signer-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.envelope-summary__signer-email {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.envelope-summary__signer-controls {
+  display: flex;
+  gap: 15px;
+  margin-left: auto;
+}
+
+.envelope-summary__select-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.envelope-summary__select-wrapper label {
+  font-size: 0.8em;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.envelope-summary__signer select {
+  padding: 8px;
+  border: 1px solid #d1d3d4;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.envelope-summary__signer select:disabled {
+  background-color: #f1f3f4;
+  color: #5f6368;
+  cursor: not-allowed;
+}
+
+.envelope-summary__signer-status {
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-left: 15px;
+}
+
+.envelope-summary__signer-status.completed {
+  background-color: #e6f4ea;
+  color: #1e8e3e;
+}
+
+.envelope-summary__signer-status.pending {
+  background-color: #fff8e1;
+  color: #f9a825;
+}
+
+.envelope-summary__signer-status.not_started {
+  background-color: #f1f3f4;
+  color: #5f6368;
+}
+
+/* h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #404040;
+  font-family: Montserrat;
+} */
+
+.envelope-summary__send-button {
+  background-color: #04348A;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 40px;
+  float: right;
+}
+
+.envelope-summary__send-button:hover {
+  background-color: #032d75;
+}
+
+.envelope-summary__popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.envelope-summary__progress {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.envelope-summary__progress progress {
+  width: 100%;
+  margin-top: 10px;
+}

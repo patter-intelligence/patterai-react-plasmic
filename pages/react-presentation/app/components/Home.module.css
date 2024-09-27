@@ -1,0 +1,62 @@
+.navigationContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.cx_pl16--OoGbQ {
+  display: none !important;
+  gap: 10px;
+}
+
+.navigationButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navigationButton:hover {
+  background-color: #0056b3;
+}
+
+.navigationButton:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+.menu-icon.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 2rem;
+  background-color: #f4f6f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-data-message svg {
+  margin-bottom: 1rem;
+}
+
+.no-data-message h2 {
+  color: #023B95;
+  margin-bottom: 0.5rem;
+}
+
+.no-data-message p {
+  color: #666;
+  max-width: 400px;
+}

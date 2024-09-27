@@ -84,9 +84,6 @@ export const PlasmicHomepage__ArgProps = new Array<ArgPropType>();
 export type PlasmicHomepage__OverridesType = {
   root?: Flex__<"div">;
   pageLayout?: Flex__<typeof PageLayout>;
-  section?: Flex__<"section">;
-  h1?: Flex__<"h1">;
-  text?: Flex__<"div">;
 };
 
 export interface DefaultHomepageProps {}
@@ -162,43 +159,7 @@ function PlasmicHomepage__RenderFunc(props: {
             data-plasmic-name={"pageLayout"}
             data-plasmic-override={overrides.pageLayout}
             className={classNames("__wab_instance", sty.pageLayout)}
-          >
-            <DataCtxReader__>
-              {$ctx => (
-                <section
-                  data-plasmic-name={"section"}
-                  data-plasmic-override={overrides.section}
-                  className={classNames(projectcss.all, sty.section)}
-                >
-                  <h1
-                    data-plasmic-name={"h1"}
-                    data-plasmic-override={overrides.h1}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.h1,
-                      projectcss.__wab_text,
-                      sty.h1
-                    )}
-                  >
-                    {"Untitled page"}
-                  </h1>
-                  <div
-                    data-plasmic-name={"text"}
-                    data-plasmic-override={overrides.text}
-                    className={classNames(
-                      projectcss.all,
-                      projectcss.__wab_text,
-                      sty.text
-                    )}
-                  >
-                    {
-                      "Press the big blue + button to insert components like Tables, Text, Buttons, and Forms.\n\nJoin our Slack Community (icon in bottom left) for help!"
-                    }
-                  </div>
-                </section>
-              )}
-            </DataCtxReader__>
-          </PageLayout>
+          />
         </div>
       </div>
     </React.Fragment>
@@ -206,11 +167,8 @@ function PlasmicHomepage__RenderFunc(props: {
 }
 
 const PlasmicDescendants = {
-  root: ["root", "pageLayout", "section", "h1", "text"],
-  pageLayout: ["pageLayout", "section", "h1", "text"],
-  section: ["section", "h1", "text"],
-  h1: ["h1"],
-  text: ["text"]
+  root: ["root", "pageLayout"],
+  pageLayout: ["pageLayout"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -218,9 +176,6 @@ type DescendantsType<T extends NodeNameType> =
 type NodeDefaultElementType = {
   root: "div";
   pageLayout: typeof PageLayout;
-  section: "section";
-  h1: "h1";
-  text: "div";
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -309,9 +264,6 @@ export const PlasmicHomepage = Object.assign(
   {
     // Helper components rendering sub-elements
     pageLayout: makeNodeComponent("pageLayout"),
-    section: makeNodeComponent("section"),
-    h1: makeNodeComponent("h1"),
-    text: makeNodeComponent("text"),
 
     // Metadata about props expected for PlasmicHomepage
     internalVariantProps: PlasmicHomepage__VariantProps,

@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
   },
   "images": {
     "scheme": "public-files",
@@ -41,7 +41,8 @@
           "componentImportPath": "@plasmicpkgs/plasmic-basic-components"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "jkU633o1Cz7HrJdwdxhVHk",
@@ -95,7 +96,8 @@
           }
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "ohDidvG9XsCeFumugENU3J",
@@ -495,7 +497,8 @@
           "componentImportPath": "@plasmicpkgs/antd5/skinny/registerBreadcrumb"
         }
       ],
-      "customFunctions": []
+      "customFunctions": [],
+      "jsBundleThemes": []
     },
     {
       "projectId": "ExVE5BTo7uCtu4JaRbAcL",
@@ -530,6 +533,20 @@
           "cssFilePath": "plasmic/app_starter/PlasmicPageLayout.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "o5fo0gFBSJDv",
+          "name": "Presentation",
+          "type": "managed",
+          "projectId": "ExVE5BTo7uCtu4JaRbAcL",
+          "renderModuleFilePath": "plasmic/app_starter/PlasmicPresentation.tsx",
+          "importSpec": {
+            "modulePath": "../pages/presentation.tsx"
+          },
+          "cssFilePath": "plasmic/app_starter/PlasmicPresentation.module.css",
+          "scheme": "blackbox",
+          "componentType": "page",
+          "path": "/presentation"
         }
       ],
       "icons": [
@@ -560,9 +577,31 @@
           "name": "Fetcher",
           "displayName": "plasmic-data-source-fetcher",
           "componentImportPath": "@plasmicapp/react-web/lib/data-sources"
+        },
+        {
+          "id": "vKYgP9-_ZILR",
+          "name": "PatterHeaderH1",
+          "displayName": "PatterHeaderH1",
+          "componentImportPath": "./patter-ui-components"
         }
       ],
       "customFunctions": []
+    },
+    {
+      "projectId": "hsyJcmBceSfPzvvXzVTuk7",
+      "projectApiToken": "a25mdMh3tcPRSuNv1E2rvIBmDBpG9JCKRYuxIkD7RITUZyuawzoUKjFwhNk2fb6znQOxWRaXBJkUCi3JMRwBQ",
+      "projectName": "lodash",
+      "version": ">0.0.0",
+      "cssFilePath": "plasmic/lodash/plasmic.module.css",
+      "components": [],
+      "icons": [],
+      "images": [],
+      "indirect": true,
+      "globalContextsFilePath": "",
+      "splitsProviderFilePath": "",
+      "codeComponents": [],
+      "customFunctions": [],
+      "jsBundleThemes": []
     }
   ],
   "globalVariants": {

@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C600&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C600&display=swap");
 
 .plasmic_tokens {
+  --token-7fHPdC0_MdfO: #023b95;
+  --plasmic-token-patter-blue: var(--token-7fHPdC0_MdfO);
+  --token-XxSrkzl-mlDb: Montserrat;
+  --plasmic-token-patter-font: var(--token-XxSrkzl-mlDb);
+  --token-_emvcwZQ9Qgk: 16px;
+  --plasmic-token-title: var(--token-_emvcwZQ9Qgk);
+}
+
+.plasmic_tokens {
   --plsmc-standard-width: 800px;
   --plsmc-wide-width: 1280px;
   --plsmc-viewport-gap: 16px;

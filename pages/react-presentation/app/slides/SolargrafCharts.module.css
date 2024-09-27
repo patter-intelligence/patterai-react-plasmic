@@ -1,0 +1,25 @@
+.solargraf-charts {
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+}
+
+.chart-container {
+  background-color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 22px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.chart-container:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.chart-container h1 {
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 600;
+  color: #404040;
+  margin-bottom: 24px;
+}
