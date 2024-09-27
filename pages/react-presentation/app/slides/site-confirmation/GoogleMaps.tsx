@@ -596,7 +596,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   {/* AdvancedMarkerElement is created in onMapLoad */}
                   {activeTab === 'PIN' && (
                     <div
-                        className="map-mask"
+                        className="sc-map-mask"
                         style={{
                           position: 'absolute',
                           top: 0,
@@ -606,7 +606,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                         }}
                       >
                         <div
-                          className="map-mask-window"
+                          className="sc-map-mask-window"
                           style={{
                             position: 'absolute',
                             top: '50%',
@@ -749,7 +749,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                     variants={slideUp}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="address-field">
+                    <div className="sc-address-field">
                       <label htmlFor="city" className="d2-medium light-grey">
                         City
                       </label>
@@ -767,7 +767,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                         <p className="validation-text">{errors.city}</p>
                       )}
                     </div>
-                    <div className="address-field">
+                    <div className="sc-address-field">
                       <label htmlFor="state" className="d2-medium light-grey">
                         State
                       </label>
@@ -786,7 +786,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                         </p>
                       )}
                     </div>
-                    <div className="address-field">
+                    <div className="sc-address-field">
                       <label htmlFor="zip" className="d2-medium light-grey">
                         Zip
                       </label>
