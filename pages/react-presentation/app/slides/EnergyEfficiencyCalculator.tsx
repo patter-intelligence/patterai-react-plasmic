@@ -198,7 +198,7 @@ const EnergyEfficiencyCalculator: React.FC = observer(() => {
     <div className="eec-container">
       <div className="eec-info-screen">
         <div className="eec-info-content">
-        <div className="eec-info-content-left">
+          <div className="eec-info-content-left">
           <div className="eec-savings-card">
             <h2>Potential Savings / Year</h2>
             <p className="eec-savings-amount">
