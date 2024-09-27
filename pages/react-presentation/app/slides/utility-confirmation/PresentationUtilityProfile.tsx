@@ -845,7 +845,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
               BACK
             </button>
           )}
-          <div className="content-wrapper">
+          <div className="pup-content-wrapper">
             <LoadingSpinner />
 
             {!$state.isLoading.get() && $state.step.get() === 1 && (
