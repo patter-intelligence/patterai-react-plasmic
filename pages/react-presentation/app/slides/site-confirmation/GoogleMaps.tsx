@@ -669,11 +669,13 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                     activeTab === 'PIN' ? 'active' : ''
                   }`}
                   onClick={() => {
+                    setActiveTab('PIN');
                     if (mapRef.current) {
-                      mapRef.current.setZoom(22);
+                      const currentZoom = mapRef.current.getZoom() || defaultZoom;
+                      const newZoom = Math.max(currentZoom, 22);
+                      mapRef.current.setZoom(newZoom);
                       mapRef.current.panTo(markerPosition);
                     }
-                    setActiveTab('PIN');
                     if (isPinTabFirstLoad) {
                       setIsPinTabFirstLoad(false);
                     }
