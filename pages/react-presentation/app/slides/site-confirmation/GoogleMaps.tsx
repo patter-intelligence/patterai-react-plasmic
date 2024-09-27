@@ -19,7 +19,6 @@ import 'react-quill/dist/quill.snow.css';
 import ErrorBoundary from './ErrorBoundary';
 import StreetView from './StreetView';
 import CustomToggle from './CustomToggle';
-import './GoogleMaps.module.css';
 import * as Yup from 'yup';
 import { observer } from '@legendapp/state/react';
 import { appState } from '../../state/appState';
@@ -573,16 +572,16 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
   return (
     <ErrorBoundary>
       <motion.div
-        className="container-site-confirmation fullheight"
+        className="sc-container"
         initial="hidden"
         animate="visible"
         variants={fadeIn}
       >
-        <motion.div className="map-section" variants={slideUp}>
+        <motion.div className="sc-map-section" variants={slideUp}>
           <ErrorBoundary>
             <motion.div
               key="map"
-              className="google-map"
+              className="sc-google-map"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
@@ -630,16 +629,16 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
             </motion.div>
           </ErrorBoundary>
         </motion.div>
-        <motion.div className="info-section" variants={slideUp}>
+        <motion.div className="sc-info-section" variants={slideUp}>
           <ErrorBoundary>
             <motion.div
-              className="card-site"
+              className="sc-card"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <motion.h1
-                className="confirm-title"
+                className="sc-confirm-title"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -649,9 +648,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                 {activeTab === 'DETAILS' && 'Confirm details'}
               </motion.h1>
               {isAddressLoadedFromSalesforce && memoizedStreetView}
-              <div className="address-tabs">
+              <div className="sc-address-tabs">
                 <button
-                  className={`tab-button ${
+                  className={`sc-tab-button ${
                     activeTab === 'ADDRESS' ? 'active' : ''
                   }`}
                   onClick={() => {
@@ -667,7 +666,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   ADDRESS
                 </button>
                 <button
-                  className={`tab-button ${
+                  className={`sc-tab-button ${
                     activeTab === 'PIN' ? 'active' : ''
                   }`}
                   onClick={() => {
@@ -700,7 +699,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   PIN
                 </button>
                 <button
-                  className={`tab-button ${
+                  className={`sc-tab-button ${
                     activeTab === 'DETAILS' ? 'active' : ''
                   }`}
                   onClick={() => {
@@ -718,13 +717,13 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
               </div>
               {activeTab === 'ADDRESS' && (
                 <motion.div
-                  className="address-content"
+                  className="sc-address-content"
                   initial="hidden"
                   animate="visible"
                   variants={fadeIn}
                 >
-                  <div className="address-field">
-                    <label htmlFor="street" className="d2-medium light-grey">
+                  <div className="sc-address-field">
+                    <label htmlFor="street" className="sc-d2-medium sc-light-grey">
                       My address
                     </label>
                     <Input
@@ -742,11 +741,11 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                       }`}
                     />
                     {errors.street && (
-                      <p className="validation-text">{errors.street}</p>
+                      <p className="sc-validation-text">{errors.street}</p>
                     )}
                   </div>
                   <motion.div
-                    className="address-row"
+                    className="sc-address-row"
                     variants={slideUp}
                     transition={{ delay: 0.2 }}
                   >
@@ -810,30 +809,30 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                 </motion.div>
               )}
               {activeTab === 'PIN' && (
-                <div className="pin-instructions">
-                  <div className="section-title d2-medium grey">
+                <div className="sc-pin-instructions">
+                  <div className="sc-section-title sc-d2-medium sc-grey">
                     Confirm pin placement
                   </div>
-                  <p className="d2-medium light-grey">
+                  <p className="sc-d2-medium sc-light-grey">
                     Use the map on the left to adjust the pin location. The
                     highlighted area shows the precise location.
                   </p>
-                  <p className="d2-medium light-grey">
+                  <p className="sc-d2-medium sc-light-grey">
                     Press confirm when you're satisfied with the placement.
                   </p>
                 </div>
               )}
               {activeTab === 'DETAILS' && (
                 <motion.div
-                  className="details-section"
+                  className="sc-details-section"
                   initial="hidden"
                   animate="visible"
                   variants={fadeIn}
                 >
-                  <h2 className="section-title d2-medium light-grey">
+                  <h2 className="sc-section-title sc-d2-medium sc-light-grey">
                     Site Details
                   </h2>
-                  <div className="toggle-group">
+                  <div className="sc-toggle-group">
                     <CustomToggle
                       id="existing-solar"
                       checked={existingSolar}
@@ -858,10 +857,10 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                       }
                       label="New Build"
                     />
-                    <div className="notes-field">
+                    <div className="sc-notes-field">
                       <label
                         htmlFor="designer-notes"
-                        className="d2-medium light-grey designer-notes"
+                        className="sc-d2-medium sc-light-grey sc-designer-notes"
                       >
                         <div>Notes for designer</div>
                         <div
@@ -887,9 +886,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   </div>
                 </motion.div>
               )}
-              <div className="button-controls">
+              <div className="sc-button-controls">
                 <motion.button
-                  className="confirm-button"
+                  className="sc-confirm-button"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -966,13 +965,13 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
               <AnimatePresence>
                 {showModal && (
                   <motion.div
-                    className="modal-overlay"
+                    className="sc-modal-overlay"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
                     <motion.div
-                      className="modal"
+                      className="sc-modal"
                       initial={{ y: 50, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       exit={{ y: 50, opacity: 0 }}
