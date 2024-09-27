@@ -110,7 +110,7 @@ const defaultCenter = {
   lng: -122.4194,
 };
 
-const defaultZoom = 21;
+const defaultZoom = 19;
 
 const addressSchema = Yup.object().shape({
   street: Yup.string().required('Street is required'),
@@ -361,7 +361,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
         const newPosition = { lat: e.latLng.lat(), lng: e.latLng.lng() };
         setMarkerPosition(newPosition);
         markerRef.current.position = newPosition;
+        const currentZoom = mapRef.current.getZoom();
         mapRef.current.panTo(newPosition);
+        mapRef.current.setZoom(currentZoom || defaultZoom);
         updateAddress({
           salesOpportunityId: recordId,
           address: {
@@ -419,9 +421,14 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
 
       updateMarker();
 
-      const initialZoom = activeTab === 'PIN' ? (map.getMapTypeId() === 'satellite' ? 21 : 22) : 21;
+      const initialZoom = activeTab === 'PIN' ? (map.getMapTypeId() === 'satellite' ? 21 : 22) : defaultZoom;
       map.setZoom(initialZoom);
       map.panTo(markerPosition);
+
+      // Adjust zoom level based on the active tab
+      if (activeTab === 'ADDRESS' || activeTab === 'DETAILS') {
+        map.setZoom(defaultZoom);
+      }
 
       // Force a re-render to ensure the zoom change takes effect
       setTimeout(() => {
@@ -659,7 +666,7 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                     }
                     setActiveTab('ADDRESS');
                     if (mapRef.current) {
-                      mapRef.current.setZoom(previousZoom || defaultZoom);
+                      mapRef.current.setZoom(defaultZoom);
                     }
                   }}
                 >
