@@ -308,19 +308,19 @@ const EnergyProgramComparison: React.FC = observer(() => {
       const otherColumn = column === 'a' ? 'b' : 'a';
 
       // If the item is already selected, deselect it
-      if (prev[column] === itemId) {
-        const { [column]: _, ...rest } = prev;
+      if (prev[`${itemType}-${column}`] === itemId) {
+        const { [`${itemType}-${column}`]: _, ...rest } = prev;
         return rest;
       }
 
       // Remove the same item type from the other column if it exists
       const newState = { ...prev };
-      if (newState[otherColumn] && newState[otherColumn].startsWith(itemType)) {
-        delete newState[otherColumn];
+      if (newState[`${itemType}-${otherColumn}`]) {
+        delete newState[`${itemType}-${otherColumn}`];
       }
 
       // Add or update the newly selected item
-      return { ...newState, [column]: itemId };
+      return { ...newState, [`${itemType}-${column}`]: itemId };
     });
   };
 
