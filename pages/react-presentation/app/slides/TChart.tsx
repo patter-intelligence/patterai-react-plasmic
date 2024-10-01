@@ -313,9 +313,13 @@ const EnergyProgramComparison: React.FC = observer(() => {
         return rest;
       }
 
-      // Deselect the corresponding item in the other column
-      const updatedItems = { ...prev };
-      delete updatedItems[otherItemId];
+      // Deselect all items of the same type
+      const updatedItems = Object.keys(prev).reduce((acc, key) => {
+        if (!key.startsWith(itemType)) {
+          acc[key] = prev[key];
+        }
+        return acc;
+      }, {} as Record<string, boolean>);
 
       // Add the newly selected item
       return { ...updatedItems, [itemId]: true };
