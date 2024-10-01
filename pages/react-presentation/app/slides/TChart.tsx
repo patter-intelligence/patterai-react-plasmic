@@ -304,7 +304,8 @@ const EnergyProgramComparison: React.FC = observer(() => {
 
   const handleSelect = (itemId: string, column: string) => {
     setSelectedItems((prev) => {
-      const itemType = itemId.split('-')[0] + '-' + itemId.split('-')[1];
+      const itemType = itemId.split('-')[0];
+      const otherColumn = column === 'a' ? 'b' : 'a';
 
       // If the item is already selected, deselect it
       if (prev[column] === itemId) {
@@ -312,15 +313,13 @@ const EnergyProgramComparison: React.FC = observer(() => {
         return rest;
       }
 
-      // Remove any previously selected item of the same type
-      const newState = Object.entries(prev).reduce((acc, [key, value]) => {
-        if (!value.startsWith(itemType)) {
-          acc[key] = value;
-        }
-        return acc;
-      }, {} as Record<string, string>);
+      // Remove the same item type from the other column if it exists
+      const newState = { ...prev };
+      if (newState[otherColumn] && newState[otherColumn].startsWith(itemType)) {
+        delete newState[otherColumn];
+      }
 
-      // Add the newly selected item
+      // Add or update the newly selected item
       return { ...newState, [column]: itemId };
     });
   };
