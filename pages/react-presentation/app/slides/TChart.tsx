@@ -91,11 +91,11 @@ const ComparisonItem = styled.div<{ isSelected: boolean }>`
   border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background-color: transparent;
+  background-color: ${(props) => (props.isSelected ? 'rgba(0, 0, 255, 0.1)' : 'transparent')};
   border: ${(props) => (props.isSelected ? '1px solid blue' : 'none')};
 
   &:hover {
-    background-color: rgba(0,0, 0, 0.03);
+    background-color: ${(props) => (props.isSelected ? 'rgba(0, 0, 255, 0.15)' : 'rgba(0, 0, 0, 0.03)')};
     transform: scale(1.05);
   }
 `;
@@ -313,14 +313,12 @@ const EnergyProgramComparison: React.FC = observer(() => {
         return rest;
       }
 
-      // If the corresponding item in the other column is selected, deselect it
-      if (prev[otherItemId]) {
-        const { [otherItemId]: _, ...rest } = prev;
-        return rest;
-      }
+      // Deselect the corresponding item in the other column
+      const updatedItems = { ...prev };
+      delete updatedItems[otherItemId];
 
       // Add the newly selected item
-      return { ...prev, [itemId]: true };
+      return { ...updatedItems, [itemId]: true };
     });
   };
 
@@ -332,9 +330,8 @@ const EnergyProgramComparison: React.FC = observer(() => {
           <ComparisonBox>
             <OptionTitle>Energy Program A</OptionTitle>
             <ComparisonItem
-              isSelected={selectedItems['monthly-payment-a']}
+              isSelected={!!selectedItems['monthly-payment-a']}
               onClick={() => handleSelect('monthly-payment-a')}
-              data-id="monthly-payment-a"
             >
               <ComparisonValue>
                 {beforeMonthlyPayment !== null
