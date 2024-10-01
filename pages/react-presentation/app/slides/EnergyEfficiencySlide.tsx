@@ -40,12 +40,12 @@ const EnergyEfficiencySlide: React.FC<EnergyEfficiencySlideProps> = ({
         setEnergyEfficiencyProducts(products);
         const activeProduct = products[0];
         if (activeProduct) {
-          setSqrFootage(activeProduct.quantity);
-          setIsPackageAdded(activeProduct.quantity > 0);
-          updateEstimatedSavings(
-            activeProduct.quantity > 0,
-            activeProduct.quantity
-          );
+          const newIsPackageAdded = activeProduct.quantity > 0;
+          const newSqrFootage = activeProduct.quantity || 100;
+          setSqrFootage(newSqrFootage);
+          setIsPackageAdded(newIsPackageAdded);
+          updateEstimatedSavings(newIsPackageAdded, newSqrFootage);
+          onToggle(newIsPackageAdded); // Trigger the onToggle callback
         }
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -53,7 +53,7 @@ const EnergyEfficiencySlide: React.FC<EnergyEfficiencySlideProps> = ({
     };
 
     fetchProducts();
-  }, [recordId]);
+  }, [recordId, onToggle]);
 
   const updateEstimatedSavings = (
     packageAdded: boolean,
