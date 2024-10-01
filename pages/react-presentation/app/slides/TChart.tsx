@@ -313,14 +313,14 @@ const EnergyProgramComparison: React.FC = observer(() => {
         return rest;
       }
 
-      // Remove the same item type from the other column if it exists
-      const newState = { ...prev };
-      if (newState[otherItemId]) {
-        delete newState[otherItemId];
+      // If the corresponding item in the other column is selected, deselect it
+      if (prev[otherItemId]) {
+        const { [otherItemId]: _, ...rest } = prev;
+        return rest;
       }
 
       // Add the newly selected item
-      return { ...newState, [itemId]: true };
+      return { ...prev, [itemId]: true };
     });
   };
 
