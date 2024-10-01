@@ -303,7 +303,21 @@ const EnergyProgramComparison: React.FC = observer(() => {
   }, [recordId]);
 
   const handleSelect = (itemId: string, column: string) => {
-    setSelectedItems((prev) => ({ ...prev, [column]: itemId }));
+    setSelectedItems((prev) => {
+      const otherColumn = column === 'a' ? 'b' : 'a';
+      const itemType = itemId.split('-')[0] + '-' + itemId.split('-')[1];
+      const otherItemId = `${itemType}-${otherColumn}`;
+
+      // If the item is already selected, deselect it
+      if (prev[column] === itemId) {
+        const { [column]: _, ...rest } = prev;
+        return rest;
+      }
+
+      // Deselect the corresponding item in the other column
+      const { [otherColumn]: _, ...rest } = prev;
+      return { ...rest, [column]: itemId };
+    });
   };
 
   return (
