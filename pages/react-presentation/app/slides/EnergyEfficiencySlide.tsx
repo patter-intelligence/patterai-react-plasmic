@@ -5,11 +5,13 @@ import './EnergyEfficiencySlide.module.css';
 
 interface EnergyEfficiencySlideProps {
   showEfficiency: boolean;
+  isExpanded: boolean;
   onToggle: (newValue: boolean) => void;
 }
 
 const EnergyEfficiencySlide: React.FC<EnergyEfficiencySlideProps> = ({
   showEfficiency,
+  isExpanded,
   onToggle,
 }) => {
   const [isPackageAdded, setIsPackageAdded] = useState(showEfficiency);
@@ -115,7 +117,7 @@ const EnergyEfficiencySlide: React.FC<EnergyEfficiencySlideProps> = ({
         </label>
       </div>
 
-      {isPackageAdded && (
+      {isExpanded && (
         <div className="dynamic-content">
           <div className="sqr-footage-input">
             <label htmlFor="sqrFootage">Sqr Footage</label>
