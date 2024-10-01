@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import {
   useDirectSalesforceAction,
 } from '../hooks/useSalesforceOperations';
@@ -91,9 +91,8 @@ const ComparisonItem = styled.div<{ isSelected: boolean }>`
   border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
-  background-color: ${(props) =>
-    props.isSelected ? 'transparent' : 'transparent'};
-  border: 2px solid ${(props) => (props.isSelected ? '#023b95' : 'transparent')};
+  background-color: transparent;
+  border: ${(props) => (props.isSelected ? '1px solid blue' : 'none')};
 
   &:hover {
     background-color: rgba(0,0, 0, 0.03);
@@ -302,25 +301,26 @@ const EnergyProgramComparison: React.FC = observer(() => {
     fetchData();
   }, [recordId]);
 
-  const handleSelect = (itemId: string, column: string) => {
+  const handleSelect = (itemId: string) => {
     setSelectedItems((prev) => {
-      const itemType = itemId.split('-')[0];
+      const [itemType, column] = itemId.split('-');
       const otherColumn = column === 'a' ? 'b' : 'a';
+      const otherItemId = `${itemType}-${otherColumn}`;
 
       // If the item is already selected, deselect it
-      if (prev[`${itemType}-${column}`] === itemId) {
-        const { [`${itemType}-${column}`]: _, ...rest } = prev;
+      if (prev[itemId]) {
+        const { [itemId]: _, ...rest } = prev;
         return rest;
       }
 
       // Remove the same item type from the other column if it exists
       const newState = { ...prev };
-      if (newState[`${itemType}-${otherColumn}`]) {
-        delete newState[`${itemType}-${otherColumn}`];
+      if (newState[otherItemId]) {
+        delete newState[otherItemId];
       }
 
-      // Add or update the newly selected item
-      return { ...newState, [`${itemType}-${column}`]: itemId };
+      // Add the newly selected item
+      return { ...newState, [itemId]: true };
     });
   };
 
@@ -332,8 +332,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
           <ComparisonBox>
             <OptionTitle>Energy Program A</OptionTitle>
             <ComparisonItem
-              isSelected={selectedItems['a'] === 'monthly-payment-a'}
-              onClick={() => handleSelect('monthly-payment-a', 'a')}
+              isSelected={selectedItems['monthly-payment-a']}
+              onClick={() => handleSelect('monthly-payment-a')}
+              data-id="monthly-payment-a"
             >
               <ComparisonValue>
                 {beforeMonthlyPayment !== null
@@ -343,8 +344,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
               <ComparisonLabel>Monthly Payment</ComparisonLabel>
             </ComparisonItem>
             <ComparisonItem
-              isSelected={selectedItems['a'] === 'program-type-a'}
-              onClick={() => handleSelect('program-type-a', 'a')}
+              isSelected={selectedItems['program-type-a']}
+              onClick={() => handleSelect('program-type-a')}
+              data-id="program-type-a"
             >
               <SvgContainer>
                 <CustomSvg viewBox="0 0 1008.2 464.5">
@@ -357,8 +359,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
               <ComparisonLabel>Program Type</ComparisonLabel>
             </ComparisonItem>
             <ComparisonItem
-              isSelected={selectedItems['a'] === 'year-cost-a'}
-              onClick={() => handleSelect('year-cost-a', 'a')}
+              isSelected={selectedItems['year-cost-a']}
+              onClick={() => handleSelect('year-cost-a')}
+              data-id="year-cost-a"
             >
               <ComparisonValue>
                 {beforeYearCost !== null ? formatCurrency(beforeYearCost) : '-'}
@@ -371,8 +374,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
           <ComparisonBox>
             <OptionTitle>Energy Program B</OptionTitle>
             <ComparisonItem
-              isSelected={selectedItems['b'] === 'monthly-payment-b'}
-              onClick={() => handleSelect('monthly-payment-b', 'b')}
+              isSelected={selectedItems['monthly-payment-b']}
+              onClick={() => handleSelect('monthly-payment-b')}
+              data-id="monthly-payment-b"
             >
               <ComparisonValue>
                 {afterMonthlyPayment !== null
@@ -382,8 +386,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
               <ComparisonLabel>Monthly Payment</ComparisonLabel>
             </ComparisonItem>
             <ComparisonItem
-              isSelected={selectedItems['b'] === 'program-type-b'}
-              onClick={() => handleSelect('program-type-b', 'b')}
+              isSelected={selectedItems['program-type-b']}
+              onClick={() => handleSelect('program-type-b')}
+              data-id="program-type-b"
             >
               <SvgContainer>
                 <CustomSvg viewBox="0 0 970.5 357">
@@ -396,8 +401,9 @@ const EnergyProgramComparison: React.FC = observer(() => {
               <ComparisonLabel>Program Type</ComparisonLabel>
             </ComparisonItem>
             <ComparisonItem
-              isSelected={selectedItems['b'] === 'year-cost-b'}
-              onClick={() => handleSelect('year-cost-b', 'b')}
+              isSelected={selectedItems['year-cost-b']}
+              onClick={() => handleSelect('year-cost-b')}
+              data-id="year-cost-b"
             >
               <ComparisonValue>
                 {afterYearCost !== null ? formatCurrency(afterYearCost) : '-'}
