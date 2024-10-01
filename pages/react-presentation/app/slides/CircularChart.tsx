@@ -116,20 +116,20 @@ const CircularChart: React.FC<CircularChartProps> = ({
         </svg>
         <div className="chc-chart-legend">
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#FFA500' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: '#FFA500', width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Solar: {solarKWh.toFixed(1)} kWh ({solarPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Solar</span>
 
           </div>
           {showEfficiency && (
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#4CAF50' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: '#4CAF50', width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Efficiency: {(efficiencyPercentage * (solarKWh + utilityKWh) / 100).toFixed(1)} kWh ({efficiencyPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Efficiency</span>
           
           </div>)}
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#CCCCCC' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: '#CCCCCC', width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Utility: {utilityKWh.toFixed(1)} kWh ({utilityPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Utility</span>
 
