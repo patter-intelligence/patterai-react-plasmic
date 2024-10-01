@@ -67,10 +67,10 @@ const ComparisonBox = styled.div`
 `;
 
 const OptionTitle = styled.h2`
-  font-size: 2.2rem;
+  font-size: 2rem;
   text-align: center;
-  color: #023b95;
-  margin-bottom: 2.5rem;
+  color: #2a2a2a;
+  margin-bottom: 2rem;
   font-weight: 600;
 `;
 
@@ -92,11 +92,11 @@ const ComparisonItem = styled.div<{ isSelected: boolean }>`
   transition: all 0.3s ease;
   cursor: pointer;
   background-color: ${(props) =>
-    props.isSelected ? 'rgba(2, 59, 149, 0.1)' : 'transparent'};
+    props.isSelected ? 'transparent' : 'transparent'};
   border: 2px solid ${(props) => (props.isSelected ? '#023b95' : 'transparent')};
 
   &:hover {
-    background-color: rgba(2, 59, 149, 0.05);
+    background-color: rgba(0,0, 0, 0.03);
     transform: scale(1.05);
   }
 `;
