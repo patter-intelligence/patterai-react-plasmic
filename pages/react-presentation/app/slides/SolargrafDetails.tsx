@@ -518,6 +518,7 @@ const SolargrafDetails: React.FC<SolargrafDetailsProps> = observer(
             </div>
             <EnergyEfficiencySlide
               showEfficiency={showEfficiency}
+              isExpanded={showEfficiency}
               onToggle={(newValue) => {
                 setShowEfficiency(newValue);
                 // Update other state or trigger recalculations here
