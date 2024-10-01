@@ -103,21 +103,6 @@ const EnergyEfficiencySlide: React.FC<EnergyEfficiencySlideProps> = ({
     updateEstimatedSavings(isPackageAdded, newSqrFootage);
   };
 
-  const handleToggleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newIsPackageAdded = event.target.checked;
-    setIsPackageAdded(newIsPackageAdded);
-    updateEstimatedSavings(newIsPackageAdded, sqrFootage);
-    onToggle(newIsPackageAdded);
-  };
-
-  const handleSqrFootageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const newSqrFootage = parseInt(event.target.value, 10) || 0;
-    setSqrFootage(newSqrFootage);
-    updateEstimatedSavings(isPackageAdded, newSqrFootage);
-  };
-
   return (
     <div className="energy-efficiency-slide">
       <div className="toggle-container">
