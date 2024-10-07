@@ -24,6 +24,7 @@ import { appState } from "../../state/appState";
 import { useDirectSalesforceAction } from "../../hooks/useSalesforceOperations";
 
 import Loader from "../../components/Loader";
+import { eventEmitter } from "../../utilities/EventEmitter";
 
 // import ReactQuill from "react-quill"; // this document and causes build errors
 // const ReactQuill = dynamic(import('react-quill'), {
