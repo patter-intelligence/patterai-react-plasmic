@@ -339,7 +339,7 @@ export const PresentationRenderer: React.FC<{
     }
 
     const handleNextStep = () => {
-      onNextStep();
+      return onNextStep();
     };
 
     eventEmitter.on('nextStep', handleNextStep);

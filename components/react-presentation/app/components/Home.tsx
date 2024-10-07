@@ -527,23 +527,21 @@ export const Home: React.FC = observer(() => {
   );
 
   const handleNext = useCallback(() => {
-    // test new logic
-    // slide definition can have steps. Not at component level. Components can decide if to or not subscribe to steps
-    // when a slide has "steps", instead of navigating the whole UI, we navigate through its steps, when on the last step, we can navigate the entire ui
-    // simulate for site confirmation
-    // console.log("Current slide ", appState.currentSlide())
+    const currentSlide = appState.currentSlide();
+    const currentStep = appState.currentStepIndex.get();
 
-    if (appState.currentSlide().steps?.length > 0) {
-      console.log(
-        "We are on site confirmation, not navigating",
-        appState.currentSlide()
-      );
-      // assume we have three steps defined for this slide i.e. address, pin and details
-      // we can navigate through the steps while storing the data in the appState\
-      // once we are done, we can navigate to the next slide ["ADDRESS", "PIN", "DETAILS"]
-      const steps = appState.currentSlide().steps;
-      console.log("Steps ", steps)
-      const currentStep = appState.currentStepIndex.get();
+    // Emit the 'nextStep' event and check if we should continue
+    const shouldContinue = eventEmitter.emit('nextStep', currentStep, currentSlide);
+
+    if (!shouldContinue) {
+      // If the event handler returned false, we stop here and let it handle the navigation
+      return;
+    }
+
+    if (currentSlide.steps?.length > 0) {
+      console.log("Current slide has steps", currentSlide);
+      const steps = currentSlide.steps;
+      console.log("Steps ", steps);
       console.log("Current Step ", currentStep);
       if (currentStep < steps.length - 1) {
         appState.currentStepIndex.set(currentStep + 1);

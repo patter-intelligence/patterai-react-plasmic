@@ -13,9 +13,17 @@ class EventEmitter {
     this.listeners[event] = this.listeners[event].filter(cb => cb !== callback);
   }
 
-  emit(event: string, ...args: any[]) {
-    if (!this.listeners[event]) return;
-    this.listeners[event].forEach(callback => callback(...args));
+  emit(event: string, ...args: any[]): boolean {
+    if (!this.listeners[event]) return true;
+    let shouldContinue = true;
+    for (const callback of this.listeners[event]) {
+      const result = callback(...args);
+      if (result === false) {
+        shouldContinue = false;
+        break;
+      }
+    }
+    return shouldContinue;
   }
 }
 
