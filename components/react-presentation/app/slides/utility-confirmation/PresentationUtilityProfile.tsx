@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -59,7 +59,7 @@ const months = [
   { text: 'December', field: 'December_kWh__c' },
 ];
 
-const PresentationUtilityProfile: React.FC<Props> = observer(() => {
+const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }) => {
   const chartRef = useRef<any>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState<number>(0);
@@ -706,86 +706,71 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
     }
   }, [$state.analysis.get(), $state.currentYear.get()]);
 
-  const handleNextClick = async () => {
+  const handleNextClick = useCallback(async () => {
     $state.isLoading.set(true);
-    if (appState.currentStepIndex.get() === 1) {
-      try {
-        // 1. Validate input
-        if (!validateInput()) {
-          throw new Error('Invalid input. Please check all fields.');
-        }
-
-        const oldConsumption = await getConsumptionBySalesOpportunityId({
-          salesOpportunityId: recordId,
-        });
-        const newConsumption = $state.consumption.get();
-
-        const valuesChanged = haveDifferentConsumptionValues(
-          oldConsumption,
-          newConsumption
-        );
-        const missingMonthlyValues = !hasAllMonthlyValues(newConsumption);
-
-        if (valuesChanged || missingMonthlyValues) {
-          $state.loaderTitle.set('Running analysis');
-          // 2. Update consumption
-          await updateConsumption(false);
-
-          // 3. Create a profile
-          await createProfile({
-            pid: recordId,
-          });
-
-          $state.loaderTitle.set('Updating Profile');
-          // 4. Run analysis
-          await runAnalysis();
-
-          // 5. Update SalesOpportunity
-          await updateSalesOpportunity();
-
-          // 6. Clear analyses
-          await clearAnalyses();
-
-          $state.loaderTitle.set('Updating consumption');
-          // 7. Update the consumption in Salesforce
-          await updateConsumption(true);
-
-          // 8. Update the profile
-          await updateProfile();
-
-          // 9. If there were missing monthly values, update the state to show values again
-          if (missingMonthlyValues) {
-            const updatedConsumption = await getConsumptionBySalesOpportunityId(
-              {
-                salesOpportunityId: recordId,
-              }
-            );
-            $state.consumption.set(updatedConsumption);
-            appState.currentStepIndex.set(1); // Go back to step 2 to show the updated values
+    try {
+      switch (appState.currentStepIndex.get()) {
+        case 0:
+          if (validateInput()) {
+            appState.currentStepIndex.set(1);
           } else {
-            // Move to the next step
+            throw new Error('Invalid input. Please check all fields.');
+          }
+          break;
+        case 1:
+          const oldConsumption = await getConsumptionBySalesOpportunityId({
+            salesOpportunityId: recordId,
+          });
+          const newConsumption = $state.consumption.get();
+
+          const valuesChanged = haveDifferentConsumptionValues(
+            oldConsumption,
+            newConsumption
+          );
+          const missingMonthlyValues = !hasAllMonthlyValues(newConsumption);
+
+          if (valuesChanged || missingMonthlyValues) {
+            $state.loaderTitle.set('Running analysis');
+            await updateConsumption(false);
+            await createProfile({ pid: recordId });
+            $state.loaderTitle.set('Updating Profile');
+            await runAnalysis();
+            await updateSalesOpportunity();
+            await clearAnalyses();
+            $state.loaderTitle.set('Updating consumption');
+            await updateConsumption(true);
+            await updateProfile();
+
+            if (missingMonthlyValues) {
+              const updatedConsumption = await getConsumptionBySalesOpportunityId({
+                salesOpportunityId: recordId,
+              });
+              $state.consumption.set(updatedConsumption);
+              appState.currentStepIndex.set(1);
+            } else {
+              appState.currentStepIndex.set(2);
+            }
+          } else {
+            await runAnalysis();
+            await updateProfile();
+            console.log('No changes in consumption values and all monthly values present. Moving to next step.');
             appState.currentStepIndex.set(2);
           }
-        } else {
-          // 4. Run analysis
-          await runAnalysis();
-
-          // 8. Update the profile
-          await updateProfile();
-          console.log(
-            'No changes in consumption values and all monthly values present. Moving to next step.'
-          );
-          appState.currentStepIndex.set(2);
-        }
-      } catch (error) {
-        console.error('Error during next step:', error);
-        // Handle the error (e.g., show an error message to the user)
+          break;
+        case 2:
+          appState.currentStepIndex.set(3);
+          break;
+        default:
+          break;
       }
-    } else {
-      appState.currentStepIndex.set(Math.min(appState.currentStepIndex.get() + 1, 3));
+      onStepComplete(appState.currentStepIndex.get());
+    } catch (error) {
+      console.error('Error during next step:', error);
+      // Handle the error (e.g., show an error message to the user)
+    } finally {
+      $state.isLoading.set(false);
     }
-    $state.isLoading.set(false);
-  };
+  }, [appState.currentStepIndex.get(), recordId, onStepComplete]);
 
   const handleBackClick = () => {
     appState.currentStepIndex.set(Math.max(appState.currentStepIndex.get() - 1, 0));
@@ -877,9 +862,6 @@ const PresentationUtilityProfile: React.FC<Props> = observer(() => {
                     ></div>
                   ))}
                 </div>
-                <button className="pup-verify-button" onClick={handleNextClick}>
-                  {appState.currentStepIndex.get() === 2 ? 'Analyze' : 'Next'}
-                </button>
               </div>
             )}
           </div>
