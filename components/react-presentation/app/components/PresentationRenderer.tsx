@@ -74,15 +74,8 @@ const parseStyle = (styleString: string) => {
     if (key && value) {
       const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
       if (key === "background" && value.includes("url(")) {
-        const urlMatch = value.match(/url\((.*?)\)/);
-        if (urlMatch) {
-          const url = urlMatch[1].replace(/['"]/g, "");
-          // Don't modify the URL at all, just use it as is
-          const restOfValue = value.replace(/url\((.*?)\)/, "").trim();
-          acc[camelCaseKey] = `url(${url}) ${restOfValue}`;
-        } else {
-          acc[camelCaseKey] = value;
-        }
+        // Preserve the entire background value without modification
+        acc[camelCaseKey] = value;
       } else {
         acc[camelCaseKey] = value;
       }
