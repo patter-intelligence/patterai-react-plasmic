@@ -24,6 +24,8 @@ import {
 import { updateCurrentSlideUrl } from "../utilities/navigationUtils";
 import { parse } from "path";
 import { MenuContainer } from "./MenuContainer";
+import { eventEmitter } from "../utilities/EventEmitter";
+
 
 const dataHooks = {
   additionalData: async (context: ContextVariables) => {
