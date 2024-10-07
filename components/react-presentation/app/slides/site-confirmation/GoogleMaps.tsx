@@ -582,76 +582,118 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
 
   const currentStep = appState.currentStepIndex.get();
 
-  const handleConfirmButton = () => {
+  const handleNextStep = () => {
     if (activeTab === "ADDRESS") {
-      // Mark all fields as touched
-      const allTouched = Object.keys(address).reduce(
-        (acc, key) => {
-          acc[key as keyof typeof address] = true;
-          return acc;
-        },
-        {} as {
-          [key in keyof typeof address]: boolean;
+      if (validateAddressTab()) {
+        setActiveTab("PIN");
+        if (mapRef.current) {
+          const newZoom = 22;
+          mapRef.current.setZoom(newZoom);
+          mapRef.current.panTo(markerPosition);
         }
-      );
-      setTouchedFields(allTouched);
-
-      addressSchema
-        .validate(address, { abortEarly: false })
-        .then(() => {
-          // All fields are valid, proceed to next tab
-          setActiveTab("PIN");
-          if (mapRef.current) {
-            const newZoom = 22;
-            mapRef.current.setZoom(newZoom);
-            mapRef.current.panTo(markerPosition);
-          }
-          // Clear all errors
-          setErrors({});
-        })
-        .catch((err: Yup.ValidationError) => {
-          // Set errors for invalid fields
-          const newErrors: { [key: string]: string } = {};
-          err.inner.forEach((error) => {
-            if (error.path) {
-              newErrors[error.path] = error.message;
-            }
-          });
-          setErrors(newErrors);
-        });
+        eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
+      }
     } else if (activeTab === "PIN") {
       setActiveTab("DETAILS");
       if (mapRef.current) {
         mapRef.current.setZoom(defaultZoom);
       }
+      eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
     } else if (activeTab === "DETAILS") {
-      updateAddress({
-        salesOpportunityId: recordId,
-        address: {
-          street: address.street,
-          city: address.city,
-          state: getStateCode(address.state),
-          postalCode: address.zip,
-          country: address.country,
-          latitude: markerPosition.lat,
-          longitude: markerPosition.lng,
-          hasExistingSolar: existingSolar,
-          hasGroundMount: groundMount,
-          isNewBuild: newBuild,
-        },
-      });
-      setShowModal(true);
+      if (validateDetailsTab()) {
+        updateAddress({
+          salesOpportunityId: recordId,
+          address: {
+            street: address.street,
+            city: address.city,
+            state: getStateCode(address.state),
+            postalCode: address.zip,
+            country: address.country,
+            latitude: markerPosition.lat,
+            longitude: markerPosition.lng,
+            hasExistingSolar: existingSolar,
+            hasGroundMount: groundMount,
+            isNewBuild: newBuild,
+          },
+        });
+        setShowModal(true);
+        eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
+      }
     }
+  };
+
+  const validateAddressTab = () => {
+    const allTouched = Object.keys(address).reduce(
+      (acc, key) => {
+        acc[key as keyof typeof address] = true;
+        return acc;
+      },
+      {} as {
+        [key in keyof typeof address]: boolean;
+      }
+    );
+    setTouchedFields(allTouched);
+
+    try {
+      addressSchema.validateSync(address, { abortEarly: false });
+      setErrors({});
+      return true;
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const newErrors: { [key: string]: string } = {};
+        err.inner.forEach((error) => {
+          if (error.path) {
+            newErrors[error.path] = error.message;
+          }
+        });
+        setErrors(newErrors);
+        displayValidationMessages(newErrors);
+      }
+      return false;
+    }
+  };
+
+  const validateDetailsTab = () => {
+    // Add any specific validation for the DETAILS tab here
+    // For now, we'll just return true
+    return true;
+  };
+
+  const displayValidationMessages = (errors: { [key: string]: string }) => {
+    Object.values(errors).forEach((error) => {
+      toast.error(error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
   };
 
   // useEffect to read the current step from the state and set the active tab
   useEffect(() => {
-  const steps = appState.currentSlide.get().steps.map((step) => step.name);
+    const steps = appState.currentSlide.get().steps.map((step) => step.name);
 
     if (currentStep !== undefined) {
       setActiveTab(steps[currentStep]);
     }
   }, [currentStep]);
+
+  // Register event listener for nextStep
+  useEffect(() => {
+    const handleNextStepEvent = () => {
+      handleNextStep();
+    };
+
+    eventEmitter.on("nextStep", handleNextStepEvent);
+
+    return () => {
+      eventEmitter.off("nextStep", handleNextStepEvent);
+    };
+  }, [activeTab, address, markerPosition, existingSolar, groundMount, newBuild]);
 
   const ReactQuill = useRef();
 
