@@ -77,13 +77,9 @@ const parseStyle = (styleString: string) => {
         const urlMatch = value.match(/url\((.*?)\)/);
         if (urlMatch) {
           const url = urlMatch[1].replace(/['"]/g, "");
-          // Only modify the URL if it starts with /resource/
-          const newUrl = url.startsWith("/resource/")
-            ? url.replace(/\/resource\/\d+\//, "/assets/") +
-              (url.endsWith(".png") ? "" : ".png")
-            : url;
+          // Don't modify the URL at all, just use it as is
           const restOfValue = value.replace(/url\((.*?)\)/, "").trim();
-          acc[camelCaseKey] = `url("${newUrl}") ${restOfValue}`;
+          acc[camelCaseKey] = `url(${url}) ${restOfValue}`;
         } else {
           acc[camelCaseKey] = value;
         }
