@@ -523,6 +523,7 @@ export const Home: React.FC = observer(() => {
       appState.setIsLoading(true);
       appState.setCurrentSlideIndex(index);
       updateCurrentSlideUrl(router, index);
+      eventEmitter.removeAllListeners('nextStep');
       setTimeout(() => appState.setIsLoading(false), 100);
     },
     [router]

@@ -44,6 +44,15 @@ class EventEmitter<EventMap extends Record<string, any[]> = Record<string, any[]
     }
     return shouldContinue;
   }
+
+  removeAllListeners<K extends keyof EventMap>(event?: K): this {
+    if (event) {
+      this.listeners.delete(event);
+    } else {
+      this.listeners.clear();
+    }
+    return this;
+  }
 }
 
 interface AppEventMap {
