@@ -70,14 +70,12 @@ const replaceVariables = (text: string, context: ContextVariables): string => {
 
 const parseStyle = (styleString: string) => {
   return styleString.split(";").reduce((acc, style) => {
-    const [key, value] = style.split(":").map((s) => s.trim());
-    if (key && value) {
-      const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-      console.log("parseStyle", key, value, styleString);
-      if (key === "background" && value.includes("url(")) {
-        // Preserve the entire background value without modification
-        acc[camelCaseKey] = value;
-      } else {
+    const colonIndex = style.indexOf(":");
+    if (colonIndex !== -1) {
+      const key = style.slice(0, colonIndex).trim();
+      const value = style.slice(colonIndex + 1).trim();
+      if (key && value) {
+        const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
         acc[camelCaseKey] = value;
       }
     }
