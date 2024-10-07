@@ -9,6 +9,7 @@ import React, {
   useRef,
 } from "react";
 import Loader from "./Loader";
+import { eventEmitter } from "../utilities/EventEmitter";
 
 export interface IContentItem {
   type: string;
@@ -271,6 +272,7 @@ export const PresentationRenderer: React.FC<{
   dataHooks?: DataHooks;
   currentSlideIndex: number;
   onLoadingChange: (isLoading: boolean) => void;
+  onNextStep: () => void;
 }> = ({
   data,
   context,
@@ -278,6 +280,7 @@ export const PresentationRenderer: React.FC<{
   dataHooks,
   currentSlideIndex,
   onLoadingChange,
+  onNextStep,
 }) => {
   const [extendedContext, setExtendedContext] = useState(context);
   const [loadingComponents, setLoadingComponents] = useState<Set<string>>(
@@ -334,7 +337,17 @@ export const PresentationRenderer: React.FC<{
         registerComponent(name, component);
       });
     }
-  }, [components]);
+
+    const handleNextStep = () => {
+      onNextStep();
+    };
+
+    eventEmitter.on('nextStep', handleNextStep);
+
+    return () => {
+      eventEmitter.off('nextStep', handleNextStep);
+    };
+  }, [components, onNextStep]);
 
   if (!data || !data.slides || data.slides.length === 0) {
     throw new Error("No slide data available");
