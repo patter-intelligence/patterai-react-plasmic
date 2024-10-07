@@ -592,14 +592,12 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
           mapRef.current.setZoom(newZoom);
           mapRef.current.panTo(markerPosition);
         }
-        eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
       }
     } else if (activeTab === "PIN") {
       setActiveTab("DETAILS");
       if (mapRef.current) {
         mapRef.current.setZoom(defaultZoom);
       }
-      eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
     } else if (activeTab === "DETAILS") {
       if (validateDetailsTab()) {
         updateAddress({
@@ -618,10 +616,21 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
           },
         });
         setShowModal(true);
-        eventEmitter.emit("nextStep", appState.currentStepIndex.get(), appState.currentSlide.get());
       }
     }
   };
+
+  const handleNextStepEvent = useCallback(() => {
+    handleNextStep();
+  }, [activeTab, address, markerPosition, existingSolar, groundMount, newBuild]);
+
+  useEffect(() => {
+    eventEmitter.on("nextStep", handleNextStepEvent);
+
+    return () => {
+      eventEmitter.off("nextStep", handleNextStepEvent);
+    };
+  }, [handleNextStepEvent]);
 
   const validateAddressTab = () => {
     const allTouched = Object.keys(address).reduce(
@@ -683,18 +692,8 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
     }
   }, [currentStep]);
 
-  // Register event listener for nextStep
-  useEffect(() => {
-    const handleNextStepEvent = () => {
-      handleNextStep();
-    };
-
-    eventEmitter.on("nextStep", handleNextStepEvent);
-
-    return () => {
-      eventEmitter.off("nextStep", handleNextStepEvent);
-    };
-  }, [activeTab, address, markerPosition, existingSolar, groundMount, newBuild]);
+  // This useEffect is no longer needed as we've moved the event listener logic
+  // to the handleNextStepEvent function and its corresponding useEffect above.
 
   const ReactQuill = useRef();
 
