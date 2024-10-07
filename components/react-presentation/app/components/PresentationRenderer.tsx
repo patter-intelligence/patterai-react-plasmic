@@ -73,6 +73,7 @@ const parseStyle = (styleString: string) => {
     const [key, value] = style.split(":").map((s) => s.trim());
     if (key && value) {
       const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+      console.log("parseStyle", key, value, styleString);
       if (key === "background" && value.includes("url(")) {
         // Preserve the entire background value without modification
         acc[camelCaseKey] = value;
@@ -99,7 +100,7 @@ const ImageContent: React.FC<{
 }> = ({ item, context }) => {
   const [imageError, setImageError] = useState(false);
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
-  let imageUrl = replaceVariables(item.imageUrl || "", context);
+  const imageUrl = replaceVariables(item.imageUrl || "", context);
   const imageStyle = parseStyle(
     replaceVariables(item.imageStyle || "", context)
   );
@@ -129,6 +130,8 @@ const renderContent = (
   handleComponentLoading: (id: string, isLoading: boolean) => void
 ) => {
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
+
+  console.log({style})
 
   const renderChildLayout = (childLayout: { content: IContentItem[] }) => {
     return childLayout.content.map((childItem, index) => (
