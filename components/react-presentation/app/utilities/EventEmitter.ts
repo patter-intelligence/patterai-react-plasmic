@@ -1,22 +1,41 @@
-class EventEmitter {
-  private listeners: { [event: string]: Array<(...args: any[]) => void> } = {};
+type EventCallback<T extends any[] = any[]> = (...args: T) => boolean | void;
 
-  on(event: string, callback: (...args: any[]) => void) {
-    if (!this.listeners[event]) {
-      this.listeners[event] = [];
+class EventEmitter<EventMap extends Record<string, any[]> = Record<string, any[]>> {
+  private listeners: Map<keyof EventMap, Set<EventCallback<any>>> = new Map();
+
+  on<K extends keyof EventMap>(event: K, callback: EventCallback<EventMap[K]>): this {
+    if (!this.listeners.has(event)) {
+      this.listeners.set(event, new Set());
     }
-    this.listeners[event].push(callback);
+    this.listeners.get(event)!.add(callback);
+    return this;
   }
 
-  off(event: string, callback: (...args: any[]) => void) {
-    if (!this.listeners[event]) return;
-    this.listeners[event] = this.listeners[event].filter(cb => cb !== callback);
+  once<K extends keyof EventMap>(event: K, callback: EventCallback<EventMap[K]>): this {
+    const onceWrapper = (...args: EventMap[K]) => {
+      this.off(event, onceWrapper);
+      return callback(...args);
+    };
+    return this.on(event, onceWrapper);
   }
 
-  emit(event: string, ...args: any[]): boolean {
-    if (!this.listeners[event]) return true;
+  off<K extends keyof EventMap>(event: K, callback: EventCallback<EventMap[K]>): this {
+    const listeners = this.listeners.get(event);
+    if (listeners) {
+      listeners.delete(callback);
+      if (listeners.size === 0) {
+        this.listeners.delete(event);
+      }
+    }
+    return this;
+  }
+
+  emit<K extends keyof EventMap>(event: K, ...args: EventMap[K]): boolean {
+    const listeners = this.listeners.get(event);
+    if (!listeners) return true;
+
     let shouldContinue = true;
-    for (const callback of this.listeners[event]) {
+    for (const callback of listeners) {
       const result = callback(...args);
       if (result === false) {
         shouldContinue = false;
@@ -27,4 +46,9 @@ class EventEmitter {
   }
 }
 
-export const eventEmitter = new EventEmitter();
+interface AppEventMap {
+  'nextStep': [number, any]; // [currentStep, currentSlide]
+  // Add other event types here
+}
+
+export const eventEmitter = new EventEmitter<AppEventMap>();
