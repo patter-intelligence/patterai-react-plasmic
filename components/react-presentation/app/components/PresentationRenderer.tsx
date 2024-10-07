@@ -272,7 +272,6 @@ export const PresentationRenderer: React.FC<{
   dataHooks?: DataHooks;
   currentSlideIndex: number;
   onLoadingChange: (isLoading: boolean) => void;
-  onNextStep: () => void;
 }> = ({
   data,
   context,
@@ -280,7 +279,6 @@ export const PresentationRenderer: React.FC<{
   dataHooks,
   currentSlideIndex,
   onLoadingChange,
-  onNextStep,
 }) => {
   const [extendedContext, setExtendedContext] = useState(context);
   const [loadingComponents, setLoadingComponents] = useState<Set<string>>(
@@ -338,16 +336,11 @@ export const PresentationRenderer: React.FC<{
       });
     }
 
-    const handleNextStep = () => {
-      return onNextStep();
-    };
-
-    eventEmitter.on('nextStep', handleNextStep);
+  
 
     return () => {
-      eventEmitter.off('nextStep', handleNextStep);
     };
-  }, [components, onNextStep]);
+  }, [components]);
 
   if (!data || !data.slides || data.slides.length === 0) {
     throw new Error("No slide data available");
