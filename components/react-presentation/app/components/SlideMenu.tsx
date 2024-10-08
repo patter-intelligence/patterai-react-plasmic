@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SlideMenu.module.css';
 import { observer } from '@legendapp/state/react';
 import { appState } from '../state/appState';
@@ -10,6 +10,7 @@ const SlideMenu: React.FC = observer(() => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSlides, setFilteredSlides] = useState(appState.slides.get());
   const router = useRouter();
+  const currentSlideRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const filtered = appState.slides
@@ -19,6 +20,15 @@ const SlideMenu: React.FC = observer(() => {
       );
     setFilteredSlides(filtered);
   }, [searchQuery, appState.slides.get()]);
+
+  useEffect(() => {
+    if (currentSlideRef.current) {
+      currentSlideRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [appState.currentSlideIndex.get()]);
 
   return (
     <div className={`slide-in-menu ${appState.isMenuOpen.get() ? 'open' : ''}`}>
@@ -44,6 +54,7 @@ const SlideMenu: React.FC = observer(() => {
           {filteredSlides.map((slide: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
             <li
               key={index}
+              ref={index === appState.currentSlideIndex.get() ? currentSlideRef : null}
               className={`${
                 index === appState.currentSlideIndex.get() ? 'active' : ''
               } ${
