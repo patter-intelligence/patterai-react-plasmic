@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,14 +12,14 @@ import {
   Legend,
   ChartOptions,
   ChartData,
-} from 'chart.js';
+} from "chart.js";
 
-import './PresentationUtilityProfile.module.css';
-import { appState } from '../../state/appState';
-import { useDirectSalesforceAction } from '../../hooks/useSalesforceOperations';
-import { observer } from '@legendapp/state/react';
-import { observable } from '@legendapp/state';
-import { $state } from './state';
+import "./PresentationUtilityProfile.module.css";
+import { appState } from "../../state/appState";
+import { useDirectSalesforceAction } from "../../hooks/useSalesforceOperations";
+import { observer } from "@legendapp/state/react";
+import { observable } from "@legendapp/state";
+import { $state } from "./state";
 import {
   generateChart,
   LoadingSpinner,
@@ -27,8 +27,10 @@ import {
   Step2,
   Step3,
   Step4,
-} from './components';
-import { pid } from 'process';
+} from "./components";
+import { pid } from "process";
+import { eventEmitter } from "../../utilities/EventEmitter";
+import { toast } from "react-toastify";
 
 ChartJS.register(
   CategoryScale,
@@ -45,21 +47,21 @@ interface Props {
 }
 
 const months = [
-  { text: 'January', field: 'January_kWh__c' },
-  { text: 'February', field: 'February_kWh__c' },
-  { text: 'March', field: 'March_kWh__c' },
-  { text: 'April', field: 'April_kWh__c' },
-  { text: 'May', field: 'May_kWh__c' },
-  { text: 'June', field: 'June_kWh__c' },
-  { text: 'July', field: 'July_kWh__c' },
-  { text: 'August', field: 'August_kWh__c' },
-  { text: 'September', field: 'September_kWh__c' },
-  { text: 'October', field: 'October_kWh__c' },
-  { text: 'November', field: 'November_kWh__c' },
-  { text: 'December', field: 'December_kWh__c' },
+  { text: "January", field: "January_kWh__c" },
+  { text: "February", field: "February_kWh__c" },
+  { text: "March", field: "March_kWh__c" },
+  { text: "April", field: "April_kWh__c" },
+  { text: "May", field: "May_kWh__c" },
+  { text: "June", field: "June_kWh__c" },
+  { text: "July", field: "July_kWh__c" },
+  { text: "August", field: "August_kWh__c" },
+  { text: "September", field: "September_kWh__c" },
+  { text: "October", field: "October_kWh__c" },
+  { text: "November", field: "November_kWh__c" },
+  { text: "December", field: "December_kWh__c" },
 ];
 
-const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }) => {
+const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
   const chartRef = useRef<any>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [chartWidth, setChartWidth] = useState<number>(0);
@@ -68,65 +70,65 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
   const recordId = appState.recordId.get();
 
   const { refetch: getSalesOpportunity } = useDirectSalesforceAction(
-    'SalesOpportunityService.getSalesOpportunity',
+    "SalesOpportunityService.getSalesOpportunity",
     { salesOpportunityId: recordId }
   );
 
   const { refetch: createSiteGenability } = useDirectSalesforceAction(
-    'GenabilityService.createSiteGenability',
+    "GenabilityService.createSiteGenability",
     { pid: recordId }
   );
 
   const { refetch: createProfile } = useDirectSalesforceAction(
-    'GenabilityService.createProfileGenability',
+    "GenabilityService.createProfileGenability",
     { pid: recordId }
   );
 
   const { refetch: setSalesOpportunity } = useDirectSalesforceAction(
-    'SalesOpportunityService.setSalesOpportunity',
+    "SalesOpportunityService.setSalesOpportunity",
     { id: recordId, salesOpportunity: {} }
   );
 
   const { refetch: getSiteGenability } = useDirectSalesforceAction(
-    'GenabilityService.getSiteGenability',
+    "GenabilityService.getSiteGenability",
     { pid: recordId }
   );
   const { refetch: getProviderGenability } = useDirectSalesforceAction(
-    'GenabilityService.getProviderGenability',
+    "GenabilityService.getProviderGenability",
     {}
   );
   const { refetch: getTariffGenability } = useDirectSalesforceAction(
-    'GenabilityService.getTariffGenability',
+    "GenabilityService.getTariffGenability",
     { pid: recordId }
   );
   const { refetch: setTariffGenability } = useDirectSalesforceAction(
-    'GenabilityService.setTariffGenability',
+    "GenabilityService.setTariffGenability",
     { pid: recordId }
   );
 
   const { refetch: getConsumptionBySalesOpportunityId } =
     useDirectSalesforceAction(
-      'ConsumptionService.getConsumptionBySalesOpportunityId',
+      "ConsumptionService.getConsumptionBySalesOpportunityId",
       { salesOpportunityId: recordId }
     );
   const { refetch: createConsumption } = useDirectSalesforceAction(
-    'ConsumptionService.createConsumption',
+    "ConsumptionService.createConsumption",
     {}
   );
   const { refetch: runAnalysisGenability } = useDirectSalesforceAction(
-    'GenabilityService.runAnalysisGenability',
+    "GenabilityService.runAnalysisGenability",
     {}
   );
   const { refetch: deleteAnalyses } = useDirectSalesforceAction(
-    'AnalysisService.deleteAnalyses',
+    "AnalysisService.deleteAnalyses",
     {}
   );
   const { refetch: setConsumption } = useDirectSalesforceAction(
-    'ConsumptionService.setConsumption',
+    "ConsumptionService.setConsumption",
     {}
   );
   const { refetch: getAnalyses } = useDirectSalesforceAction(
-    'AnalysisService.getAnalyses',
+    "AnalysisService.getAnalyses",
     {}
   );
 
@@ -171,7 +173,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
           } as any);
         }
       } catch (error) {
-        console.error('Error fetching initial data:', error);
+        console.error("Error fetching initial data:", error);
       } finally {
         $state.isLoading.set(false);
       }
@@ -208,7 +210,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         }))
       );
     } catch (error) {
-      console.error('Error getting provider:', error);
+      console.error("Error getting provider:", error);
     }
   };
 
@@ -225,7 +227,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         }))
       );
     } catch (error) {
-      console.error('Error getting tariff:', error);
+      console.error("Error getting tariff:", error);
     } finally {
       $state.isTariffLoading.set(false);
     }
@@ -248,22 +250,22 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
       }
       return consumptionData;
     } catch (error) {
-      console.error('Error getting or creating consumption:', error);
+      console.error("Error getting or creating consumption:", error);
     }
   };
 
   const initializeSelectedValues = async (consumptionData: any) => {
     if (consumptionData) {
-      $state.selectedUtilityProvider.set(consumptionData.lseId__c || '');
-      $state.selectedUtilityTariff.set(consumptionData.masterTariffId__c || '');
+      $state.selectedUtilityProvider.set(consumptionData.lseId__c || "");
+      $state.selectedUtilityTariff.set(consumptionData.masterTariffId__c || "");
 
       console.log(
-        'setSelectedUtilityProvider',
+        "setSelectedUtilityProvider",
         $state.selectedUtilityProvider.get(),
         consumptionData.lseId__c
       );
       console.log(
-        'setSelectedUtilityTariff',
+        "setSelectedUtilityTariff",
         $state.selectedUtilityTariff.get(),
         consumptionData.masterTariffId__c
       );
@@ -290,11 +292,11 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         lseId__c: selectedProvider.value,
       } as any);
       $state.selectedUtilityProvider.set(selectedValue);
-      $state.selectedUtilityTariff.set('');
+      $state.selectedUtilityTariff.set("");
       try {
         await getProviderGenability({
           pid: recordId,
-          keyName: 'lseId',
+          keyName: "lseId",
           dataValue: selectedProvider?.value?.toString(),
         });
         const newConsumption = {
@@ -310,7 +312,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         $state.tariffs.set([]);
         await getTariff();
       } catch (error) {
-        console.error('Error updating provider:', error);
+        console.error("Error updating provider:", error);
       } finally {
         $state.isTariffLoading.set(false);
       }
@@ -318,7 +320,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
   };
 
   const handleTariff = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log('handleTariff', e.target.value);
+    console.log("handleTariff", e.target.value);
     const selectedValue = e.target.value;
     const selectedTariff = $state.tariffs
       .get()
@@ -336,13 +338,13 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
       try {
         await setTariffGenability({
           pid: recordId,
-          keyName: 'masterTariffId',
+          keyName: "masterTariffId",
           dataValue: selectedTariff.value.toString(),
         });
 
         await updateConsumption();
       } catch (error) {
-        console.error('Error updating tariff:', error);
+        console.error("Error updating tariff:", error);
       }
     }
   };
@@ -352,8 +354,8 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
     let value = e.target.value;
     let formattedValue = value;
 
-    if (value !== '') {
-      value = value.replace(/[^0-9]/g, '');
+    if (value !== "") {
+      value = value.replace(/[^0-9]/g, "");
       formattedValue = Number(value).toLocaleString();
     }
 
@@ -362,14 +364,14 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
     if ($state.consumption.get()) {
       const updatedConsumption = {
         ...$state.consumption.get(),
-        [field]: value === '' ? null : Number(value),
+        [field]: value === "" ? null : Number(value),
       };
       $state.consumption.set(updatedConsumption as any);
 
       try {
         await updateConsumption();
       } catch (error) {
-        console.error('Error updating consumption:', error);
+        console.error("Error updating consumption:", error);
       }
     }
   };
@@ -378,7 +380,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
     if (!consumptionData)
       return { averageMonthlyUsage: 0, averageMonthlyBill: 0 };
 
-    console.log('calculateAverageUsage', {
+    console.log("calculateAverageUsage", {
       consumptionData,
       analysisData,
     });
@@ -461,7 +463,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
 
   const updateConsumption = async (withAnalyses = false) => {
     const consumption = $state.consumption.get();
-    if (!consumption) throw new Error('No consumption data');
+    if (!consumption) throw new Error("No consumption data");
     const consumptionForPush = {
       ...consumption,
       attributes: undefined,
@@ -487,7 +489,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         sids: null,
       });
 
-      if (analysisData.status === 'error') {
+      if (analysisData.status === "error") {
         throw new Error(analysisData.message);
       }
     } catch (e) {
@@ -511,15 +513,15 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
 
     // Process series information
     for (const series of analysisResult.series) {
-      if (series.displayLabel === 'Before Solar Utility (Mo/Year 1)') {
+      if (series.displayLabel === "Before Solar Utility (Mo/Year 1)") {
         baselineSeriesId = series.seriesId;
       }
       if (
         [
-          'Before Solar Utility (Mo/Year 1)',
-          'After Solar Utility (Mo/Year 1)',
-          'Before Solar Utility (Annual)',
-          'After Solar Utility (Annual/Lifetime)',
+          "Before Solar Utility (Mo/Year 1)",
+          "After Solar Utility (Mo/Year 1)",
+          "Before Solar Utility (Annual)",
+          "After Solar Utility (Annual/Lifetime)",
         ].includes(series.displayLabel)
       ) {
         analysis_data.set(series.seriesId, {
@@ -536,7 +538,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
       Analyses__r: [] as any,
     };
 
-    console.log({ 'analysisResult.summary': analysisResult.summary });
+    console.log({ "analysisResult.summary": analysisResult.summary });
 
     // Process series data
     for (const seriesData of analysisResult.seriesData) {
@@ -559,8 +561,8 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         const monthField = months.find(
           (month) =>
             month.text ===
-            new Date(seriesData.fromDateTime).toLocaleString('default', {
-              month: 'long',
+            new Date(seriesData.fromDateTime).toLocaleString("default", {
+              month: "long",
             })
         )?.field;
         if (monthField && (updatedConsumption as any)[monthField] == null) {
@@ -593,12 +595,12 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
     try {
       const analysesData = await getAnalyses({
         consumptionId: id,
-        seriesId: '5',
+        seriesId: "5",
       });
       $state.analysis.set(analysesData);
       return analysesData;
     } catch (error) {
-      console.error('Error loading analysis:', error);
+      console.error("Error loading analysis:", error);
       return [];
     }
   };
@@ -612,10 +614,10 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
     };
 
     handleResize();
-    globalThis.addEventListener('resize', handleResize);
+    globalThis.addEventListener("resize", handleResize);
 
     return () => {
-      globalThis.removeEventListener('resize', handleResize);
+      globalThis.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -625,14 +627,14 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         labels: Array.from({ length: 25 }, (_, i) => (i + 1).toString()),
         datasets: [
           {
-            label: 'Yearly Cost',
+            label: "Yearly Cost",
             data: $state.analysis.get().map((analysisItem, index) => ({
               x: index + 1,
               y: analysisItem.Cost__c,
               rate: analysisItem.Rate__c,
               cost: analysisItem.Cost__c,
             })),
-            borderColor: '#023b95',
+            borderColor: "#023b95",
             backgroundColor: (context: any) => {
               const chart = context.chart;
               const { ctx, chartArea } = chart;
@@ -645,8 +647,8 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
                 0,
                 chartArea.bottom
               );
-              gradient.addColorStop(0, 'rgba(2, 59, 149, 0.5)');
-              gradient.addColorStop(1, 'rgba(255, 255, 255, 0.1)');
+              gradient.addColorStop(0, "rgba(2, 59, 149, 0.5)");
+              gradient.addColorStop(1, "rgba(255, 255, 255, 0.1)");
               return gradient;
             },
             borderWidth: 4,
@@ -657,14 +659,14 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
             pointBackgroundColor: (context: { dataIndex: any }) => {
               const index = context.dataIndex;
               return index === $state.currentYear.get() - 1
-                ? '#ffffff'
-                : 'transparent';
+                ? "#ffffff"
+                : "transparent";
             },
             pointBorderColor: (context: { dataIndex: any }) => {
               const index = context.dataIndex;
               return index === $state.currentYear.get() - 1
-                ? '#023b95'
-                : 'transparent';
+                ? "#023b95"
+                : "transparent";
             },
             pointBorderWidth: 4,
             pointHitRadius: 10,
@@ -675,7 +677,12 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
       };
       $state.chartData.set(newChartData);
     }
-  }, [$state.analysis.get(), $state.currentYear.get(), chartWidth, chartHeight]);
+  }, [
+    $state.analysis.get(),
+    $state.currentYear.get(),
+    chartWidth,
+    chartHeight,
+  ]);
 
   useEffect(() => {
     if ($state.analysis.get().length > 0) {
@@ -692,88 +699,104 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         $state.costValue.set(
           `<span class="pup-cost-label">Cost to do nothing</span>$${totalCost.toLocaleString()}`
         );
-        $state.costChange.set('');
+        $state.costChange.set("");
       } else {
         $state.costValue.set(
           `<span class="pup-cost-label">Yearly Cost</span>$${currentYearCost.toLocaleString()}`
         );
         $state.costChange.set(
-          (costChange >= 0 ? '↑ ' : '↓ ') +
+          (costChange >= 0 ? "↑ " : "↓ ") +
             Math.abs(costChange).toFixed(1) +
-            '%'
+            "%"
         );
       }
     }
   }, [$state.analysis.get(), $state.currentYear.get()]);
 
-  const handleNextClick = useCallback(async () => {
-    $state.isLoading.set(true);
-    try {
-      switch (appState.currentStepIndex.get()) {
-        case 0:
-          if (validateInput()) {
-            appState.currentStepIndex.set(1);
-          } else {
-            throw new Error('Invalid input. Please check all fields.');
-          }
-          break;
-        case 1:
-          const oldConsumption = await getConsumptionBySalesOpportunityId({
-            salesOpportunityId: recordId,
-          });
-          const newConsumption = $state.consumption.get();
-
-          const valuesChanged = haveDifferentConsumptionValues(
-            oldConsumption,
-            newConsumption
-          );
-          const missingMonthlyValues = !hasAllMonthlyValues(newConsumption);
-
-          if (valuesChanged || missingMonthlyValues) {
-            $state.loaderTitle.set('Running analysis');
-            await updateConsumption(false);
-            await createProfile({ pid: recordId });
-            $state.loaderTitle.set('Updating Profile');
-            await runAnalysis();
-            await updateSalesOpportunity();
-            await clearAnalyses();
-            $state.loaderTitle.set('Updating consumption');
-            await updateConsumption(true);
-            await updateProfile();
-
-            if (missingMonthlyValues) {
-              const updatedConsumption = await getConsumptionBySalesOpportunityId({
-                salesOpportunityId: recordId,
-              });
-              $state.consumption.set(updatedConsumption);
+  const handleNextClick = useCallback(
+    async (currentStep: number, currentSlide: any) => {
+      $state.isLoading.set(true);
+      try {
+        switch (appState.currentStepIndex.get()) {
+          case 0:
+            if (validateInput()) {
               appState.currentStepIndex.set(1);
             } else {
+              throw new Error("Invalid input. Please check all fields.");
+            }
+            break;
+          case 1:
+            const oldConsumption = await getConsumptionBySalesOpportunityId({
+              salesOpportunityId: recordId,
+            });
+            const newConsumption = $state.consumption.get();
+
+            const valuesChanged = haveDifferentConsumptionValues(
+              oldConsumption,
+              newConsumption
+            );
+            const missingMonthlyValues = !hasAllMonthlyValues(newConsumption);
+
+            if (valuesChanged || missingMonthlyValues) {
+              $state.loaderTitle.set("Running analysis");
+              await updateConsumption(false);
+              await createProfile({ pid: recordId });
+              $state.loaderTitle.set("Updating Profile");
+              await runAnalysis();
+              await updateSalesOpportunity();
+              await clearAnalyses();
+              $state.loaderTitle.set("Updating consumption");
+              await updateConsumption(true);
+              await updateProfile();
+
+              if (missingMonthlyValues) {
+                const updatedConsumption =
+                  await getConsumptionBySalesOpportunityId({
+                    salesOpportunityId: recordId,
+                  });
+                $state.consumption.set(updatedConsumption);
+                appState.currentStepIndex.set(1);
+              } else {
+                appState.currentStepIndex.set(2);
+              }
+            } else {
+              await runAnalysis();
+              await updateProfile();
+              console.log(
+                "No changes in consumption values and all monthly values present. Moving to next step."
+              );
               appState.currentStepIndex.set(2);
             }
-          } else {
-            await runAnalysis();
-            await updateProfile();
-            console.log('No changes in consumption values and all monthly values present. Moving to next step.');
-            appState.currentStepIndex.set(2);
-          }
-          break;
-        case 2:
-          appState.currentStepIndex.set(3);
-          break;
-        default:
-          break;
+            break;
+          case 2:
+            appState.currentStepIndex.set(3);
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.error("Error during next step:", error);
+        // Handle the error (e.g., show an error message to the user)
+      } finally {
+        $state.isLoading.set(false);
       }
-      onStepComplete(appState.currentStepIndex.get());
-    } catch (error) {
-      console.error('Error during next step:', error);
-      // Handle the error (e.g., show an error message to the user)
-    } finally {
-      $state.isLoading.set(false);
-    }
-  }, [appState.currentStepIndex.get(), recordId, onStepComplete]);
+      return false;
+    },
+    [appState.currentStepIndex.get(), recordId]
+  );
+
+  // register handleNextClick as event handler for next button click event
+  useEffect(() => {
+    eventEmitter.on("nextStep", handleNextClick);
+    return () => {
+      eventEmitter.off("nextStep", handleNextClick);
+    };
+  }, []);
 
   const handleBackClick = () => {
-    appState.currentStepIndex.set(Math.max(appState.currentStepIndex.get() - 1, 0));
+    appState.currentStepIndex.set(
+      Math.max(appState.currentStepIndex.get() - 1, 0)
+    );
   };
 
   const handleYearChange = (direction: number) => {
@@ -825,27 +848,37 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
       <div className="pup-container">
         <h1 className="h1-semi fade-in heading">Your Utility Profile</h1>
         <div className="pup-card-utility pup-fade-in">
-          {appState.currentStepIndex.get() < 3 && appState.currentStepIndex.get() !== 0 && (
-            <button className="pup-back-button d1-semi" onClick={handleBackClick}>
-              BACK
-            </button>
-          )}
+          {appState.currentStepIndex.get() < 3 &&
+            appState.currentStepIndex.get() !== 0 && (
+              <button
+                className="pup-back-button d1-semi"
+                onClick={handleBackClick}
+              >
+                BACK
+              </button>
+            )}
           <div className="pup-content-wrapper">
             <LoadingSpinner />
 
-            {!$state.isLoading.get() && appState.currentStepIndex.get() === 0 && (
-              <Step1
-                handleProvider={handleProvider}
-                handleTariff={handleTariff}
-              />
-            )}
+            {!$state.isLoading.get() &&
+              appState.currentStepIndex.get() === 0 && (
+                <Step1
+                  handleProvider={handleProvider}
+                  handleTariff={handleTariff}
+                />
+              )}
 
-            {appState.currentStepIndex.get() === 1 && <Step2 handleGeneric={handleGeneric} />}
+            {appState.currentStepIndex.get() === 1 && (
+              <Step2 handleGeneric={handleGeneric} />
+            )}
 
             {appState.currentStepIndex.get() === 2 && <Step3 />}
 
             {appState.currentStepIndex.get() === 3 && (
-              <div ref={chartContainerRef} style={{ width: '100%', height: '400px' }}>
+              <div
+                ref={chartContainerRef}
+                style={{ width: "100%", height: "400px" }}
+              >
                 <Step4 width={chartWidth} height={chartHeight} />
               </div>
             )}
@@ -857,7 +890,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
                     <div
                       key={s}
                       className={`pup-stepper-dot ${
-                        s === appState.currentStepIndex.get() ? 'active' : ''
+                        s === appState.currentStepIndex.get() ? "active" : ""
                       }`}
                     ></div>
                   ))}
@@ -870,7 +903,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({ onStepComplete }
         {appState.currentStepIndex.get() === 3 && (
           <div
             className={`pup-chart-navigation ${
-              appState.currentStepIndex.get() === 3 ? 'visible' : 'hidden'
+              appState.currentStepIndex.get() === 3 ? "visible" : "hidden"
             }`}
           >
             <button

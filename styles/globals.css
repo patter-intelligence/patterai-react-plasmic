@@ -126,6 +126,13 @@ textarea {
     /* remove default border */
     border: 2px solid #D1D1D1;
     border-radius: 4px;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -183,7 +190,7 @@ textarea:focus {
   padding: 1px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   overflow: hidden;
   position: fixed;
@@ -209,7 +216,7 @@ textarea:focus {
   margin: 5px;
   margin-bottom: 16px;
   color: gray;
-  /* background-color: rgba(255,255,255,0.2) */
+  background-color: rgba(255,255,255,1)
 }
 
 .content {
@@ -1810,11 +1817,11 @@ button .contained.disabled {
   flex-direction: row;
   justify-content: space-around;
   align-items: flex-start;
-  justify-items: start;
+  justify-items: flex-start;
   margin: 20px;
   padding: 20px;
   gap: 20px;
-  text-align: start;
+  text-align: flex-start;
 }
 
 .mla-manual-loan-approval-container {
@@ -1917,7 +1924,7 @@ button .contained.disabled {
   font-weight: 600;
   color: #404040;
   margin-bottom: 40px;
-  margin-top: 1vh;
+  margin-top: 40px;
 }
 
 .mla-manual-loan-approval-subtitle {
@@ -1939,7 +1946,7 @@ button .contained.disabled {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -1999,7 +2006,7 @@ button .contained.disabled {
 
 .mla-previous-loan-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
 
@@ -3705,11 +3712,9 @@ input:checked + .pw-slider:before {
 
 /* SolargrafDetails Styles */
 .sd-solargraf-details {
-  background-color: rgba(255, 255, 255, 0.8);
   font-family: "Montserrat", sans-serif;
   color: #404040;
   padding: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   height: 100vh;
   overflow: hidden;
 }
@@ -4412,17 +4417,7 @@ input:checked + .sd-slider:before {
   position: relative;
 }
 
-.pup-selection-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* padding: 4vw; */
-  text-align: left;
-  flex-grow: 1;
-  overflow-y: auto;
-  /* Add scroll to content if it exceeds the height */
-  min-width: 300px;
-}
+
 
 .pup-selection-header {
   font-size: 14px;
@@ -4563,17 +4558,8 @@ input:checked + .sd-slider:before {
   color: #023b95;
 }
 
-.pup-selection-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* padding: 4vw; */
-  text-align: left;
-  flex-grow: 1;
-  overflow-y: auto;
-  /* Add scroll to content if it exceeds the height */
-  min-width: 300px;
-}
+
+
 
 .pup-selection-header {
   font-size: 14px;
@@ -4638,6 +4624,7 @@ input:checked + .sd-slider:before {
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
+  padding: 10px;
 }
 
 .pup-stepper {
@@ -5061,6 +5048,16 @@ input:checked + .sd-slider:before {
   min-width: 300px;
   padding-left: 8vw;
   padding-right: 8vw;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 4vw; */
+  text-align: left;
+  flex-grow: 1;
+  overflow-y: auto;
+  /* Add scroll to content if it exceeds the height */
+  min-width: 300px;
 }
 
 .pup-content-wrapper {

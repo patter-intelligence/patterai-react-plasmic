@@ -1,4 +1,4 @@
-import App from '../../components/react-presentation/app/app';
+import App from './app/app';
 
 export default function ReactPresentation() {
   return (

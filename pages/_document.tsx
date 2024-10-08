@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-
 export default function Document() {
   return (
     <Html lang="en">
@@ -13,6 +12,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <body>
         <Main />

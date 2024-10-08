@@ -5,7 +5,7 @@ import {
   PlasmicCanvasHost,
   registerComponent,
 } from "@plasmicapp/react-web/lib/host";
-import {  PatterHeaderH1 } from "./patter-ui-components";
+import {  PatterHeaderH1 } from "../components/patter-ui-components";
 
 // You can register any code components that you want to use here; see
 // https://docs.plasmic.app/learn/code-components-ref/
@@ -40,7 +40,7 @@ import {  PatterHeaderH1 } from "./patter-ui-components";
 // A slider with default styles
 registerComponent(PatterHeaderH1, {
   name: "PatterHeaderH1",
-  importPath: "./patter-ui-components",
+  importPath: "../components/patter-ui-components",
   props: {
     title: "string",
   },
