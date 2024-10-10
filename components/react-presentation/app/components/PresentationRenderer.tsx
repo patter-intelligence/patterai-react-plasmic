@@ -10,6 +10,8 @@ import React, {
 } from "react";
 import Loader from "./Loader";
 import { eventEmitter } from "../utilities/EventEmitter";
+import { PlasmicRootProvider, PlasmicComponent } from '@plasmicapp/loader-react';
+import { PLASMIC } from '../plasmic-init';
 
 export interface IContentItem {
   type: string;
