@@ -89,7 +89,7 @@ export const Home: React.FC = observer(() => {
               appState.recordId.get()
             );
         }
-        // console.log('Raw presentation data:', presentationData);
+        console.log('Raw presentation data:', presentationData);
 
         const parsedData = presentationData;
 
@@ -502,6 +502,7 @@ export const Home: React.FC = observer(() => {
         console.log("Processed presentation data:", parsedData);
         setAllSlides({ slides: parsedData.slides });
         appState.setSlides(parsedData.slides as any);
+        appState.highestVisitedSlideIndex.set(presentationData.lastVisitedSlideNumber || 0);
       } catch (error) {
         console.error("Error fetching presentation:", error);
         console.error("Error details:", JSON.stringify(error, null, 2));

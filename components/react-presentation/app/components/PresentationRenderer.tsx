@@ -75,7 +75,9 @@ const parseStyle = (styleString: string) => {
       const key = style.slice(0, colonIndex).trim();
       const value = style.slice(colonIndex + 1).trim();
       if (key && value) {
-        const camelCaseKey = key.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+        const camelCaseKey = key.replace(/-([a-z])/g, (g) =>
+          g[1].toUpperCase()
+        );
         acc[camelCaseKey] = value;
       }
     }
@@ -103,6 +105,8 @@ const ImageContent: React.FC<{
     replaceVariables(item.imageStyle || "", context)
   );
 
+  console.log({style,imageUrl,imageStyle  })
+
   return (
     <div style={style}>
       {!imageError ? (
@@ -129,7 +133,7 @@ const renderContent = (
 ) => {
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
 
-  console.log({style})
+  console.log({ style });
 
   const renderChildLayout = (childLayout: { content: IContentItem[] }) => {
     return childLayout.content.map((childItem, index) => (
@@ -328,10 +332,7 @@ export const PresentationRenderer: React.FC<{
       });
     }
 
-  
-
-    return () => {
-    };
+    return () => {};
   }, [components]);
 
   if (!data || !data.slides || data.slides.length === 0) {
