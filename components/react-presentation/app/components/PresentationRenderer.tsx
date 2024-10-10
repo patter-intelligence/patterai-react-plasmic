@@ -7,7 +7,9 @@ import React, {
   useEffect,
   useCallback,
   useRef,
+  useMemo,
 } from "react";
+import ReactDOM from 'react-dom';
 import Loader from "./Loader";
 import { eventEmitter } from "../utilities/EventEmitter";
 import { PlasmicRootProvider, PlasmicComponent } from '@plasmicapp/loader-react';
@@ -134,6 +136,21 @@ const renderContent = (
   context: ContextVariables,
   handleComponentLoading: (id: string, isLoading: boolean) => void
 ) => {
+  const portalContainer = useMemo(() => {
+    if (typeof document !== 'undefined') {
+      return document.createElement('div');
+    }
+    return null;
+  }, []);
+
+  useEffect(() => {
+    if (portalContainer) {
+      document.body.appendChild(portalContainer);
+      return () => {
+        document.body.removeChild(portalContainer);
+      };
+    }
+  }, [portalContainer]);
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
 
   console.log({ style });
@@ -253,8 +270,8 @@ const renderContent = (
       }
       return <div style={style}>Component not specified</div>;
     case "plasmiccomponent":
-      if (item.componentName) {
-        return (
+      if (item.componentName && portalContainer) {
+        return ReactDOM.createPortal(
           <div style={style}>
             <ErrorBoundary fallback={<div>Error loading Plasmic component</div>}>
               <Suspense
@@ -277,7 +294,8 @@ const renderContent = (
               </Suspense>
             </ErrorBoundary>
             {item.childLayout && renderChildLayout(item.childLayout)}
-          </div>
+          </div>,
+          portalContainer
         );
       }
       return <div style={style}>Plasmic component not specified</div>;
