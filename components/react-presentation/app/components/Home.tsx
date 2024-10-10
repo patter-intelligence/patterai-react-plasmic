@@ -533,6 +533,14 @@ export const Home: React.FC = observer(() => {
         setAllSlides({ slides: parsedData.slides });
         appState.setSlides(parsedData.slides as any);
         appState.highestVisitedSlideIndex.set(presentationData.lastVisitedSlideNumber || 0);
+        
+        // Ensure current slide index is within bounds
+        const maxSlideIndex = parsedData.slides.length - 1;
+        const currentSlideIndex = appState.currentSlideIndex.get();
+        if (currentSlideIndex > maxSlideIndex) {
+          appState.setCurrentSlideIndex(maxSlideIndex);
+          updateCurrentSlideUrl(router, maxSlideIndex);
+        }
       } catch (error) {
         console.error("Error fetching presentation:", error);
         console.error("Error details:", JSON.stringify(error, null, 2));
