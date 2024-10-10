@@ -251,6 +251,33 @@ const renderContent = (
         );
       }
       return <div style={style}>Component not specified</div>;
+    case "plasmiccomponent":
+      if (item.componentName) {
+        return (
+          <div style={style}>
+            <Suspense
+              fallback={
+                <Loader
+                  contextVariables={{
+                    LOADER_LOGO:
+                      "https://patter-demos-mu.vercel.app/Patter_Logo.png",
+                    COMPANY_NAME: "Patter AI",
+                  }}
+                />
+              }
+            >
+              <PlasmicRootProvider loader={PLASMIC}>
+                <PlasmicComponent
+                  component={item.componentName}
+                  componentProps={item.childProps}
+                />
+              </PlasmicRootProvider>
+            </Suspense>
+            {item.childLayout && renderChildLayout(item.childLayout)}
+          </div>
+        );
+      }
+      return <div style={style}>Plasmic component not specified</div>;
     default:
       return (
         <div style={style}>

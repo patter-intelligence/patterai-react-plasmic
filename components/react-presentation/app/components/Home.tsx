@@ -25,6 +25,8 @@ import { updateCurrentSlideUrl } from "../utilities/navigationUtils";
 import { parse } from "path";
 import { MenuContainer } from "./MenuContainer";
 import { eventEmitter } from "../utilities/EventEmitter";
+import { PlasmicRootProvider } from '@plasmicapp/loader-react';
+import { PLASMIC } from '../plasmic-init';
 
 
 const dataHooks = {
@@ -574,68 +576,70 @@ export const Home: React.FC = observer(() => {
   };
 
   return (
-    <SalesforceProvider>
-      <div className="dashboard">
-        <MenuContainer
-          allSlides={allSlides}
-          handlePrevious={handlePrevious}
-          handleNext={handleNext}
-          togglePhotoUploader={togglePhotoUploader}
-        />
-        <SlideMenu />
-        <div className="content">
-          <Loader contextVariables={contextVariables} />
-          {allSlides.slides.length > 0 ? (
-            <Suspense fallback={<Loader contextVariables={contextVariables} />}>
-              <PresentationRenderer
-                data={allSlides}
-                context={contextVariables}
-                components={components}
-                dataHooks={dataHooks}
-                currentSlideIndex={appState.currentSlideIndex.get()}
-                onLoadingChange={handleComponentLoadingChange}
-              />
-            </Suspense>
-          ) : (
-            <>
-              {/* <iframe style={{
-              border: 'none',
-              width: '100%',
-              height: '100%',
-              position: 'absolute',
-              backgroundColor: 'white',
-              top: 0,
-              left: 0,
-              zIndex: 1000,
-            }}  src="https://embed.figma.com/proto/4yLc2iylnZNNf7U1e7e4IZ/Patter-AI-Platform?page-id=2165%3A17447&node-id=5479-6827&node-type=frame&viewport=-4422%2C3865%2C0.29&scaling=fit-width&content-scaling=fixed&starting-point-node-id=5479%3A6827&show-proto-sidebar=1&embed-host=share&hide-ui=1&theme=light" allowFullScreen></iframe> */}
-              <div
-                className={classNames(
-                  styles["no-data-message"],
-                  "no-data-message"
-                )}
-              >
-                <svg
-                  width="64"
-                  height="64"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+    <PlasmicRootProvider loader={PLASMIC}>
+      <SalesforceProvider>
+        <div className="dashboard">
+          <MenuContainer
+            allSlides={allSlides}
+            handlePrevious={handlePrevious}
+            handleNext={handleNext}
+            togglePhotoUploader={togglePhotoUploader}
+          />
+          <SlideMenu />
+          <div className="content">
+            <Loader contextVariables={contextVariables} />
+            {allSlides.slides.length > 0 ? (
+              <Suspense fallback={<Loader contextVariables={contextVariables} />}>
+                <PresentationRenderer
+                  data={allSlides}
+                  context={contextVariables}
+                  components={components}
+                  dataHooks={dataHooks}
+                  currentSlideIndex={appState.currentSlideIndex.get()}
+                  onLoadingChange={handleComponentLoadingChange}
+                />
+              </Suspense>
+            ) : (
+              <>
+                {/* <iframe style={{
+                border: 'none',
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                backgroundColor: 'white',
+                top: 0,
+                left: 0,
+                zIndex: 1000,
+              }}  src="https://embed.figma.com/proto/4yLc2iylnZNNf7U1e7e4IZ/Patter-AI-Platform?page-id=2165%3A17447&node-id=5479-6827&node-type=frame&viewport=-4422%2C3865%2C0.29&scaling=fit-width&content-scaling=fixed&starting-point-node-id=5479%3A6827&show-proto-sidebar=1&embed-host=share&hide-ui=1&theme=light" allowFullScreen></iframe> */}
+                <div
+                  className={classNames(
+                    styles["no-data-message"],
+                    "no-data-message"
+                  )}
                 >
-                  <path
-                    d="M13 13H11V7H13M13 17H11V15H13M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z"
-                    fill="#023B95"
-                  />
-                </svg>
-                <h2>No Presentation Data Available</h2>
-                <p>
-                  We couldn't load the presentation data at this time. Please
-                  try again later or contact support if the issue persists.
-                </p>
-              </div>
-            </>
-          )}
+                  <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13 13H11V7H13M13 17H11V15H13M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z"
+                      fill="#023B95"
+                    />
+                  </svg>
+                  <h2>No Presentation Data Available</h2>
+                  <p>
+                    We couldn't load the presentation data at this time. Please
+                    try again later or contact support if the issue persists.
+                  </p>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </SalesforceProvider>
+      </SalesforceProvider>
+    </PlasmicRootProvider>
   );
 });
