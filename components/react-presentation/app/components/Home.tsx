@@ -502,6 +502,33 @@ export const Home: React.FC = observer(() => {
         //   name: 'System Design 2',
         // });
         console.log("Processed presentation data:", parsedData);
+        
+        // Add sample Plasmic Slide at the end
+        parsedData.slides.push({
+          tags: 'Plasmic',
+          template: 'Default Presentation',
+          layout: {
+            hasGutters: true,
+            styleOverride: 'background-color:#F4F6F9;',
+            type: 'grid',
+            content: [
+              {
+                title: 'Plasmic Component',
+                type: 'plasmiccomponent',
+                componentName: 'Button', // Replace with your actual Plasmic component name
+                styleOverride: 'width: 100%; height: 100%;',
+                childProps: {
+                  children: 'Click me!',
+                  className: 'custom-button-class'
+                },
+                size: 2,
+              },
+            ],
+          },
+          order: String(parsedData.slides.length + 1),
+          name: 'Sample Plasmic Slide',
+        });
+
         setAllSlides({ slides: parsedData.slides });
         appState.setSlides(parsedData.slides as any);
         appState.highestVisitedSlideIndex.set(presentationData.lastVisitedSlideNumber || 0);
