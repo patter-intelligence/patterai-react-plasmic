@@ -12,6 +12,7 @@ import Loader from "./Loader";
 import { eventEmitter } from "../utilities/EventEmitter";
 import { PlasmicRootProvider, PlasmicComponent } from '@plasmicapp/loader-react';
 import { PLASMIC } from '../plasmic-init';
+import ErrorBoundary from './ErrorBoundary';
 
 export interface IContentItem {
   type: string;
@@ -255,24 +256,26 @@ const renderContent = (
       if (item.componentName) {
         return (
           <div style={style}>
-            <Suspense
-              fallback={
-                <Loader
-                  contextVariables={{
-                    LOADER_LOGO:
-                      "https://patter-demos-mu.vercel.app/Patter_Logo.png",
-                    COMPANY_NAME: "Patter AI",
-                  }}
-                />
-              }
-            >
-              <PlasmicRootProvider loader={PLASMIC}>
-                <PlasmicComponent
-                  component={item.componentName}
-                  componentProps={item.childProps}
-                />
-              </PlasmicRootProvider>
-            </Suspense>
+            <ErrorBoundary fallback={<div>Error loading Plasmic component</div>}>
+              <Suspense
+                fallback={
+                  <Loader
+                    contextVariables={{
+                      LOADER_LOGO:
+                        "https://patter-demos-mu.vercel.app/Patter_Logo.png",
+                      COMPANY_NAME: "Patter AI",
+                    }}
+                  />
+                }
+              >
+                <PlasmicRootProvider loader={PLASMIC}>
+                  <PlasmicComponent
+                    component={item.componentName}
+                    componentProps={item.childProps}
+                  />
+                </PlasmicRootProvider>
+              </Suspense>
+            </ErrorBoundary>
             {item.childLayout && renderChildLayout(item.childLayout)}
           </div>
         );
@@ -383,8 +386,10 @@ export const PresentationRenderer: React.FC<{
   };
 
   return (
-    <div style={style}>
-      {renderContent(layout, extendedContext, handleComponentLoading)}
-    </div>
+    <ErrorBoundary fallback={<div>Error in presentation renderer</div>}>
+      <div style={style}>
+        {renderContent(layout, extendedContext, handleComponentLoading)}
+      </div>
+    </ErrorBoundary>
   );
 };
