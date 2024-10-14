@@ -715,15 +715,15 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
     >
       <motion.div
         className="photocapture-app-container"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // transition={{ duration: 0.5 }}
       >
         <motion.aside
           className="photocapture-sidebar"
-          initial={{ x: -300 }}
-          animate={{ x: 0 }}
-          transition={{ type: 'spring', stiffness: 100 }}
+          // initial={{ x: -300 }}
+          // animate={{ x: 0 }}
+          // transition={{ type: 'spring', stiffness: 100 }}
         >
           <div className="search-bar">
             <div className="search-input-container">
@@ -834,9 +834,9 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
         </motion.aside>
         <motion.div
           className="main-content"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          // initial={{ opacity: 0, y: 50 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ delay: 0.2 }}
         >
           {/* <motion.button
           onClick={() =>
@@ -862,9 +862,9 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
         </motion.div> */}
           <motion.div
             className="captures-container"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            // initial={{ opacity: 0 }}
+            // animate={{ opacity: 1 }}
+            // transition={{ delay: 0.3 }}
           >
             {isLoadingSalesforcePhotos ? (
               <motion.div
@@ -881,9 +881,9 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
                     appState.photoCaptureSections.get().length === 0 && (
                       <motion.div
                         className="no-results-message"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        // initial={{ opacity: 0, y: 20 }}
+                        // animate={{ opacity: 1, y: 0 }}
+                        // exit={{ opacity: 0, y: -20 }}
                       >
                         No results found for "{appState.searchQuery.get()}"
                       </motion.div>
@@ -894,9 +894,9 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
                     key={section.id}
                     id={section.id}
                     className="photo-capture-section"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
+                    // initial={{ opacity: 0, y: 50 }}
+                    // animate={{ opacity: 1, y: 0 }}
+                    // transition={{ duration: 0.5 }}
                   >
                     <div className="section-header">
                       <motion.h2
@@ -906,8 +906,7 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
                         transition={{ delay: 0.2 }}
                       >
                         {section.title}
-                      </motion.h2>
-                      <motion.p
+                        <motion.p
                         className="section-description"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -915,6 +914,8 @@ const PhotoUploader: React.FC<PhotoUploaderProps> = observer(() => {
                       >
                         {section.description}
                       </motion.p>
+                      </motion.h2>
+                     
                       {/* <motion.div
                         className="section-status-container"
                         initial={{ opacity: 0 }}

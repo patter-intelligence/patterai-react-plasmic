@@ -1,3 +1,4 @@
+import { PatterCADModel } from '@/components/solargraf-3d-editor/examples/src/App';
 import React from 'react';
 
 export const components = {
@@ -70,4 +71,7 @@ export const components = {
   'c/presentation_loanSelection': React.lazy(
     () => import('../slides/LoanOptionsDisplay')
   ),
+  'c/threeDModel': ()=>{
+    return <div><PatterCADModel /></div>
+  } //React.lazy(() => import('../slides/ThreeDModel')),
 };

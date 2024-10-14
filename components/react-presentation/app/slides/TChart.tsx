@@ -92,7 +92,6 @@ const ComparisonItem = styled.div<{ isSelected: boolean }>`
   border: ${(props) => (props.isSelected ? '1px solid #01348A' : 'none')};
 
   &:hover {
-    background-color: ${(props) => (props.isSelected ? 'rgba(0, 0, 0, 0.15)' : 'rgba(0, 0, 0, 0.03)')};
     transform: scale(1.05);
   }
 `;

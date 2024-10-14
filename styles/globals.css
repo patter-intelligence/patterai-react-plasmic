@@ -755,6 +755,7 @@ background-color: #e0e8ff;
   border-right: 1px solid #d8dde6;
   display: flex;
   flex-direction: column;
+  padding-top: 50px;  
   /* box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); */
 }
 
@@ -1216,6 +1217,7 @@ background-color: #e0e8ff;
   flex-direction: column;
   background-color: #f4f6f9;
   overflow: hidden;
+  padding: 40px;
 }
 
 .cc-sticky-header {
@@ -1230,14 +1232,16 @@ background-color: #e0e8ff;
 
 .cc-form-content {
   flex: 1;
-  padding: 20px 20px;
+  margin-top: 40px;
   overflow-y: auto;
 }
 
 .cc-h2-semi {
-  font-size: 28px;
-  line-height: 34px;
-  font-weight: 600;
+  /* font-size: 28px; */
+  /* line-height: 34px; */
+  /* font-weight: 600; */
+  /* padding: 20px; */
+
 }
 
 .cc-card {
@@ -1259,7 +1263,7 @@ background-color: #e0e8ff;
 }
 
 .cc-card.cc-editing {
-  border: 2px solid #023b95;
+  /* border: 2px solid #023b95; */
 }
 
 .cc-card-header {
@@ -1349,13 +1353,16 @@ background-color: #e0e8ff;
 
 .cc-save-button,
 .cc-cancel-button {
-  color: #023b95;
+  /* color: #023b95; */
+  color: #5f6368;
   padding: 7px 8px;
 }
 
 .cc-save-button:hover,
 .cc-cancel-button:hover {
-  color: #0056b3;
+  /* color: #0056b3; */
+  color: #5f6368;
+  
 }
 
 .cc-d2-semi {
@@ -1546,15 +1553,19 @@ background-color: #e0e8ff;
 }
 
 .cc-edit-button {
-  color: #023b95;
+  /* color: #023b95; */
+  color: #5f6368;
 }
 
 .cc-delete-button {
-  color: #e51a3c;
+  /* color: #e51a3c; */
+  color: #5f6368;
 }
 
 .cc-delete-button:hover {
-  color: #ff3b30;
+  /* color: #ff3b30; */
+  color: #5f6368;
+
 }
 
 @media (max-width: 768px) {

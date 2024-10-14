@@ -67,10 +67,14 @@ const SlideMenu: React.FC = observer(() => {
                 console.log('Highest visited slide index:', appState.highestVisitedSlideIndex.get());
                 if (index !== null && index !== undefined && Number(index) <= appState.highestVisitedSlideIndex.get()) {
                   console.log('Setting current slide index to:', index);
+                  appState.setIsLoading(true);
+
                   appState.setCurrentSlideIndex(Number(index));
                   updateCurrentSlideUrl(router, Number(index));
           
                   appState.toggleMenu();
+                  appState.setIsLoading(false);
+
                 } else {
                   console.log('Cannot navigate to this slide yet');
                 }

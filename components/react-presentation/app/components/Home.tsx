@@ -515,7 +515,7 @@ export const Home: React.FC = observer(() => {
         //       {
         //         title: 'Plasmic Component',
         //         type: 'plasmiccomponent',
-        //         componentName: 'UtilityBill', // Replace with your actual Plasmic component name
+        //         componentName: 'CoPilot', // Replace with your actual Plasmic component name
         //         styleOverride: 'width: 100%; height: 100%;position:absolute;',
         //         childProps: {
         //           // children: 'Click me! WASSUP!!!',
@@ -530,16 +530,39 @@ export const Home: React.FC = observer(() => {
         //   name: 'Sample Plasmic Slide',
         // });
 
+        parsedData.slides.push({
+          tags: 'Plasmic',
+          template: 'Default Presentation',
+          layout: {
+            hasGutters: true,
+            styleOverride: 'background-color:#F4F6F9;width:100vw;height:100vh',
+            type: 'grid',
+            content: [
+              {
+                title: '3d component',
+                type: 'lwccomponent',
+                componentName: 'c/threeDModel', // Replace with your actual Plasmic component name
+                styleOverride: 'width: 100vw; height: 100vh;position:absolute;display:flex;left:0;right:0;top:0;bottom:0',
+                childProps: {
+                },
+                size: 2,
+              },
+            ],
+          },
+          order: String(parsedData.slides.length + 1),
+          name: 'Sample Plasmic Slide',
+        });
+
         setAllSlides({ slides: parsedData.slides });
         appState.setSlides(parsedData.slides as any);
         appState.highestVisitedSlideIndex.set(presentationData.lastVisitedSlideNumber || 0);
         
         // Ensure current slide index is within bounds
-        const maxSlideIndex = parsedData.slides.length - 1;
+        const maxSlideIndex = parsedData.slides.length ;
         const currentSlideIndex = appState.currentSlideIndex.get();
         if (currentSlideIndex > maxSlideIndex) {
           appState.setCurrentSlideIndex(maxSlideIndex);
-          updateCurrentSlideUrl(router, maxSlideIndex);
+          // updateCurrentSlideUrl(router, maxSlideIndex);
         }
       } catch (error) {
         console.error("Error fetching presentation:", error);

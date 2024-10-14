@@ -947,9 +947,9 @@ export default observer(({ apiKey, mapId }: GoogleMapsProps) => {
                   animate="visible"
                   variants={fadeIn}
                 >
-                  <h2 className="sc-section-title sc-d2-medium sc-light-grey">
+                  {/* <h2 className="sc-section-title sc-d2-medium sc-light-grey">
                     Site Details
-                  </h2>
+                  </h2> */}
                   <div className="sc-toggle-group">
                     <CustomToggle
                       id="existing-solar"

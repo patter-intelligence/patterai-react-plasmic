@@ -420,12 +420,12 @@ export const ContactConfirmation = observer(function ContactConfirmation({
 
           <div className="cc-form-section">
             <motion.h1
-              className="cc-h2-semi cc-sticky-header cc-confirm-title"
+              className="cc-h2-semi h1-semi fade-in heading"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Your Contact information
+              Your Contact Details
             </motion.h1>
             <motion.div
               className="cc-form-content"

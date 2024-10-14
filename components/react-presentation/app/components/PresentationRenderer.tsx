@@ -131,26 +131,14 @@ const ImageContent: React.FC<{
   );
 };
 
+
 const renderContent = (
   item: IContentItem,
   context: ContextVariables,
-  handleComponentLoading: (id: string, isLoading: boolean) => void
+  handleComponentLoading: (id: string, isLoading: boolean) => void,
+  portalContainer: any
 ) => {
-  const portalContainer = useMemo(() => {
-    if (typeof document !== 'undefined') {
-      return document.createElement('div');
-    }
-    return null;
-  }, []);
-
-  useEffect(() => {
-    if (portalContainer) {
-      document.body.appendChild(portalContainer);
-      return () => {
-        document.body.removeChild(portalContainer);
-      };
-    }
-  }, [portalContainer]);
+  
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
 
   console.log({ style });
@@ -270,8 +258,13 @@ const renderContent = (
       }
       return <div style={style}>Component not specified</div>;
     case "plasmiccomponent":
-      if (item.componentName && portalContainer) {
-        return ReactDOM.createPortal(
+      // if (item.componentName && portalContainer) {
+        if (item.componentName) {
+
+        // console.log({item, portalContainer})
+
+        return (
+        //  return ReactDOM.createPortal(
           <div style={style}>
             <ErrorBoundary fallback={<div>Error loading Plasmic component</div>}>
               <Suspense
@@ -294,8 +287,9 @@ const renderContent = (
               </Suspense>
             </ErrorBoundary>
             {item.childLayout && renderChildLayout(item.childLayout)}
-          </div>,
-          portalContainer
+          </div>
+          //  ,
+          //  portalContainer
         );
       }
       return <div style={style}>Plasmic component not specified</div>;
@@ -403,10 +397,26 @@ export const PresentationRenderer: React.FC<{
     overflow: "hidden",
   };
 
+  const portalContainer = useMemo(() => {
+    if (typeof document !== 'undefined') {
+      return document.createElement('div');
+    }
+    return null;
+  }, []);
+
+  useEffect(() => {
+    if (portalContainer) {
+      document.body.appendChild(portalContainer);
+      return () => {
+        document.body.removeChild(portalContainer);
+      };
+    }
+  }, [portalContainer]);
+
   return (
     <ErrorBoundary fallback={<div>Error in presentation renderer</div>}>
       <div style={style}>
-        {renderContent(layout, extendedContext, handleComponentLoading)}
+        {renderContent(layout, extendedContext, handleComponentLoading, portalContainer)}
       </div>
     </ErrorBoundary>
   );
