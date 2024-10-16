@@ -60,7 +60,7 @@
 }
 
 .custom-select select:focus {
-  border-color: #023b95;
+  border-color: #023B95;
   box-shadow: 0 0 0 0.2rem rgba(2, 59, 149, 0.25);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .custom-button-brand {
-  background: #023b95;
+  background: #023B95;
   color: #ffffff;
   border: none;
 }
@@ -97,8 +97,8 @@
 
 .custom-button-outline-brand {
   background: #ffffff;
-  color: #023b95;
-  border: 2px solid #023b95;
+  color: #023B95;
+  border: 2px solid #023B95;
 }
 
 .custom-button-outline-brand:hover {

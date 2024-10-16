@@ -530,28 +530,28 @@ export const Home: React.FC = observer(() => {
         //   name: 'Sample Plasmic Slide',
         // });
 
-        parsedData.slides.push({
-          tags: 'Plasmic',
-          template: 'Default Presentation',
-          layout: {
-            hasGutters: true,
-            styleOverride: 'background-color:#F4F6F9;width:100vw;height:100vh',
-            type: 'grid',
-            content: [
-              {
-                title: '3d component',
-                type: 'lwccomponent',
-                componentName: 'c/threeDModel', // Replace with your actual Plasmic component name
-                styleOverride: 'width: 100vw; height: 100vh;position:absolute;display:flex;left:0;right:0;top:0;bottom:0',
-                childProps: {
-                },
-                size: 2,
-              },
-            ],
-          },
-          order: String(parsedData.slides.length + 1),
-          name: 'Sample Plasmic Slide',
-        });
+        // parsedData.slides.push({
+        //   tags: 'Plasmic',
+        //   template: 'Default Presentation',
+        //   layout: {
+        //     hasGutters: true,
+        //     styleOverride: 'background-color:#F4F6F9;width:100vw;height:100vh',
+        //     type: 'grid',
+        //     content: [
+        //       {
+        //         title: '3d component',
+        //         type: 'lwccomponent',
+        //         componentName: 'c/threeDModel', // Replace with your actual Plasmic component name
+        //         styleOverride: 'width: 100vw; height: 100vh;position:absolute;display:flex;left:0;right:0;top:0;bottom:0',
+        //         childProps: {
+        //         },
+        //         size: 2,
+        //       },
+        //     ],
+        //   },
+        //   order: String(parsedData.slides.length + 1),
+        //   name: 'Sample Plasmic Slide',
+        // });
 
         setAllSlides({ slides: parsedData.slides });
         appState.setSlides(parsedData.slides as any);

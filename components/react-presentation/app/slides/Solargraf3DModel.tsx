@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { observer } from '@legendapp/state/react';
 import { appState } from '../state/appState';
 import { useDirectSalesforceAction } from '../hooks/useSalesforceOperations';
-import { formatNumber } from '../components/ui/utils';
 import './Solargraf3DModel.module.css';
 import { Roof } from '../types';
 import { LoadingSpinner } from '../components/Loader';
 import { observable } from '@legendapp/state';
+import { PatterCADModel } from '@/components/solargraf-3d-editor/examples/src/App';
 
 
-const solargraf3D = observable( {
+const solargraf3D = observable({
   status: 'loading' as 'loading' | 'ready' | 'error',
   loadingProgress: 0,
   projectId: '',
@@ -17,6 +18,7 @@ const solargraf3D = observable( {
   roofs: [] as Roof[],
   productions: [] as any[],
 })
+
 
 const Solargraf3DModel: React.FC = observer(() => {
   const recordId = appState.recordId.get();
@@ -124,6 +126,7 @@ const Solargraf3DModel: React.FC = observer(() => {
     });
 
     const roofs = await loadRoofs(design.Id);
+    console.log('Roofs loaded:', roofs);
     solargraf3D.roofs.set(roofs);
 
     solargraf3D.loadingProgress.set(60);
@@ -190,7 +193,7 @@ const Solargraf3DModel: React.FC = observer(() => {
       roofs.forEach((roof: any) => {
         roof.Modules__r = roof.Modules__r.records;
       });
-      console.log('Roofs loaded:', roofs);
+      // console.log('Roofs loaded:', roofs);
       return roofs;
     },
     [getRoofsByDesignId]
@@ -281,7 +284,7 @@ const Solargraf3DModel: React.FC = observer(() => {
     let systemSizeKw = 0;
     let totalEnabledPanels = 0;
 
-    solargraf3D.roofs.get().forEach((roof: Roof) => {
+    solargraf3D.roofs.get().filter(k => k.isEnabled__c).forEach((roof: Roof) => {
       const production = productions[roof.Name];
       const enabledPanels = roof.Modules__r.filter(
         (m) => m.isEnabled__c
@@ -360,17 +363,38 @@ const Solargraf3DModel: React.FC = observer(() => {
     );
 
     const roofStatus = JSON.stringify({
-      roofs: roofs.map((roof: Roof) => ({ id: roof.Name, isEnabled: true })),
+      roofs: roofs.map((roof: Roof) => ({ id: roof.Name, isEnabled: roof.isEnabled__c })),
       panels,
     });
 
     console.log('Roof status:', roofStatus);
     const panelAndRoofStatus = btoa(roofStatus);
 
-    return `https://patter-demos-mu.vercel.app/test-solargraf.html?projectId=${appState.projectId.get()}&proposalId=${
-      appState.currentProposal.get()?.id
-    }&panelAndRoofStatus=${panelAndRoofStatus}`;
+    return `https://patter-demos-mu.vercel.app/test-solargraf.html?projectId=${appState.projectId.get()}&proposalId=${appState.currentProposal.get()?.id
+      }&panelAndRoofStatus=${panelAndRoofStatus}`;
   };
+
+  const [panelAndRoofStatus, setPanelAndRoofStatus] = useState('');
+  useEffect(() => {
+    const panels = roofs.flatMap((roof: Roof) =>
+      (roof.Modules__r || []).map(
+        (module: { Name: any; isEnabled__c: any }) => ({
+          id: module.Name,
+          roofId: roof.Name,
+          isEnabled: module.isEnabled__c,
+        })
+      )
+    );
+
+    const roofStatus = JSON.stringify({
+      roofs: roofs.map((roof: Roof) => ({ id: roof.Name, isEnabled: roof.isEnabled__c })),
+      panels,
+    });
+
+    // console.log('Roof status:', roofStatus);
+    const panelAndRoofStatus = btoa(roofStatus);
+    setPanelAndRoofStatus(panelAndRoofStatus);
+  }, [roofs]);
 
   const handleIframeMessage = (event: MessageEvent) => {
     const data =
@@ -405,16 +429,64 @@ const Solargraf3DModel: React.FC = observer(() => {
     };
   }, []);
 
-  const handlePanelChange = async (data: any) => {
+  const handleRoofChange = useCallback(async ({
+    roofId,
+    roofEnabled,
+    roofs,
+  }: {
+    roofId: any;
+    roofEnabled: any;
+    roofs: any;
+  }) => {
+    console.log('onRoofStatusChanged', { roofId, roofEnabled, roofs });
+
+    // Update roofs  based on the data received from the iframe
+    const updatedRoofs = solargraf3D.roofs.get().map((roof) => ({
+      ...roof,
+      isEnabled__c: roof.Name === roofId ? roofEnabled : roof.isEnabled__c,
+    })
+    );
+
+    // Count enabled panels in updatedRoofs
+    // const enabledPanels = updatedRoofs.reduce(
+    //   (acc, roof) => acc + roof.Modules__r.filter((m) => m.isEnabled__c).length,
+    //   0
+    // );
+
+
+
+    solargraf3D.roofs.set(updatedRoofs as any);
+
+    // Calculate annual production
+    calculateAnnualProduction(
+      solargraf3D.get().productions,
+      appState.design.get()
+    );
+
+    // Fetch updated productions and design
+    const updatedProductions = await fetchProductions();
+    const updatedDesign = await fetchDesign();
+
+    calculateAnnualProduction(updatedProductions, updatedDesign);
+
+    // Update Salesforce with new panel statuses
+    await updateSalesforceWithPanelChanges(updatedRoofs);
+
+
+  }, [currentProposal, projectId]);
+
+  const handlePanelChange = useCallback(async (data: {
+    panels: { id: string; roofId: string; isEnabled: boolean }[]
+  }) => {
     // Create a map of panels from the iframe data for quick lookup
-    const panelMap = new Map(data.panels.map((p: any) => [`${p.id}-${p.roofId}`, p]));
+    const panelMap = new Map(data.panels.map((p) => [`${p.id}-${p.roofId}`, p]));
 
     // Update roofs and modules based on the data received from the iframe
     const updatedRoofs = solargraf3D.roofs.get().map((roof) => ({
       ...roof,
       Modules__r: roof.Modules__r.map((module) => {
         const panelKey = `${module.Name}-${roof.Name}`;
-        const panelData = panelMap.get(panelKey) as any;
+        const panelData = panelMap.get(panelKey);
         return {
           ...module,
           isEnabled__c: panelData ? panelData.isEnabled : module.isEnabled__c,
@@ -429,7 +501,7 @@ const Solargraf3DModel: React.FC = observer(() => {
     );
 
     // Count enabled panels in data
-    const enabledPanelsData = data.panels.filter((p: any) => p.isEnabled).length;
+    const enabledPanelsData = data.panels.filter((p) => p.isEnabled).length;
 
     // console.log('Enabled panels:', { enabledPanels, enabledPanelsData });
 
@@ -455,7 +527,9 @@ const Solargraf3DModel: React.FC = observer(() => {
 
     // Update Salesforce with new panel statuses
     await updateSalesforceWithPanelChanges(updatedRoofs);
-  };
+  }, [currentProposal, projectId]);
+
+
 
   const { executeAction: setRoofs } = useDirectSalesforceAction(
     'RoofService.setRoofs',
@@ -508,15 +582,36 @@ const Solargraf3DModel: React.FC = observer(() => {
     };
   }, []);
 
+  //PatterCADModel
+  const currentStateIndex = appState.currentStepIndex.get();
+
+  const handleRenderLoaded = useCallback(() => {
+    setIsLoading(false);
+    setStatusMessage('');
+    console.log('onRenderLoaded');
+  }, []);
+
   return (
     <div className="solargraf-container">
       <LoadingSpinner isLoading={isLoading} message={statusMessage} />
 
-      <iframe
+      {!isLoading && <PatterCADModel
+        projectId={appState.projectId.get()}
+        proposalId={currentProposal?.id}
+        panelAndRoofStatusBase64={panelAndRoofStatus}
+        mode={currentStateIndex == 0 ? "roofs" : currentStateIndex == 1 ? "panels" : "2D"}
+        onPanelStatusChanged={handlePanelChange}
+        onRoofStatusChanged={handleRoofChange}
+        onRenderLoaded={handleRenderLoaded}
+      />}
+
+      {/* {!isLoading && currentStateIndex !== 0 && <iframe
         ref={iframeRef}
         className="solargraf-iframe"
         title="Solargraf 3D Model"
-      />
+        style={{ display: currentStateIndex === 0 ? 'none' : 'block' }}
+      />} */}
+
     </div>
   );
 });

@@ -20,9 +20,8 @@ export const Loader: React.FC<LoaderProps> = observer(
   ) => {
     return (
       <div
-        className={`ll-loader-wrapper ${
-          appState.isLoading.get() ? 'visible' : 'hidden'
-        }`}
+        className={`ll-loader-wrapper ${appState.isLoading.get() ? 'visible' : 'hidden'
+          }`}
       >
         <div className="ll-loader-container">
           {/* <div
@@ -31,7 +30,7 @@ export const Loader: React.FC<LoaderProps> = observer(
             backgroundImage: `url(${contextVariables.LOADER_LOGO})`,
           }}
         ></div> */}
-          <img src={contextVariables.LOADER_LOGO} alt="Patter Logo" />
+          <img src={contextVariables.LOADER_LOGO} alt="Patter Logo"  className="up-logo"/>
           <div className="company-name">{contextVariables.COMPANY_NAME}</div>
           <div className="ll-loading-bar">
             <div className="ll-loading-progress"></div>
@@ -46,16 +45,16 @@ export const LoadingSpinner: React.FC<{
   isLoading: boolean;
   message: string;
 }> = ({ isLoading, message }) => (
-  <div className={`up-loader-wrapper ${isLoading ? 'visible' : 'hidden'}`}>
-    <div className="up-loader-container">
+  <div className={`ll-loader-wrapper ${isLoading ? 'visible' : 'hidden'}`}>
+    <div className="ll-loader-container">
       <img
         src={'https://patter-demos-mu.vercel.app/Patter_Logo.png'}
         alt="Patter Logo"
         className="up-logo"
       />
-      <div className="up-company-name">{message}</div>
-      <div className="up-loading-bar">
-        <div className="up-loading-progress"></div>
+      <div className="company-name">{message}</div>
+      <div className="ll-loading-bar">
+        <div className="ll-loading-progress"></div>
       </div>
     </div>
   </div>

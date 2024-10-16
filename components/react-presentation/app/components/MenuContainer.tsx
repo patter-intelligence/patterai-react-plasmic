@@ -137,9 +137,9 @@ export const MenuContainer: React.FC<MenuContainerProps> = observer(({
               fill="white"
             />
           </svg> */}
-          <div style={{border: "2px solid #01348A", borderRadius: 30, padding: 4, display: "flex",backgroundColor: "rgba(255,255,255,1)", }}>
+          <div style={{border: "2px solid #023B95", borderRadius: 30, padding: 4, display: "flex",backgroundColor: "rgba(255,255,255,1)", }}>
           <ArrowForward style={{
-            color: "#01348A",
+            color: "#023B95",
             fontSize: 35
           }} />
           </div>

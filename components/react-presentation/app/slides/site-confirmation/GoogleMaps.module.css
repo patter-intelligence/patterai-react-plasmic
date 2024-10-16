@@ -106,8 +106,8 @@
 }
 
 .tab-button.active {
-    color: #023b95;
-    border-bottom: 2px solid #023b95;
+    color: #023B95;
+    border-bottom: 2px solid #023B95;
 }
 
 /* Address content */
@@ -138,7 +138,7 @@
 
 .address-field input:focus {
     outline: none;
-    border-color: #023b95;
+    border-color: #023B95;
 }
 
 .address-field input.valid {
@@ -321,7 +321,7 @@
 
 .pac-item-selected,
 .pac-item-selected:hover {
-    background-color: #023b95;
+    background-color: #023B95;
     color: white;
 }
 
@@ -459,7 +459,7 @@
 
 /* Colors */
 .primary {
-    color: #023b95;
+    color: #023B95;
 }
 
 /* Neutrals */
@@ -539,19 +539,19 @@
 } */
 
 button.contained {
-    background: #023b95;
+    background: #023B95;
     color: #ffffff;
 }
 
 button.outlined {
     background: #ffffff;
-    color: #023b95;
-    border: 2px solid #023b95;
+    color: #023B95;
+    border: 2px solid #023B95;
 }
 
 button.text {
     background: none;
-    color: #023b95;
+    color: #023B95;
 }
 
 button.contained:hover {
@@ -633,7 +633,7 @@ button .contained.disabled {
 }
 
 .radio-input:checked+.radio-label {
-    border-color: #023b95;
+    border-color: #023B95;
 }
 
 .radio-input:checked+.radio-label::after {
@@ -644,7 +644,7 @@ button .contained.disabled {
     transform: translate(-50%, -50%) scale(0);
     width: 12px;
     height: 12px;
-    background-color: #023b95;
+    background-color: #023B95;
     border-radius: 50%;
     animation: radioPopIn 0.3s ease forwards;
 }
@@ -677,8 +677,8 @@ button .contained.disabled {
 }
 
 .checkbox-input:checked+.checkbox-label {
-    background-color: #023b95;
-    border-color: #023b95;
+    background-color: #023B95;
+    border-color: #023B95;
 }
 
 .checkbox-label svg {
@@ -736,7 +736,7 @@ button .contained.disabled {
 }
 
 .toggle-input:checked+.toggle-label {
-    background-color: #023b95;
+    background-color: #023B95;
 }
 
 .toggle-input:checked+.toggle-label::after {
@@ -752,10 +752,10 @@ button .contained.disabled {
 .plusminus-button {
     width: 24px;
     height: 24px;
-    border: 3px solid #023b95;
+    border: 3px solid #023B95;
     border-radius: 50%;
     background-color: white;
-    color: #023b95;
+    color: #023B95;
     font-size: 18px;
     display: flex;
     justify-content: center;
@@ -767,7 +767,7 @@ button .contained.disabled {
 }
 
 .plusminus-button:hover {
-    background-color: #023b95;
+    background-color: #023B95;
     color: white;
 }
 
@@ -797,7 +797,7 @@ button .contained.disabled {
     margin-top: 20px;
     width: 100px;
     padding: 15px;
-    background-color: #023b95;
+    background-color: #023B95;
     color: white;
     border: none;
     border-radius: 4px;
@@ -888,7 +888,7 @@ button .contained.disabled {
 }
 
 .modal h2 {
-    color: #023b95;
+    color: #023B95;
     margin-bottom: 15px;
 }
 
@@ -898,7 +898,7 @@ button .contained.disabled {
 }
 
 .modal button {
-    background-color: #023b95;
+    background-color: #023B95;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -1027,7 +1027,7 @@ button .contained.disabled {
     right: -3px;
     bottom: -3px;
     border-radius: 11px;
-    /* background: linear-gradient(45deg, #023b95, #2e9bff); */
+    /* background: linear-gradient(45deg, #023B95, #2e9bff); */
     z-index: -1;
     filter: blur(5px);
     opacity: 0.7;

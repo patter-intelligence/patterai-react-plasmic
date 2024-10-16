@@ -111,7 +111,7 @@ const SolarPowerChart: React.FC = () => {
             top: 10,
             bottom: 30,
           },
-          color: '#023b95',
+          color: '#023B95',
         },
         tooltip: {
           backgroundColor: 'rgba(255, 255, 255, 0.9)',

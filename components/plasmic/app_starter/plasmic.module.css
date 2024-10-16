@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C600&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C600&display=swap");
 
 .plasmic_tokens {
-  --token-7fHPdC0_MdfO: #023b95;
+  --token-7fHPdC0_MdfO: #023B95;
   --plasmic-token-patter-blue: var(--token-7fHPdC0_MdfO);
   --token-XxSrkzl-mlDb: Montserrat;
   --plasmic-token-patter-font: var(--token-XxSrkzl-mlDb);

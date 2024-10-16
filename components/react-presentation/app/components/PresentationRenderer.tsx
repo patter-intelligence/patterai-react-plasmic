@@ -15,6 +15,7 @@ import { eventEmitter } from "../utilities/EventEmitter";
 import { PlasmicRootProvider, PlasmicComponent } from '@plasmicapp/loader-react';
 import { PLASMIC } from '../plasmic-init';
 import ErrorBoundary from './ErrorBoundary';
+import { appState } from "../state/appState";
 
 export interface IContentItem {
   type: string;
@@ -110,7 +111,7 @@ const ImageContent: React.FC<{
     replaceVariables(item.imageStyle || "", context)
   );
 
-  console.log({style,imageUrl,imageStyle  })
+  console.log({ style, imageUrl, imageStyle })
 
   return (
     <div style={style}>
@@ -138,7 +139,7 @@ const renderContent = (
   handleComponentLoading: (id: string, isLoading: boolean) => void,
   portalContainer: any
 ) => {
-  
+
   const style = parseStyle(replaceVariables(item.styleOverride || "", context));
 
   console.log({ style });
@@ -212,26 +213,34 @@ const renderContent = (
       );
     case "lwccomponent":
       if (item.componentName) {
-        const Component = componentRegistry[item.componentName];
+        let Component = componentRegistry[item.componentName];
         const childProps = item.childProps
           ? JSON.parse(
-              replaceVariables(JSON.stringify(item.childProps), context)
-            )
+            replaceVariables(JSON.stringify(item.childProps), context)
+          )
           : {};
+
+        const customLoaderSlides = ['c/presentation_utility_profile', 'c/solargraf3DModel', 'c/solargrafDetails'];
+        // have special treatment for 'c/presentation_utility_profile' i.e. 
+        if (customLoaderSlides.includes(item.componentName)) {
+          appState.isLoading.set(true);
+        }
+
         return (
-          <div style={style}>
-            <Suspense
-              fallback={
-                <Loader
-                  contextVariables={{
-                    LOADER_LOGO:
-                      "https://patter-demos-mu.vercel.app/Patter_Logo.png",
-                    COMPANY_NAME: "Patter AI",
-                  }}
-                />
-              }
-            >
-              {Component ? (
+          <Suspense
+            fallback={
+              <Loader
+                contextVariables={{
+                  LOADER_LOGO:
+                    "https://patter-demos-mu.vercel.app/Patter_Logo.png",
+                  COMPANY_NAME: "Patter AI",
+                }}
+              />
+            }
+          >
+            {Component ? (
+              <div style={style}>
+
                 <Component
                   {...childProps}
                   onLoadingChange={(isLoading: boolean) =>
@@ -241,30 +250,40 @@ const renderContent = (
                     )
                   }
                 />
-              ) : (
-                // <div>Loading component: {item.componentName}</div>
-                <Loader
-                  contextVariables={{
-                    LOADER_LOGO:
-                      "https://patter-demos-mu.vercel.app/Patter_Logo.png",
-                    COMPANY_NAME: "Patter AI",
-                  }}
-                />
-              )}
-            </Suspense>
-            {item.childLayout && renderChildLayout(item.childLayout)}
-          </div>
+                {item.childLayout && renderChildLayout(item.childLayout)}
+              </div>
+            ) : (
+              // <div>Loading component: {item.componentName}</div>
+              <div style={{
+                position: 'absolute',
+                left:0,
+                top:0,
+                width: '100vw',
+                height: '100vh',
+                backgroundColor: 'white',
+                display: 'flex',
+              }}>
+              <Loader
+                contextVariables={{
+                  LOADER_LOGO:
+                    "https://patter-demos-mu.vercel.app/Patter_Logo.png",
+                  COMPANY_NAME: "Patter AI",
+                }}
+              />
+              </div>
+            )}
+          </Suspense>
         );
       }
       return <div style={style}>Component not specified</div>;
     case "plasmiccomponent":
       // if (item.componentName && portalContainer) {
-        if (item.componentName) {
+      if (item.componentName) {
 
         // console.log({item, portalContainer})
 
         return (
-        //  return ReactDOM.createPortal(
+          //  return ReactDOM.createPortal(
           <div style={style}>
             <ErrorBoundary fallback={<div>Error loading Plasmic component</div>}>
               <Suspense
@@ -320,104 +339,104 @@ export const PresentationRenderer: React.FC<{
   currentSlideIndex,
   onLoadingChange,
 }) => {
-  const [extendedContext, setExtendedContext] = useState(context);
-  const [loadingComponents, setLoadingComponents] = useState<Set<string>>(
-    new Set()
-  );
-  const isInitialMount = useRef(true);
+    const [extendedContext, setExtendedContext] = useState(context);
+    const [loadingComponents, setLoadingComponents] = useState<Set<string>>(
+      new Set()
+    );
+    const isInitialMount = useRef(true);
 
-  const handleComponentLoading = useCallback(
-    (id: string, isLoading: boolean) => {
-      setLoadingComponents((prev) => {
-        if (isLoading && !prev.has(id)) {
-          return new Set(prev).add(id);
-        } else if (!isLoading && prev.has(id)) {
-          const newSet = new Set(prev);
-          newSet.delete(id);
-          return newSet;
-        }
-        return prev;
-      });
-    },
-    []
-  );
+    const handleComponentLoading = useCallback(
+      (id: string, isLoading: boolean) => {
+        setLoadingComponents((prev) => {
+          if (isLoading && !prev.has(id)) {
+            return new Set(prev).add(id);
+          } else if (!isLoading && prev.has(id)) {
+            const newSet = new Set(prev);
+            newSet.delete(id);
+            return newSet;
+          }
+          return prev;
+        });
+      },
+      []
+    );
 
-  useEffect(() => {
-    const isLoading = loadingComponents.size > 0;
-    onLoadingChange(isLoading);
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    }
-  }, [loadingComponents, onLoadingChange]);
-
-  useEffect(() => {
-    const loadData = async () => {
-      if (dataHooks) {
-        const newData = await Promise.all(
-          Object.entries(dataHooks).map(async ([key, hook]) => {
-            const result = await hook(context);
-            return { [key]: result };
-          })
-        );
-        setExtendedContext((prev) => ({
-          ...prev,
-          ...Object.assign({}, ...newData),
-        }));
+    useEffect(() => {
+      const isLoading = loadingComponents.size > 0;
+      onLoadingChange(isLoading);
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
       }
+    }, [loadingComponents, onLoadingChange]);
+
+    useEffect(() => {
+      const loadData = async () => {
+        if (dataHooks) {
+          const newData = await Promise.all(
+            Object.entries(dataHooks).map(async ([key, hook]) => {
+              const result = await hook(context);
+              return { [key]: result };
+            })
+          );
+          setExtendedContext((prev) => ({
+            ...prev,
+            ...Object.assign({}, ...newData),
+          }));
+        }
+      };
+
+      loadData();
+    }, [context, dataHooks]);
+
+    useEffect(() => {
+      if (components) {
+        Object.entries(components).forEach(([name, component]) => {
+          registerComponent(name, component);
+        });
+      }
+
+      return () => { };
+    }, [components]);
+
+    if (!data || !data.slides || data.slides.length === 0) {
+      throw new Error("No slide data available");
+    }
+
+    const currentSlide = data.slides[currentSlideIndex];
+    if (!currentSlide && data.slides.length > 0) {
+      throw new Error(`Slide not found for index ${currentSlideIndex}`);
+    }
+
+    const { layout } = currentSlide;
+    const style = {
+      ...parseStyle(
+        replaceVariables(layout.styleOverride || "", extendedContext)
+      ),
+      height: "100vh",
+      overflow: "hidden",
     };
 
-    loadData();
-  }, [context, dataHooks]);
+    const portalContainer = useMemo(() => {
+      if (typeof document !== 'undefined') {
+        return document.createElement('div');
+      }
+      return null;
+    }, []);
 
-  useEffect(() => {
-    if (components) {
-      Object.entries(components).forEach(([name, component]) => {
-        registerComponent(name, component);
-      });
-    }
+    useEffect(() => {
+      if (portalContainer) {
+        document.body.appendChild(portalContainer);
+        return () => {
+          document.body.removeChild(portalContainer);
+        };
+      }
+    }, [portalContainer]);
 
-    return () => {};
-  }, [components]);
-
-  if (!data || !data.slides || data.slides.length === 0) {
-    throw new Error("No slide data available");
-  }
-
-  const currentSlide = data.slides[currentSlideIndex];
-  if (!currentSlide && data.slides.length > 0) {
-    throw new Error(`Slide not found for index ${currentSlideIndex}`);
-  }
-
-  const { layout } = currentSlide;
-  const style = {
-    ...parseStyle(
-      replaceVariables(layout.styleOverride || "", extendedContext)
-    ),
-    height: "100vh",
-    overflow: "hidden",
+    return (
+      <ErrorBoundary fallback={<div>Error in presentation renderer</div>}>
+        <div style={style}>
+          {renderContent(layout, extendedContext, handleComponentLoading, portalContainer)}
+        </div>
+      </ErrorBoundary>
+    );
   };
-
-  const portalContainer = useMemo(() => {
-    if (typeof document !== 'undefined') {
-      return document.createElement('div');
-    }
-    return null;
-  }, []);
-
-  useEffect(() => {
-    if (portalContainer) {
-      document.body.appendChild(portalContainer);
-      return () => {
-        document.body.removeChild(portalContainer);
-      };
-    }
-  }, [portalContainer]);
-
-  return (
-    <ErrorBoundary fallback={<div>Error in presentation renderer</div>}>
-      <div style={style}>
-        {renderContent(layout, extendedContext, handleComponentLoading, portalContainer)}
-      </div>
-    </ErrorBoundary>
-  );
-};

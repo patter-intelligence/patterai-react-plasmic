@@ -221,7 +221,7 @@ const EnergyEfficiency: React.FC = observer(() => {
           </div>
         </div>
         <div className="ee-info">
-          <h1 className="ee-h1-patter">Energy Efficiency</h1>
+          <h1 className="h1-semi fade-in heading">Energy Efficiency</h1>
           <p className="ee-subtitle">
             Reduce before you produce with our suite of complimentary energy
             efficiency products

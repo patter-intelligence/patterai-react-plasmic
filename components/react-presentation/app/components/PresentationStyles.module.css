@@ -322,7 +322,7 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .info-item {
@@ -338,7 +338,7 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .info-item-no-dot {
@@ -366,7 +366,7 @@
   font-size: 56px;
   line-height: 68px;
   font-weight: 600;
-  color: #023b95;
+  color: #023B95;
   margin: 10px 0;
 }
 
@@ -375,7 +375,7 @@
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: #023b95;
+  color: #023B95;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -458,7 +458,7 @@
 }
 
 .nav-button:hover:not(:disabled) {
-  color: #023b95;
+  color: #023B95;
   transform: scale(1.1);
 }
 
@@ -470,10 +470,10 @@
 .year-display {
   font-size: 20px;
   font-weight: 600;
-  color: #023b95;
+  color: #023B95;
   margin: 0 20px;
   padding: 5px 15px;
-  border: 2px solid #023b95;
+  border: 2px solid #023B95;
   border-radius: 4px;
   background-color: #f0f4ff;
   transition: background-color 0.3s ease;

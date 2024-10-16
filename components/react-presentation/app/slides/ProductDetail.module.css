@@ -36,7 +36,7 @@
 }
 
 .ftc-percentage-circle.active {
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .ftc-percentage-text {
@@ -65,14 +65,14 @@
   line-height: 1.2;
   font-weight: 700;
   margin-bottom: 20px;
-  color: #023b95;
+  color: #023B95;
 }
 
 .ftc-underline {
   text-decoration: underline;
   text-decoration-thickness: 4px;
   text-underline-offset: 8px;
-  text-decoration-color: #023b95;
+  text-decoration-color: #023B95;
 }
 
 .ftc-toggle-container {
@@ -87,7 +87,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 600;
-  color: #023b95;
+  color: #023B95;
   margin-right: 20px;
 }
 
@@ -131,7 +131,7 @@
 }
 
 .ftc-toggle-input:checked + .ftc-toggle-label {
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .ftc-toggle-input:checked + .ftc-toggle-label::after {
@@ -151,7 +151,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 600;
-  color: #023b95;
+  color: #023B95;
   margin-right: 20px;
 }
 
@@ -188,7 +188,7 @@
 }
 
 .product-toggle-input:checked + .product-toggle-label {
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .product-toggle-input:checked + .product-toggle-label::after {
@@ -202,7 +202,7 @@
 .h1-patter {
   font-size: 24px;
   font-weight: 700;
-  color: #023b95;
+  color: #023B95;
   margin-bottom: 10px;
 }
 
@@ -240,7 +240,7 @@
 
 .back-button {
   background-color: #ffffff;
-  color: #023b95;
+  color: #023B95;
   border: none;
   padding: 10px 20px;
   border-radius: 20px;
@@ -324,7 +324,7 @@
   display: block;
   width: 280px;
   height: 3px;
-  background-color: #023b95;
+  background-color: #023B95;
   margin-top: 10px;
 }
 
@@ -396,7 +396,7 @@
 .chevron-left {
   width: 24px;
   height: 24px;
-  fill: #023b95;
+  fill: #023B95;
 }
 
 .chevron-right {
@@ -441,7 +441,7 @@
 }
 
 .back-button {
-  color: #023b95;
+  color: #023B95;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -672,7 +672,7 @@
 }
 
 .quantity-button-ee.plus {
-  background-color: #023b95;
+  background-color: #023B95;
   color: white;
 }
 

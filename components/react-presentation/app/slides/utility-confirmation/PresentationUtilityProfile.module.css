@@ -1,5 +1,5 @@
 /* :root {
-    --primary-color: #023b95;
+    --primary-color: #023B95;
     --background-color: #f4f6f9;
     --card-background: #ffffff;
     --text-color: #404040;
@@ -133,11 +133,11 @@
 
 /* Colors */
 .primary {
-  color: #023b95;
+  color: #023B95;
 }
 
 .description .primary {
-  color: #023b95;
+  color: #023B95;
 }
 
 /* Neutrals */
@@ -211,19 +211,19 @@
 } */
 
 button.contained {
-  background: #023b95;
+  background: #023B95;
   color: #ffffff;
 }
 
 button.outlined {
   background: #ffffff;
-  color: #023b95;
-  border: 2px solid #023b95;
+  color: #023B95;
+  border: 2px solid #023B95;
 }
 
 button.text {
   background: none;
-  color: #023b95;
+  color: #023B95;
 }
 
 button.contained:hover {
@@ -305,7 +305,7 @@ button .contained.disabled {
 }
 
 .radio-input:checked+.radio-label {
-  border-color: #023b95;
+  border-color: #023B95;
 }
 
 .radio-input:checked+.radio-label::after {
@@ -316,7 +316,7 @@ button .contained.disabled {
   transform: translate(-50%, -50%) scale(0);
   width: 12px;
   height: 12px;
-  background-color: #023b95;
+  background-color: #023B95;
   border-radius: 50%;
   animation: radioPopIn 0.3s ease forwards;
 }
@@ -349,8 +349,8 @@ button .contained.disabled {
 }
 
 .checkbox-input:checked+.checkbox-label {
-  background-color: #023b95;
-  border-color: #023b95;
+  background-color: #023B95;
+  border-color: #023B95;
 }
 
 .checkbox-label svg {
@@ -408,7 +408,7 @@ button .contained.disabled {
 }
 
 .toggle-input:checked+.toggle-label {
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .toggle-input:checked+.toggle-label::after {
@@ -424,10 +424,10 @@ button .contained.disabled {
 .plusminus-button {
   width: 24px;
   height: 24px;
-  border: 3px solid #023b95;
+  border: 3px solid #023B95;
   border-radius: 50%;
   background-color: white;
-  color: #023b95;
+  color: #023B95;
   font-size: 18px;
   display: flex;
   justify-content: center;
@@ -439,7 +439,7 @@ button .contained.disabled {
 }
 
 .plusminus-button:hover {
-  background-color: #023b95;
+  background-color: #023B95;
   color: white;
 }
 
@@ -525,7 +525,7 @@ button .contained.disabled {
   font-size: 40px;
   line-height: 48px;
   font-weight: 600;
-  /* <!-- color: #023b95; --> */
+  /* <!-- color: #023B95; --> */
   margin-bottom: 20px;
   position: relative;
 }
@@ -537,7 +537,7 @@ button .contained.disabled {
   left: 0;
   width: 100px;
   height: 3px;
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .pup-back-button {
@@ -561,7 +561,7 @@ button .contained.disabled {
 }
 
 .pup-back-button:hover {
-  color: #023b95;
+  color: #023B95;
 }
 
 .pup-selection-content {
@@ -619,7 +619,7 @@ button .contained.disabled {
 
 .pup-dropdown select:focus {
   outline: none;
-  border-color: #023b95;
+  border-color: #023B95;
   box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
 }
 
@@ -630,7 +630,7 @@ button .contained.disabled {
   right: 15px;
   transform: translateY(-50%) rotate(90deg);
   pointer-events: none;
-  color: #023b95;
+  color: #023B95;
   font-size: 20px;
 }
 
@@ -656,7 +656,7 @@ button .contained.disabled {
 }
 
 .pup-stepper-dot.active {
-  background-color: #023b95;
+  background-color: #023B95;
   transform: scale(1.2);
 }
 
@@ -666,7 +666,7 @@ button .contained.disabled {
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
-  background: #023b95;
+  background: #023B95;
   color: #ffffff;
   border-radius: 4px;
   padding: 12px 24px;
@@ -753,16 +753,16 @@ button .contained.disabled {
 
 .pup-input-field:focus {
   outline: none;
-  /* border-color: #023b95; */
+  /* border-color: #023B95; */
   /* box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2); */
 }
 
 .pup-input-group.active .input-label {
-  color: #023b95;
+  color: #023B95;
 }
 
 .pup-input-group.active .input-field {
-  border-color: #023b95;
+  border-color: #023B95;
 }
 
 .pup-review-content {
@@ -796,7 +796,7 @@ button .contained.disabled {
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .pup-info-item {
@@ -812,7 +812,7 @@ button .contained.disabled {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .pup-info-item-no-dot {
@@ -1010,10 +1010,10 @@ button .contained.disabled {
 .year-display {
   font-size: 20px;
   font-weight: 600;
-  color: #023b95;
+  color: #023B95;
   margin: 0 20px;
   padding: 5px 15px;
-  border: 2px solid #023b95;
+  border: 2px solid #023B95;
   border-radius: 4px;
   background-color: #f0f4ff;
   transition: background-color 0.3s ease;
@@ -1078,7 +1078,7 @@ button .contained.disabled {
   top: 20px;
   right: 20px;
   font-size: 24px;
-  color: #023b95;
+  color: #023B95;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
@@ -1092,13 +1092,13 @@ button .contained.disabled {
   justify-content: center;
   align-items: center;
   height: 40px;
-  color: #023b95;
+  color: #023B95;
   font-weight: 500;
 }
 
 .spinner {
   border: 3px solid #f3f3f3;
-  border-top: 3px solid #023b95;
+  border-top: 3px solid #023B95;
   border-radius: 50%;
   width: 20px;
   height: 20px;

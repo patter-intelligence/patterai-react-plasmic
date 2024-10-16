@@ -23,7 +23,7 @@ const ComparisonContainer = styled.div`
 const ComparisonTitle = styled.h1`
   font-size: 3rem;
   text-align: center;
-  color: #023b95;
+  color: #023B95;
   margin-bottom: 3rem;
   font-weight: 700;
   text-transform: uppercase;

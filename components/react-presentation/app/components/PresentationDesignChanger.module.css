@@ -51,7 +51,7 @@
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: #023b95;
+  border-color: #023B95;
   box-shadow: 0 0 0 0.2rem rgba(0, 59, 149, 0.25);
 }
 
@@ -72,7 +72,7 @@
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
-  background-color: #023b95;
+  background-color: #023B95;
   color: #ffffff;
   padding: 12px 18px;
   border: none;

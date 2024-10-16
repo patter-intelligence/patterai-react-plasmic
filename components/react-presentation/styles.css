@@ -90,6 +90,6 @@ input[type="number"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
-    border-color: #023b95;
+    border-color: #023B95;
     box-shadow: 0 0 0 0.2rem rgba(0, 59, 149, 0.25);
 }

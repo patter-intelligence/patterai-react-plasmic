@@ -20,8 +20,8 @@
   top: 5px;
   z-index: 1001;
   background-color: #ffffff;
-  border: 2px solid #023b95;
-  color: #023b95;
+  border: 2px solid #023B95;
+  color: #023B95;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -33,7 +33,7 @@
 }
 
 .toggle-icon:hover {
-  background-color: #023b95;
+  background-color: #023B95;
   color: #ffffff;
 }
 
@@ -85,7 +85,7 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #023b95;
+  border-color: #023B95;
   box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
 }
 
@@ -120,7 +120,7 @@
   font-size: 12px;
   font-weight: 500;
   color: #ffffff;
-  background-color: #023b95;
+  background-color: #023B95;
   padding: 2px 6px;
   border-radius: 4px;
   margin-left: 8px;
@@ -158,7 +158,7 @@
 
 .quantity-input:focus,
 .custom-value-input:focus {
-  border-color: #023b95;
+  border-color: #023B95;
   outline: none;
   box-shadow: 0 0 0 2px rgba(2, 59, 149, 0.2);
 }
@@ -182,7 +182,7 @@
 }
 
 .toggle-input:checked {
-  background-color: #023b95;
+  background-color: #023B95;
 }
 
 .toggle-input::before {
@@ -209,7 +209,7 @@
   background-color: #f0f8ff;
   border-radius: 4px;
   display: inline-block;
-  color: #023b95;
+  color: #023B95;
 }
 
 .loading-container {
@@ -222,7 +222,7 @@
 
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
-  border-left-color: #023b95;
+  border-left-color: #023B95;
   border-radius: 50%;
   width: 40px;
   height: 40px;

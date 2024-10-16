@@ -103,7 +103,7 @@
 
 .manual-loan-approval-subtitle {
   font-size: 20px;
-  color: #023b95;
+  color: #023B95;
   margin-bottom: 15px;
 }
 
@@ -157,7 +157,7 @@
 }
 
 .manual-loan-approval-button {
-  background-color: #023b95;
+  background-color: #023B95;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -203,7 +203,7 @@
 .previous-loan-box h3 {
   font-size: 20px;
   margin-bottom: 18px;
-  color: #023b95;
+  color: #023B95;
   font-weight: 600;
 }
 
@@ -238,7 +238,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background-color: #023b95;
+  background-color: #023B95;
   transition: height 0.3s ease;
 }
 
@@ -257,7 +257,7 @@
 
 .manual-loan-approval-loader {
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #023b95;
+  border-top: 4px solid #023B95;
   border-radius: 50%;
   width: 40px;
   height: 40px;

@@ -54,7 +54,7 @@ export function generateChart($state: any) {
           color: (context: { tick: { value: any } }) => {
             const value = Number(context.tick.value);
             return value === $state.currentYear.get() - 1
-              ? '#023b95'
+              ? '#023B95'
               : '#9b9b9b';
           },
         },
@@ -109,7 +109,7 @@ export function generateChart($state: any) {
         backgroundColor: 'white',
         borderColor: '#d1d1d1',
         borderWidth: 1,
-        titleColor: '#023b95',
+        titleColor: '#023B95',
         titleFont: {
           weight: 'bold',
         },
@@ -151,7 +151,7 @@ export function generateChart($state: any) {
         backgroundColor: (context: { dataIndex: any }) => {
           const index = context.dataIndex;
           return index === $state.currentYear.get() - 1
-            ? '#023b95'
+            ? '#023B95'
             : 'transparent';
         },
         borderColor: (context: { dataIndex: any }) => {
@@ -293,23 +293,29 @@ export const Step3 = observer(() => {
     <div className="pup-selection-content">
       <div className="pup-review-content">
         <div className="pup-information-section">
-          <h2 className="h2-semi">Your Information</h2>
+          {/* <h2 className="h2-semi">Your Information</h2> */}
           <div className="timeline">
-            <div className="info-item">
-              <p className="info-label">UTILITY COMPANY</p>
-              <p className="info-value">
+            <div className="pup-info-item">
+              <p className="pup-info-label">Utility Company</p>
+              <p className="pup-info-value">
                 {selectedProvider ? selectedProvider.label : 'Not selected'}
               </p>
             </div>
             <div className="pup-info-item">
-              <p className="pup-info-label">UTILITY TARIFF</p>
+              <p className="pup-info-label">Utility Tarriff</p>
               <p className="pup-info-value">
                 {selectedTariffObj ? selectedTariffObj.label : 'Not selected'}
               </p>
             </div>
-            <div className="pup-pup-info-item">
-              <p className="pup-info-label">AVERAGE MONTHLY USAGE</p>
-              <p className="pup-pup-info-value">
+            <div className="pup-info-item">
+              <p className="pup-info-label">Average Daily Usage</p>
+              <p className="pup-info-value">
+                {((averageMonthlyUsage || 0) / 30.41).toLocaleString()} kWh
+              </p>
+            </div>
+            <div className="pup-info-item">
+              <p className="pup-info-label">Average Monthly Usage</p>
+              <p className="pup-info-value">
                 {averageMonthlyUsage.toLocaleString()} kWh
               </p>
             </div>
@@ -317,11 +323,11 @@ export const Step3 = observer(() => {
         </div>
         <div className="pup-summary-section">
           <div className="pup-info-item-no-dot">
-            <p className="d1-semi gray">Your Average Daily Spend</p>
+            <p className="d1-semi pup-info-label text-secondary">Your Average Daily Spend</p>
             <p className="pup-dollar-amount">${averageDailySpend.toFixed(2)}</p>
           </div>
           <div className="pup-info-item-no-dot">
-            <p className="d1-semi gray">Your Average Monthly Bill</p>
+            <p className="d1-semi  pup-info-label text-secondary">Your Average Monthly Bill</p>
             <p className="pup-dollar-amount">
               ${averageMonthlyBill.toLocaleString()}
             </p>

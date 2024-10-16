@@ -27,7 +27,7 @@
   display: block;
   width: 280px;
   height: 3px;
-  background-color: #023b95;
+  background-color: #023B95;
   margin-top: 10px;
 }
 
@@ -99,7 +99,7 @@
 .chevron-left {
   width: 24px;
   height: 24px;
-  fill: #023b95;
+  fill: #023B95;
 }
 
 .chevron-right {
@@ -144,7 +144,7 @@
 }
 
 .back-button {
-  color: #023b95;
+  color: #023B95;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -347,7 +347,7 @@
 }
 
 .quantity-button-ee.plus {
-  background-color: #023b95;
+  background-color: #023B95;
   color: white;
 }
 

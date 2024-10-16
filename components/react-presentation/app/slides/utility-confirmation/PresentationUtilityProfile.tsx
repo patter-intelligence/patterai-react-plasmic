@@ -135,6 +135,8 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
   const yearDisplay = `Year ${$state.currentYear.get()}`;
 
   useEffect(() => {
+    appState.isLoading.set(true);
+
     const fetchInitialData = async () => {
       $state.isLoading.set(true);
       try {
@@ -176,6 +178,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
         console.error("Error fetching initial data:", error);
       } finally {
         $state.isLoading.set(false);
+        appState.isLoading.set(false);
       }
     };
 
@@ -403,7 +406,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
     // debugger;
 
     const averageMonthlyBill = Math.round(
-      averageUsage * analysisData[0].Rate__c || 0
+      averageUsage * analysisData?.[0]?.Rate__c || 0
     );
     // analysisData && analysisData.length > 0
     //   ? Math.round(analysisData[0].Cost__c / 12)
@@ -485,7 +488,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
     try {
       analysisData = await runAnalysisGenability({
         pid: recordId,
-        masterTariffId: $state.consumption.get()?.masterTariffId__c,
+        masterTariffId: ($state.consumption.get()?.masterTariffId__c)?.toString(),
         sids: null,
       });
 
@@ -634,7 +637,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
               rate: analysisItem.Rate__c,
               cost: analysisItem.Cost__c,
             })),
-            borderColor: "#023b95",
+            borderColor: "#023B95",
             backgroundColor: (context: any) => {
               const chart = context.chart;
               const { ctx, chartArea } = chart;
@@ -665,7 +668,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
             pointBorderColor: (context: { dataIndex: any }) => {
               const index = context.dataIndex;
               return index === $state.currentYear.get() - 1
-                ? "#023b95"
+                ? "#023B95"
                 : "transparent";
             },
             pointBorderWidth: 4,
@@ -737,7 +740,7 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
             );
             const missingMonthlyValues = !hasAllMonthlyValues(newConsumption);
 
-            if (valuesChanged || missingMonthlyValues) {
+            if (valuesChanged || missingMonthlyValues || newConsumption?.averageMonthlyBill === 0) {
               $state.loaderTitle.set("Running analysis");
               await updateConsumption(false);
               await createProfile({ pid: recordId });
@@ -840,6 +843,10 @@ const PresentationUtilityProfile: React.FC<Props> = observer(({}) => {
       $state.currentYear.set(newYear);
     }
   };
+
+  if(appState.isLoading.get()) {
+    return null;
+  }
 
   generateChart($state);
 

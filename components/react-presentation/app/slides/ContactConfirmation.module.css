@@ -136,7 +136,7 @@ h4 .medium {
 
 /* Colors */
 .primary {
-  color: #023b95;
+  color: #023B95;
 }
 
 /* Neutrals */
@@ -201,7 +201,7 @@ h4 .medium {
 }
 
 /* :root {
-  --primary-color: #023b95;
+  --primary-color: #023B95;
   --secondary-color: #ced4da;
 } */
 
@@ -387,7 +387,7 @@ h4 .medium {
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid #023b95;
+  border: 5px solid #023B95;
   border-top: 5px solid #ffffff;
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -407,7 +407,7 @@ h4 .medium {
   margin-top: 20px;
   font-family: Montserrat, sans-serif;
   font-size: 18px;
-  color: #023b95;
+  color: #023B95;
 }
 
 

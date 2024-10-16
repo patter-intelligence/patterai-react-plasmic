@@ -21,6 +21,7 @@ export interface ContactItem {
     Area__c: number;
     Name: string;
     Modules__r: Module[];
+    isEnabled__c: boolean;s
   }
   
   export interface Module {

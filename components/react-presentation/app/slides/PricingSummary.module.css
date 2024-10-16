@@ -13,12 +13,12 @@
 }
 
 .pricing-summary-title {
-  color: #023b95;
+  color: #023B95;
   margin-bottom: 20px;
 }
 
 .expand-collapse-btn {
-  background-color: #023b95;
+  background-color: #023B95;
   color: #ffffff;
   border: none;
   padding: 8px 16px;
@@ -81,8 +81,8 @@
 .chevron {
   width: 10px;
   height: 10px;
-  border-right: 2px solid #023b95;
-  border-bottom: 2px solid #023b95;
+  border-right: 2px solid #023B95;
+  border-bottom: 2px solid #023B95;
   transform: rotate(45deg);
   transition: transform 0.3s ease;
 }
@@ -133,7 +133,7 @@
 .ps-total-cost {
   margin-top: 24px;
   padding-top: 24px;
-  border-top: 2px solid #023b95;
+  border-top: 2px solid #023B95;
 }
 
 .ps-total-cost .ps-accordion-header-no-highlight {
@@ -154,7 +154,7 @@
   width: 50px;
   height: 50px;
   border: 3px solid #f4f6f9;
-  border-top: 3px solid #023b95;
+  border-top: 3px solid #023B95;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

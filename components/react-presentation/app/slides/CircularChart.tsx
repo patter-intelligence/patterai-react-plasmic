@@ -12,6 +12,12 @@ interface CircularChartProps {
   className?: string;
 }
 
+const COLORS = {
+  solar: '#00C853',
+  efficiency: '#2962FF',
+  utility: '#E0E0E0'
+}
+
 const CircularChart: React.FC<CircularChartProps> = ({
   solarPercentage,
   efficiencyPercentage,
@@ -51,7 +57,7 @@ const CircularChart: React.FC<CircularChartProps> = ({
             r={radius}
             strokeWidth={strokeWidth}
             fill="none"
-            stroke="#e6e6e6"
+            stroke={COLORS.utility}
           />
           <circle
             className="chc-circle-utility"
@@ -60,7 +66,7 @@ const CircularChart: React.FC<CircularChartProps> = ({
             r={radius}
             strokeWidth={strokeWidth}
             fill="none"
-            stroke="#CCCCCC"
+            stroke={COLORS.utility}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={utilityOffset}
@@ -73,7 +79,7 @@ const CircularChart: React.FC<CircularChartProps> = ({
             r={radius}
             strokeWidth={strokeWidth}
             fill="none"
-            stroke="#4CAF50"
+            stroke={COLORS.efficiency}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={efficiencyOffset}
@@ -86,7 +92,7 @@ const CircularChart: React.FC<CircularChartProps> = ({
             r={radius}
             strokeWidth={strokeWidth}
             fill="none"
-            stroke="#FFA500"
+            stroke={COLORS.solar}
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={solarOffset}
@@ -116,20 +122,20 @@ const CircularChart: React.FC<CircularChartProps> = ({
         </svg>
         <div className="chc-chart-legend">
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#FFA500', width: '20px', height: '10px', borderRadius: '5px' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: COLORS.solar, width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Solar: {solarKWh.toFixed(1)} kWh ({solarPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Solar</span>
 
           </div>
           {showEfficiency && (
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#4CAF50', width: '20px', height: '10px', borderRadius: '5px' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: COLORS.efficiency, width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Efficiency: {(efficiencyPercentage * (solarKWh + utilityKWh) / 100).toFixed(1)} kWh ({efficiencyPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Efficiency</span>
           
           </div>)}
           <div className="chc-legend-item">
-            <span className="chc-legend-color" style={{ backgroundColor: '#CCCCCC', width: '20px', height: '10px', borderRadius: '5px' }}></span>
+            <span className="chc-legend-color" style={{ backgroundColor: COLORS.utility, width: '20px', height: '10px', borderRadius: '5px' }}></span>
             {/* <span className="legend-label">Utility: {utilityKWh.toFixed(1)} kWh ({utilityPercentage.toFixed(1)}%)</span> */}
             <span className="chc-legend-label">Utility</span>
 

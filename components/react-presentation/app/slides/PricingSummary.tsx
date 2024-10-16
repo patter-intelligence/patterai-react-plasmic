@@ -119,9 +119,7 @@ const PricingSummary: React.FC = observer(() => {
   return (
     <div className="ps-pricing-summary-card">
       <h2 className="h1-semi fade-in heading ps-pricing-summary-title">Pricing Summary</h2>
-      <button className="ps-expand-collapse-btn" onClick={handleToggleAll}>
-        {expandAll ? 'Collapse All' : 'Expand All'}
-      </button>
+     
       <div className="ps-pricing-summary-content">
         {costDetails.map((detail) => (
           <div key={detail.id} className="ps-accordion-section">
@@ -173,6 +171,9 @@ const PricingSummary: React.FC = observer(() => {
           </div>
         </div>
       </div>
+      <button className="ps-expand-collapse-btn" onClick={handleToggleAll}>
+        {expandAll ? 'Collapse All' : 'Expand All'}
+      </button>
     </div>
   );
 });
