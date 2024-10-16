@@ -1,0 +1,4 @@
+.aider*
+node_modules
+.sfdx
+.DS_Store
